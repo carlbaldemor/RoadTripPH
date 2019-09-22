@@ -116,9 +116,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c3007ae-e49d-4cad-a2f2-10d165a3a5e8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/ph/roadtrip/roadtrip/DashboardOwnerActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ph/roadtrip/roadtrip/DashboardOwnerActivity.java" afterDir="false" />
-    </list>
+    <list default="true" id="0c3007ae-e49d-4cad-a2f2-10d165a3a5e8" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,10 +214,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/ph/roadtrip/roadtrip/DashboardOwnerActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="202" column="9" lean-forward="true" selection-start-line="202" selection-start-column="9" selection-end-line="202" selection-end-column="9" />
+            <state relative-caret-position="-308">
+              <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="e#6332#9013#0" expanded="true" />
+                <element signature="e#9012#9013#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1072,10 +1072,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ph/roadtrip/roadtrip/DashboardOwnerActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="202" column="9" lean-forward="true" selection-start-line="202" selection-start-column="9" selection-end-line="202" selection-end-column="9" />
+        <state relative-caret-position="-308">
+          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="e#6332#9013#0" expanded="true" />
+            <element signature="e#9012#9013#0" expanded="true" />
           </folding>
         </state>
       </provider>
