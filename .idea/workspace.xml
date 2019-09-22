@@ -116,9 +116,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c3007ae-e49d-4cad-a2f2-10d165a3a5e8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-    </list>
+    <list default="true" id="0c3007ae-e49d-4cad-a2f2-10d165a3a5e8" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,8 +189,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/ph/roadtrip/roadtrip/profile/EditInfoOwnerFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1078">
-              <caret line="35" selection-start-line="35" selection-end-line="35" />
+            <state relative-caret-position="2266">
+              <caret line="103" lean-forward="true" selection-start-line="103" selection-end-line="103" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -379,7 +377,9 @@
     <option name="width" value="2425" />
     <option name="height" value="1315" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -392,7 +392,7 @@
           <expand>
             <path>
               <item name="roadtripph" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="e9137016:NonAndroidModuleNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
             </path>
             <path>
               <item name="roadtripph" type="1abcf292:AndroidViewProjectNode" />
@@ -614,7 +614,7 @@
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.37315437" side_tool="true" weight="0.29461756" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.3286119" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49946696" weight="0.3286119" />
-      <window_info anchor="bottom" id="Build" order="11" sideWeight="0.62684566" visible="true" weight="0.2776204" />
+      <window_info anchor="bottom" id="Build" order="11" sideWeight="0.62684566" visible="true" weight="0.2181303" />
       <window_info anchor="bottom" id="Android Profiler" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -1038,8 +1038,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ph/roadtrip/roadtrip/profile/EditInfoOwnerFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1078">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        <state relative-caret-position="2266">
+          <caret line="103" lean-forward="true" selection-start-line="103" selection-end-line="103" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
