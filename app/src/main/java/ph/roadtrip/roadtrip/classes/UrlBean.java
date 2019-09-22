@@ -1,7 +1,7 @@
 package ph.roadtrip.roadtrip.classes;
 
 public class UrlBean {
-    private static final String ROOT_IP = "192.168.100.13";
+    private static final String ROOT_IP = "192.168.100.8";
 
     //Check Email
     private String forgetPasswordLink = "http://" + ROOT_IP +"/api/roadtrip/checkEmail.php";
