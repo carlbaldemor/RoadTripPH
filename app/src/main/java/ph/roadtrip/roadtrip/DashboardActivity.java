@@ -63,9 +63,11 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     private NavigationView navigationView;
     private TextView menu_name;
     private TextView menu_email;
+    private TextView menu_role;
     private ImageView menu_prof_pic;
     private String profilePicture;
     private String myUrl;
+    private boolean role;
     private int userID;
 
     @Override
@@ -94,8 +96,14 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                 session = new SessionHandler(getApplicationContext());
                 User user = session.getUserDetails();
                 userID = user.getUserID();
+                if (user.getUserTypeID() == "1"){
+                    role = true;
+                } else {
+                    role = false;
+                }
                 TextView menu_name = findViewById(R.id.menu_name);
                 TextView menu_email = findViewById(R.id.menu_email);
+                TextView menu_role = findViewById(R.id.menu_role);
                 ImageView menu_prof_pic = findViewById(R.id.menu_prof_pic);
                 String profilePicture = user.getProfilePicture();
 
@@ -107,6 +115,11 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                         .into(menu_prof_pic);
 
                 //Get and Set User details
+                if (role == true) {
+                    menu_role.setText("Car Renter");
+                } else {
+                    menu_role.setText("Car Owner");
+                }
                 menu_name.setText(user.getFullName());
                 menu_email.setText(user.getEmailAddress());
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()

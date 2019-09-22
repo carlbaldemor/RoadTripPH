@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="250dp"
     android:background="#20639B
 "
     android:gravity="bottom"
@@ -51,6 +51,15 @@
         android:textColor="@android:color/white"
         android:id="@+id/menu_email"
         android:layout_below="@+id/menu_name"/>
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:text="Role"
+        android:textSize="15sp"
+        android:textColor="@android:color/white"
+        android:id="@+id/menu_role"
+        android:layout_below="@+id/menu_email"/>
 
 </RelativeLayout>
