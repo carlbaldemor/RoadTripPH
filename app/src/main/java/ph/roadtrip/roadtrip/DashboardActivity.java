@@ -2,6 +2,7 @@ package ph.roadtrip.roadtrip;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -154,56 +155,61 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
 
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.nav_home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new HomeFragment()).commit();
-                break;
-            case R.id.nav_message:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new ListChatsFragment()).commit();
-                break;
-            case R.id.nav_booking:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new BookingFragment()).commit();
-                break;
-            case R.id.nav_profile:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new ProfileFragment()).commit();
-                break;
-            case R.id.nav_history:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new TransactionHistoryFragment()).commit();
-                break;
-            case R.id.nav_book:
-                load = new Intent(getApplicationContext(), BookServiceActivity.class);
-                startActivity(load);
-                finish();
-                break;
-            case R.id.nav_favorites:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new ListMyFavoritesFragment()).commit();
-                break;
-            case R.id.nav_cust:
-                load = new Intent(getApplicationContext(), ChatBotActivity.class);
-                startActivity(load);
-                break;
-            case R.id.nav_help:
-                load = new Intent(getApplicationContext(), FaqsActivity.class);
-                startActivity(load);
-                finish();
-                break;
-            case R.id.nav_logout:
-                logoutUser();
-                session.logoutUser();
-                load = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(load);
-                finish();
-                break;
-         }
-         drawer.closeDrawer(GravityCompat.START);
-        return true;
+    public boolean onNavigationItemSelected(@NonNull final MenuItem item) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                switch (item.getItemId()){
+                    case R.id.nav_home:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                new HomeFragment()).commit();
+                        break;
+                    case R.id.nav_message:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                new ListChatsFragment()).commit();
+                        break;
+                    case R.id.nav_booking:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                new BookingFragment()).commit();
+                        break;
+                    case R.id.nav_profile:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                new ProfileFragment()).commit();
+                        break;
+                    case R.id.nav_history:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                new TransactionHistoryFragment()).commit();
+                        break;
+                    case R.id.nav_book:
+                        load = new Intent(getApplicationContext(), BookServiceActivity.class);
+                        startActivity(load);
+                        finish();
+                        break;
+                    case R.id.nav_favorites:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                new ListMyFavoritesFragment()).commit();
+                        break;
+                    case R.id.nav_cust:
+                        load = new Intent(getApplicationContext(), ChatBotActivity.class);
+                        startActivity(load);
+                        break;
+                    case R.id.nav_help:
+                        load = new Intent(getApplicationContext(), FaqsActivity.class);
+                        startActivity(load);
+                        finish();
+                        break;
+                    case R.id.nav_logout:
+                        logoutUser();
+                        session.logoutUser();
+                        load = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(load);
+                        finish();
+                        break;
+                }
+        }
+    }, 200);
+     drawer.closeDrawer(GravityCompat.START);
+     return true;
     }
 
     public void logoutUser(){
