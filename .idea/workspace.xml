@@ -116,10 +116,14 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="0c3007ae-e49d-4cad-a2f2-10d165a3a5e8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/app/src/main/java/ph/roadtrip/roadtrip/DashboardActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ph/roadtrip/roadtrip/DashboardActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/nav_header.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/nav_header.xml" afterDir="false" />
     </list>
+=======
+    <list default="true" id="0c3007ae-e49d-4cad-a2f2-10d165a3a5e8" name="Default" comment="" />
+>>>>>>> a386d6db3910dc76f2709ce4a699314e92deb4e1
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +186,25 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/app/src/main/java/ph/roadtrip/roadtrip/DashboardActivity.java">
+=======
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/ph/roadtrip/roadtrip/DashboardOwnerActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-308">
+              <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#6332#9013#0" expanded="true" />
+                <element signature="e#9012#9013#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/ph/roadtrip/roadtrip/profile/EditInfoOwnerFragment.java">
+>>>>>>> a386d6db3910dc76f2709ce4a699314e92deb4e1
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="258">
               <caret line="121" column="17" lean-forward="true" selection-start-line="121" selection-start-column="17" selection-end-line="121" selection-end-column="17" />
@@ -979,6 +1001,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ph/roadtrip/roadtrip/profile/EditInfoOwnerFragment.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="-2683">
           <caret line="107" lean-forward="true" selection-start-line="107" selection-end-line="107" />
           <folding>
@@ -1014,6 +1037,14 @@
           <folding>
             <element signature="e#6404#9041#0" expanded="true" />
             <element signature="e#9040#9041#0" expanded="true" />
+=======
+        <state relative-caret-position="-308">
+          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#6332#9013#0" expanded="true" />
+            <element signature="e#9012#9013#0" expanded="true" />
+>>>>>>> a386d6db3910dc76f2709ce4a699314e92deb4e1
           </folding>
         </state>
       </provider>
