@@ -143,7 +143,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         onBackground();
         //loadHome();
     }
-
+//test
     private void loadHome(){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
