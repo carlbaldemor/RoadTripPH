@@ -117,8 +117,10 @@ public class EditInfoOwnerFragment extends android.support.v4.app.Fragment {
 
         if (user.getGender().equalsIgnoreCase("M")){
             SpinnerGender.setSelection(0);
-        }else {
+        }else if (user.getGender().equalsIgnoreCase("F")){
             SpinnerGender.setSelection(1);
+        } else {
+            SpinnerGender.setSelection(2);
         }
 
 
@@ -143,8 +145,10 @@ public class EditInfoOwnerFragment extends android.support.v4.app.Fragment {
 
                 if (text.equalsIgnoreCase("Male")){
                     gender = "M";
-                } else{
+                } else if (text.equalsIgnoreCase("Female")){
                     gender = "F";
+                } else {
+                    gender = "UD";
                 }
 
                 //Retrieve the data entered in the edit texts
