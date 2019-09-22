@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin">
+
+
+
+    <com.android.volley.toolbox.NetworkImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/picture_list"
+            android:src="@drawable/add_pic"
+            android:clickable="true"/>
+
+    <TextView
+        android:id="@+id/firstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="2dip"
+        android:layout_marginLeft="10dp"
+        android:text="First"
+        android:textStyle="bold"
+        android:textSize="17sp"
+        android:layout_toRightOf="@id/picture_list"/>
+
+    <TextView
+        android:id="@+id/lastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="Last"
+        android:textStyle="bold"
+        android:textSize="17sp"
+        android:layout_toRightOf="@id/firstName"/>
+
+    <TextView
+        android:id="@+id/dateAdded"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:textColor="#5d5d5d"
+        android:text="DATE"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:textSize="11sp"
+        android:layout_toRightOf="@id/lastName"/>
+
+        <TextView
+            android:id="@+id/tvRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textColor="#5d5d5d"
+            android:text="4"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_toRightOf="@id/picture_list"
+            android:layout_marginTop="25dp"
+            />
+    <TextView
+        android:id="@+id/lbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:textColor="#5d5d5d"
+        android:text="/5"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_toRightOf="@id/tvRating"
+        android:layout_marginTop="25dp"
+        />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="27dp"
+        android:numStars="5"
+        android:stepSize="0.5"
+        android:rating="1"
+        android:layout_toRightOf="@id/lbl"
+        style="@style/Widget.AppCompat.RatingBar.Small"/>
+
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#5d5d5d"
+        android:text="Message"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:textSize="15sp"
+        android:layout_toRightOf="@id/picture_list"
+        android:layout_marginTop="45dp"/>
+
+
+</RelativeLayout>

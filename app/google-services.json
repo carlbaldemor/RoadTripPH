@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "181385928704",
+    "firebase_url": "https://roadtrip-a560f.firebaseio.com",
+    "project_id": "roadtrip-a560f",
+    "storage_bucket": "roadtrip-a560f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181385928704:android:03e0d5f863411e0f",
+        "android_client_info": {
+          "package_name": "ph.roadtrip.roadtrip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "181385928704-vgs5krkcjf1gojd37dadef61or9dlrms.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ph.roadtrip.roadtrip",
+            "certificate_hash": "f0c0279dd694893c664facd29cd874664cc8aea2"
+          }
+        },
+        {
+          "client_id": "181385928704-s2s05o3k8qsrubl15gn6bfe02oc9gos0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcVnLiwGYMyjNUiocu4nhbH3vNroKihA0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "181385928704-s2s05o3k8qsrubl15gn6bfe02oc9gos0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

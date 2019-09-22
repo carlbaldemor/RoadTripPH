@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@drawable/profile_full_bg"
+    tools:context=".PayPal.PayPalActivity">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:elevation="3dp">
+        <TextView
+            android:layout_width="320dp"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="10dp"
+            android:paddingLeft="15dp"
+            android:layout_height="wrap_content"
+            android:text="Car Details"
+            android:background="@android:color/white"
+            android:textColor="@color/endblue"
+            android:id="@+id/tvCarDetails"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvBrand"
+            android:layout_width="320dp"
+            android:background="@android:color/white"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvCarDetails"
+            android:layout_alignStart="@+id/tvCarDetails"
+            android:layout_alignLeft="@+id/tvCarDetails"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="5dp"
+            android:text="Brand: "
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/tvModel"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:layout_below="@+id/tvBrand"
+            android:layout_alignStart="@+id/tvBrand"
+            android:layout_alignLeft="@+id/tvBrand"
+            android:paddingTop="5dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="15dp"
+            android:textSize="16sp"
+            android:text="Model: "
+            />
+
+        <TextView
+            android:id="@+id/tvColor"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvModel"
+            android:background="@android:color/white"
+            android:layout_alignStart="@+id/tvModel"
+            android:layout_alignLeft="@+id/tvModel"
+            android:paddingLeft="15dp"
+            android:paddingTop="5dp"
+            android:textSize="16sp"
+            android:text="Color: " />
+
+        <TextView
+            android:id="@+id/tvYear"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvColor"
+            android:layout_alignStart="@+id/tvColor"
+            android:layout_alignLeft="@+id/tvColor"
+            android:text="Model Year: "
+            android:paddingTop="5dp"
+            android:background="@android:color/white"
+            android:paddingLeft="15dp"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvServiceType"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvYear"
+            android:layout_width="320dp"
+            android:layout_alignStart="@+id/tvYear"
+            android:layout_alignLeft="@+id/tvYear"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:text="Service Type: "
+            android:paddingTop="5dp"
+            android:background="@android:color/white"
+            android:paddingLeft="15dp"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvOwner"
+            android:layout_width="320dp"
+            android:background="@android:color/white"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvServiceType"
+            android:layout_alignStart="@+id/tvServiceType"
+            android:layout_alignLeft="@+id/tvServiceType"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:paddingBottom="10dp"
+            android:text="Owned by: "
+            android:paddingLeft="15dp"
+            android:paddingTop="5dp"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvBookingDetails"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvOwner"
+            android:layout_alignStart="@+id/tvOwner"
+            android:layout_alignLeft="@+id/tvOwner"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="30dp"
+            android:background="@android:color/white"
+            android:textColor="@color/endblue"
+            android:text="Booking Details"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingTop="10dp"
+            android:paddingLeft="15dp"/>
+
+        <TextView
+            android:id="@+id/tvStartDate"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvBookingDetails"
+            android:layout_alignStart="@+id/tvBookingDetails"
+            android:layout_alignLeft="@+id/tvBookingDetails"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:paddingLeft="15dp"
+            android:background="@android:color/white"
+            android:paddingTop="10dp"
+            android:text="Start Date: "
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvEndDate"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvStartDate"
+            android:layout_alignStart="@+id/tvStartDate"
+            android:layout_alignLeft="@+id/tvStartDate"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:paddingTop="10dp"
+            android:paddingLeft="15dp"
+            android:background="@android:color/white"
+            android:text="End Date: "
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvAmount"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvEndDate"
+            android:layout_alignStart="@+id/tvEndDate"
+            android:layout_alignLeft="@+id/tvEndDate"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:text="Price Per Day: "
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:background="@android:color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvTotalAmount"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvAmount"
+            android:layout_alignStart="@+id/tvAmount"
+            android:layout_alignLeft="@+id/tvAmount"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:text="Total Amount: "
+            android:background="@android:color/white"
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/endblue"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/buttonPay"
+            android:layout_width="250dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvTotalAmount"
+            android:textColor="@android:color/white"
+            android:layout_centerHorizontal="true"
+            android:paddingLeft="45dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/paypal_button"
+            android:gravity="start|center_vertical"
+            android:text="Pay Now" />
+    </LinearLayout>
+
+</RelativeLayout>

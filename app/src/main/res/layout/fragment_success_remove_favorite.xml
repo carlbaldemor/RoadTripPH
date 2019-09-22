@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@drawable/profile_full_bg"
+    tools:context=".bookingmodule.SuccessBookingRequestActivity">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:elevation="3dp">
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="350dp"
+            android:layout_centerInParent="true"
+            android:id="@+id/imgSuccess"
+            android:src="@drawable/remove_successful_favorites"/>
+
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="My Favorites"
+            android:layout_below="@id/imgSuccess"
+            android:layout_centerHorizontal="true"
+            android:textColor="#FFF"
+            android:background="@drawable/login_button"
+            android:id="@+id/btnMyBookings"/>
+    </LinearLayout>
+
+</RelativeLayout>

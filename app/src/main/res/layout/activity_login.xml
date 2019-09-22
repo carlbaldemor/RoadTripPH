@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/loginpage_bg"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/roadtrip_logo" />
+
+    <LinearLayout
+        android:id="@+id/layout1"
+        android:layout_width="300dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_marginTop="0dp">
+
+
+        <EditText
+            android:id="@+id/etLoginUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/white"
+            android:hint="@string/username"
+            android:inputType="text"
+            android:padding="19dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_marginTop="0dp">
+
+
+        <EditText
+            android:id="@+id/etLoginPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/white"
+            android:hint="Password"
+            android:layout_marginTop="10dp"
+            android:inputType="textPassword"
+            android:padding="19dp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/layout2"
+        android:layout_gravity="center"
+        android:layout_margin="15dp"
+        android:layout_marginHorizontal="5dp"
+        android:background="@drawable/login_button"
+        android:text="@string/sign_in"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/tvjoin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="@string/not_having_account"
+        android:textColor="@android:color/white"
+        android:layout_below="@+id/btnForgotPassword"/>
+
+    <Button
+        android:id="@+id/btnLoginRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_below="@+id/tvjoin"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:background="@drawable/login_button"
+        android:text="@string/register"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/tvforgot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnLogin"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/forgotPasswordtxt"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btnForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_below="@+id/tvforgot"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:background="@drawable/login_button"
+        android:text="@string/forgot"
+        android:textColor="@android:color/white" />
+
+
+</LinearLayout>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:layout_marginRight="15dp"
+    android:layout_marginLeft="15dp"
+    android:orientation="vertical"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="56dp"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:weightSum="3">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_marginLeft="20dp"
+            android:text="Booking Details"
+            android:textColor="#444"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+        android:text="Start: " />
+
+    <TextView
+        android:id="@+id/lblStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:layout_marginLeft="10dp"
+        android:text="Start: " />
+</LinearLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:layout_marginLeft="20dp"
+        android:textStyle="bold"
+        android:text="End: " />
+    <TextView
+        android:id="@+id/lblEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:layout_marginLeft="10dp"
+        android:text="End: " />
+</LinearLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_height="wrap_content"
+        android:text="Number of Days: " />
+    <TextView
+        android:id="@+id/lblTotalDays"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:textSize="16dp"
+        android:layout_height="wrap_content"
+        android:text="Number of Days: " />
+</LinearLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+        android:text="Price Per Day: " />
+    <TextView
+        android:id="@+id/lblAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:layout_marginLeft="10dp"
+        android:text="Price Per Day: " />
+</LinearLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/endblue"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:textSize="18dp"
+        android:text="Total Amount: " />
+    <TextView
+        android:id="@+id/lblTotalAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:textSize="18dp"
+        android:text="Total Amount: " />
+</LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:text="Pickup Address"
+        android:textColor="#444"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/lblPickup"
+        android:layout_width="wrap_content"
+        android:textSize="16dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="Flat No 404, Skyline Apartments, Vizag - 500576" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:text="Return Address"
+        android:textColor="#444"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/lblReturn"
+        android:layout_width="wrap_content"
+        android:textSize="16dp"
+        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content"
+        android:text="Flat No 404, Skyline Apartments, Vizag - 500576" />
+
+    <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center"
+        android:background="#20639B"
+        android:foreground="?attr/selectableItemBackground"
+        android:text="CONFIRM BOOKING"
+        android:textColor="#fff" />
+
+</LinearLayout>

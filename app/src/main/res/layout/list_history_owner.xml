@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin">
+
+    <com.android.volley.toolbox.NetworkImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/picture_list"
+        android:src="@drawable/add_pic"
+        android:clickable="true"/>
+
+    <TextView
+        android:id="@+id/brandName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="2dip"
+        android:layout_marginLeft="10dp"
+        android:text="Brand Name"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:textSize="17sp"
+        android:layout_toRightOf="@id/picture_list"/>
+
+    <TextView
+        android:id="@+id/modelName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:textColor="#5d5d5d"
+        android:text="Model Name"
+        android:textStyle="bold"
+        android:textSize="17sp"
+        android:layout_toRightOf="@id/brandName"/>
+
+    <TextView
+        android:id="@+id/year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:textColor="#5d5d5d"
+        android:text="Year"
+        android:textStyle="bold"
+        android:textSize="17sp"
+        android:layout_toRightOf="@id/modelName"/>
+
+
+    <TextView
+        android:id="@+id/plateNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:textColor="#5d5d5d"
+        android:text="Plate Number"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_toRightOf="@id/picture_list"
+        android:layout_marginTop="25dp"
+        />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#5d5d5d"
+        android:text="Status"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:textSize="15sp"
+        android:layout_toRightOf="@id/picture_list"
+        android:layout_marginTop="45dp"/>
+
+    <TextView
+        android:id="@+id/totalAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#5d5d5d"
+        android:text="Total Amount"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:textSize="15sp"
+        android:layout_toRightOf="@id/status"
+        android:layout_marginTop="45dp"/>
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="VIEW"
+        android:textColor="@android:color/white"
+        android:id="@+id/btnView"
+        android:layout_marginLeft="150dp"
+        android:layout_toRightOf="@id/picture_list"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/login_button"/>
+
+
+</RelativeLayout>

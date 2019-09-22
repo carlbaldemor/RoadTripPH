@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/profile_full_bg"
+    android:gravity="center"
+    tools:context=".bookingmodule.SuccessBookingRequestActivity">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="3dp"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="246dp"
+            android:layout_centerInParent="true"
+            android:id="@+id/imgSuccess"
+            android:src="@drawable/review_success"/>
+
+        <Button
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:text="Transaction HISTORY"
+            android:layout_below="@id/imgSuccess"
+            android:layout_centerHorizontal="true"
+            android:textColor="#FFF"
+            android:background="@drawable/login_button"
+            android:id="@+id/btnMyBookings"/>
+    </LinearLayout>
+
+</RelativeLayout>

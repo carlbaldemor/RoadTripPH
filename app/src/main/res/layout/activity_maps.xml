@@ -1,0 +1,57 @@
+<RelativeLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="70dp"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/TF_LOCATION"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:paddingLeft="19dp"
+                android:ems="10"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="#FFF"
+                android:inputType="textPersonName"/>
+
+            <Button
+                android:id="@+id/B_search"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="5dp"
+                android:layout_toRightOf="@id/TF_LOCATION"
+                android:background="@drawable/login_button"
+                android:onClick="onClick"
+                android:text="Search" />
+        </LinearLayout>
+
+
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            tools:context=".MapsActivity"
+            android:layout_alignParentLeft="true"/></LinearLayout>
+
+
+
+</RelativeLayout>
