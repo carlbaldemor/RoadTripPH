@@ -10,6 +10,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -118,6 +119,9 @@ public class RegisterActivity extends AppCompatActivity implements TextWatcher {
         super.onCreate(savedInstanceState);
         session = new SessionHandler(getApplicationContext());
         setContentView(R.layout.activity_register);
+
+        //Prevent keyboard popup onload
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         //Link for the PHP file
         UrlBean url = new UrlBean();

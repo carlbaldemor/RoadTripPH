@@ -116,9 +116,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c3007ae-e49d-4cad-a2f2-10d165a3a5e8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/ph/roadtrip/roadtrip/DashboardActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ph/roadtrip/roadtrip/DashboardActivity.java" afterDir="false" />
-    </list>
+    <list default="true" id="0c3007ae-e49d-4cad-a2f2-10d165a3a5e8" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
