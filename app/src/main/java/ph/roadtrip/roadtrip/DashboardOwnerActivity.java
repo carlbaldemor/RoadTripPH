@@ -1,6 +1,7 @@
 package ph.roadtrip.roadtrip;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -148,57 +149,62 @@ public class DashboardOwnerActivity extends AppCompatActivity implements Navigat
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.nav_home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new HomeOwnerFragment()).commit();
-                break;
-            case R.id.nav_message_owner:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new ListChatsOwnerFragment()).commit();
-                break;
-            case R.id.nav_profile:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new OwnerProfileFragment()).commit();
-                break;
-            case R.id.nav_earnings:
-                load = new Intent(getApplicationContext(), MyEarningsActivity.class);
-                startActivity(load);
-                finish();
-                break;
-            case R.id.nav_car:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new CarManagementFragment()).commit();
-                break;
-            case R.id.nav_history:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new TransactionHistoryOwnerFragment()).commit();
-                break;
-            case R.id.nav_book:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new MyBookingOwnerFragment()).commit();
-                break;
-            case R.id.nav_cust:
-                load = new Intent(getApplicationContext(), ChatBotOwnerActivity.class);
-                startActivity(load);
-                finish();
-                break;
-            case R.id.nav_help:
-                load = new Intent(getApplicationContext(), FaqsOwnerActivity.class);
-                startActivity(load);
-                finish();
-                break;
-            case R.id.nav_logout:
-                session.logoutUser();
-                load = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(load);
-                finish();
-                break;
+    public boolean onNavigationItemSelected(@NonNull final MenuItem item) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                switch (item.getItemId()){
+                    case R.id.nav_home:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                new HomeOwnerFragment()).commit();
+                        break;
+                    case R.id.nav_message_owner:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                new ListChatsOwnerFragment()).commit();
+                        break;
+                    case R.id.nav_profile:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                new OwnerProfileFragment()).commit();
+                        break;
+                    case R.id.nav_earnings:
+                        load = new Intent(getApplicationContext(), MyEarningsActivity.class);
+                        startActivity(load);
+                        finish();
+                        break;
+                    case R.id.nav_car:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                new CarManagementFragment()).commit();
+                        break;
+                    case R.id.nav_history:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                new TransactionHistoryOwnerFragment()).commit();
+                        break;
+                    case R.id.nav_book:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                new MyBookingOwnerFragment()).commit();
+                        break;
+                    case R.id.nav_cust:
+                        load = new Intent(getApplicationContext(), ChatBotOwnerActivity.class);
+                        startActivity(load);
+                        finish();
+                        break;
+                    case R.id.nav_help:
+                        load = new Intent(getApplicationContext(), FaqsOwnerActivity.class);
+                        startActivity(load);
+                        finish();
+                        break;
+                    case R.id.nav_logout:
+                        session.logoutUser();
+                        load = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(load);
+                        finish();
+                        break;
+                }
         }
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
+    }, 200);
+     drawer.closeDrawer(GravityCompat.START);
+     return true;
+}
 
     public void onBackground(){
         UrlBean url = new UrlBean();
