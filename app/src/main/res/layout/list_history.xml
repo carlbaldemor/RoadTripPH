@@ -143,7 +143,7 @@
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:text="VIEW"
-                margin android:layout_marginTop="10dp"
+                android:layout_marginTop="10dp"
                 android:textColor="@android:color/white"
                 android:id="@+id/btnView"
                 android:layout_toRightOf="@id/picture_list"

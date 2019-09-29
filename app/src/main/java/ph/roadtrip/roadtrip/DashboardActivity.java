@@ -36,6 +36,7 @@ import ph.roadtrip.roadtrip.classes.SessionHandler;
 import ph.roadtrip.roadtrip.classes.UrlBean;
 import ph.roadtrip.roadtrip.classes.User;
 import ph.roadtrip.roadtrip.faqs.FaqsActivity;
+import ph.roadtrip.roadtrip.myexpenses.MyExpensesActivity;
 import ph.roadtrip.roadtrip.myfavorites.ListMyFavoritesFragment;
 import ph.roadtrip.roadtrip.profile.ListReviewProfileFragment;
 import ph.roadtrip.roadtrip.profile.ProfileFragment;
@@ -204,6 +205,10 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                         break;
                     case R.id.nav_cust:
                         load = new Intent(getApplicationContext(), ChatBotActivity.class);
+                        startActivity(load);
+                        break;
+                    case R.id.nav_expenses:
+                        load = new Intent (getApplicationContext(), MyExpensesActivity.class);
                         startActivity(load);
                         break;
                     case R.id.nav_help:

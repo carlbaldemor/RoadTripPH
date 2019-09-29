@@ -25,7 +25,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".chatbot.ChatBotActivityFinal"></activity>
-        <activity android:name=".myexpenses.MyExpensesActivity" />
+        <activity android:name=".myexpenses.MyExpensesActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".profile.PromptActivateActivity" />
         <activity
             android:name=".chatbot.ChatBotActivity"

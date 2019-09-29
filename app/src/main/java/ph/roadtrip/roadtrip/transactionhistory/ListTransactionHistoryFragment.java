@@ -64,7 +64,6 @@ public class ListTransactionHistoryFragment extends Fragment {
         listView = (ListView) view.findViewById(R.id.listview);
         adapter = new CustomHistoryAdapter(getActivity(), transactionList);
         listView.setAdapter(adapter);
-        filter = view.findViewById(R.id.tvFilter);
 
 
         //Get UserID
