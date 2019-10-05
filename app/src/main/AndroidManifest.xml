@@ -24,35 +24,49 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".chatbot.ChatBotActivityFinal"></activity>
+        <activity android:name=".chatbot.ChatBotActivityFinal"
+            android:configChanges="keyboardHidden|orientation"></activity>
         <activity android:name=".myexpenses.MyExpensesActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".profile.PromptActivateActivity" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="keyboardHidden|orientation"/>
+        <activity android:name=".profile.PromptActivateActivity"
+            android:configChanges="keyboardHidden|orientation"/>
         <activity
             android:name=".chatbot.ChatBotActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="keyboardHidden|orientation"/>
         <activity
             android:name=".chatbot.ChatBotOwnerActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="keyboardHidden|orientation"/>
         <activity
             android:name=".faqs.FaqsActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="keyboardHidden|orientation"/>
         <activity
             android:name=".faqs.FaqsOwnerActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".HomeActivity" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="keyboardHidden|orientation"/>
+        <activity android:name=".HomeActivity"
+            android:configChanges="keyboardHidden|orientation"/>
         <activity
             android:name=".myearnings.MyEarningsActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".paypal.ConfirmationActivity" />
-        <activity android:name=".paypal.PayPalActivity" />
-        <activity android:name=".MainActivity" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="keyboardHidden|orientation"/>
+        <activity android:name=".paypal.ConfirmationActivity"
+            android:configChanges="keyboardHidden|orientation"/>
+        <activity android:name=".paypal.PayPalActivity"
+            android:configChanges="keyboardHidden|orientation"/>
+        <activity android:name=".MainActivity"
+            android:configChanges="keyboardHidden|orientation"/>
         <activity
             android:name=".bookingmodule.SuccessBookingRequestActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="keyboardHidden|orientation"/>
         <activity
             android:name=".bookingmodule.ViewBookingOfferActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="keyboardHidden|orientation"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -67,10 +81,12 @@
 
         <activity
             android:name=".MapsActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="keyboardHidden|orientation"/>
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:configChanges="keyboardHidden|orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -87,17 +103,20 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".DashboardActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="keyboardHidden|orientation"/>
         <activity
             android:name=".DashboardOwnerActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="keyboardHidden|orientation"/>
         <activity
             android:name=".ForgotPasswordActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".bookingmodule.BookServiceActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="keyboardHidden|orientation"/>
     </application>
 
 </manifest>
