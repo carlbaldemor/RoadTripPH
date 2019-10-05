@@ -4,7 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -60,6 +64,8 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
     private String getUserData4, getUserData3, getUserData2;
     private LinearLayout linear1, linear2, linear3;
     private String firstName, lastName;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private Menu menuInfo;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -70,12 +76,11 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         UrlBean url = new UrlBean();
-
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
         //Update User Data
+        swipeRefreshLayout = view.findViewById(R.id.swiperefresh);
         onBackground();
         String profPicUrl = url.getProfilePicUrl();
-
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
         tvFeedbacks = view.findViewById(R.id.tvFeedbacks);
         tvRating = view.findViewById(R.id.tvRating);
@@ -167,6 +172,15 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
             }
         });
 
+        swipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        onBackground();
+                    }
+                }
+        );
+
                 return view;
 
     }
@@ -177,7 +191,7 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
         session = new SessionHandler(getActivity());
         User user = session.getUserDetails();
         int userID = user.getUserID();
-
+        swipeRefreshLayout.setRefreshing(false);
         JSONObject request = new JSONObject();
         try {
             request.put(KEY_USER_ID, userID);

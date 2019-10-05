@@ -12,6 +12,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -80,7 +82,6 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         setSupportActionBar(toolbar);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
             /** Called when a drawer has settled in a completely closed state. */
@@ -167,6 +168,12 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_main_actions, menu);
+        menu.removeItem(R.id.action_info);
+        return true;
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull final MenuItem item) {
@@ -181,6 +188,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                     case R.id.nav_message:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                                 new ListChatsFragment()).commit();
+                        invalidateOptionsMenu();
                         break;
                     case R.id.nav_booking:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
