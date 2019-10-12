@@ -1,217 +1,217 @@
 package ph.roadtrip.roadtrip.classes;
 
 public class UrlBean {
-    private static final String ROOT_IP = "192.168.100.8";
+    private static final String ROOT_IP = "https://isproj2b.benilde.edu.ph/RoadTrip_Mobile/roadtrip/";
 
     //Check Email
-    private String forgetPasswordLink = "http://" + ROOT_IP +"/api/roadtrip/checkEmail.php";
+    private String forgetPasswordLink = ROOT_IP + "checkEmail.php";
 
     //ForgetPassword
-    private String sendForgetEmailLink = "http://" + ROOT_IP +"/api/roadtrip/forgetpassword.php?emailAddress=";
+    private String sendForgetEmailLink = ROOT_IP +"forgetpassword.php?emailAddress=";
 
     //Edit Profile
-    private String editProfileLink = "http://" + ROOT_IP +"/api/roadtrip/editprofile.php";
+    private String editProfileLink = ROOT_IP +"editprofile.php";
 
     //Change Password
-    private String changePasswordLink = "http://" + ROOT_IP +"/api/roadtrip/changepassword.php";
+    private String changePasswordLink = ROOT_IP +"changepassword.php";
 
     //Recaptcha Verify
-    private static final String recaptchaVerifyLink = "http://" + ROOT_IP +"/api/roadtrip/validate-captcha.php";
+    private static final String recaptchaVerifyLink = ROOT_IP +"validate-captcha.php";
 
     //Login
-    private String loginLink = "http://" + ROOT_IP +"/api/roadtrip/login.php";
+    private String loginLink = ROOT_IP +"login.php";
 
     //Register
-    private String registerLink = "http://" + ROOT_IP +"/api/roadtrip/register.php";
+    private String registerLink = ROOT_IP +"register.php";
 
     //Mailer Link Register
-    private String mailerLinkRegister = "http://" + ROOT_IP +"/api/roadtrip/mailer.php?emailAddress=";
+    private String mailerLinkRegister = ROOT_IP +"mailer.php?emailAddress=";
 
     //Validate Captcha
-    private String verifyCaptcha = "http://" + ROOT_IP +"/api/roadtrip/validate-captcha.php";
+    private String verifyCaptcha = ROOT_IP +"validate-captcha.php";
 
     //Get Profile Picture
-    private String profilePicUrl = "http://" + ROOT_IP +"/api/roadtrip/uploads/";
+    private String profilePicUrl = ROOT_IP +"uploads/";
 
     //get image list view car man
-    private String getPicUrl = "http://" + ROOT_IP +"/api/roadtrip/carpics/";
+    private String getPicUrl = ROOT_IP +"carpics/";
 
     //Get User Data (ON BACKGROUND)
-    private String getUserDataUrl = "http://" + ROOT_IP +"/api/roadtrip/getuserdata.php";
+    private String getUserDataUrl = ROOT_IP +"getuserdata.php";
 
     //Add Car
-    private String addCarLink = "http://" + ROOT_IP +"/api/roadtrip/addcar.php";
+    private String addCarLink = ROOT_IP +"addcar.php";
 
     //API Site key for captcha
     private String SAFETY_NET_API_SITE_KEY = "6Ldmi6MUAAAAAONCiiPYORudptwVQMWrOrid26Xe";
 
     //List Car Maps
-    private String showCarsMaps = "http://" + ROOT_IP +"/api/roadtrip/listavailablecars.php";
+    private String showCarsMaps = ROOT_IP +"listavailablecars.php";
 
     //Fetch booking data (View Booking offer)
-    private String fetch_booking_data = "http://" + ROOT_IP +"/api/roadtrip/getrecorddata.php";
+    private String fetch_booking_data = ROOT_IP +"getrecorddata.php";
 
     //List cars maps activity
-    private String listCarsMaps = "http://" + ROOT_IP +"/api/roadtrip/listavailablecars.php?startDate=";
+    private String listCarsMaps =ROOT_IP +"listavailablecars.php?startDate=";
 
     //List cars maps activity
-    private String listCarsMapsFavorites = "http://" + ROOT_IP +"/api/roadtrip/listavailablecarsfavorites.php?startDate=";
+    private String listCarsMapsFavorites = ROOT_IP +"listavailablecarsfavorites.php?startDate=";
 
     //Request Booking
-    private String request_booking = "http://" + ROOT_IP +"/api/roadtrip/requestbooking.php";
+    private String request_booking = ROOT_IP +"requestbooking.php";
 
     //List Cars (My Cars) CAR OWNER
-    private String listCarsMyCars = "http://" + ROOT_IP +"/api/roadtrip/listcar.php?ownerID=";
+    private String listCarsMyCars = ROOT_IP +"listcar.php?ownerID=";
 
     //List pending request CAR OWNER
-    private String pendingRequests = "http://" + ROOT_IP +"/api/roadtrip/pendingrequests.php?ownerID=";
+    private String pendingRequests = ROOT_IP +"pendingrequests.php?ownerID=";
 
     //List pending request CAR OWNER
-    private String pendingRequestsRenter = "http://" + ROOT_IP +"/api/roadtrip/pendingrequestsrenter.php?userID=";
+    private String pendingRequestsRenter = ROOT_IP +"pendingrequestsrenter.php?userID=";
 
     //Accept Booking Car Owner
-    private String accept_booking = "http://" + ROOT_IP +"/api/roadtrip/acceptbooking.php";
+    private String accept_booking = ROOT_IP +"acceptbooking.php";
 
     //Decline Booking Car Owner
-    private String decline_booking = "http://" + ROOT_IP +"/api/roadtrip/declinebooking.php";
+    private String decline_booking = ROOT_IP +"declinebooking.php";
 
     //View booking request Car Owner
-    private String view_booking_request = "http://" + ROOT_IP +"/api/roadtrip/viewbooking.php";
+    private String view_booking_request = ROOT_IP +"viewbooking.php";
 
     //Accepted booking request display in listview
-    private String acceptedBookings = "http://" + ROOT_IP +"/api/roadtrip/acceptedbookings.php?ownerID=";
+    private String acceptedBookings = ROOT_IP +"acceptedbookings.php?ownerID=";
 
     //Get current booking Car renter
-    private String getCurrentBooking = "http://" + ROOT_IP +"/api/roadtrip/getcurrentbooking.php";
+    private String getCurrentBooking = ROOT_IP +"getcurrentbooking.php";
 
     //Scan QR car renter
-    private String scan_qr = "http://" + ROOT_IP +"/api/roadtrip/scanqr.php?userID=";
+    private String scan_qr = ROOT_IP +"scanqr.php?userID=";
 
     //Scan QR return renter
-    private String scan_return_qr = "http://" + ROOT_IP +"/api/roadtrip/scanqrreturn.php?userID=";
+    private String scan_return_qr = ROOT_IP +"scanqrreturn.php?userID=";
 
     //Get History Car Renter
-    private String get_history = "http://" + ROOT_IP +"/api/roadtrip/gethistory.php?userID=";
+    private String get_history = ROOT_IP +"gethistory.php?userID=";
 
     //Get History Car Renter
-    private String toReviewList = "http://" + ROOT_IP +"/api/roadtrip/toreview.php?userID=";
+    private String toReviewList = ROOT_IP +"toreview.php?userID=";
 
     //Get History Car Renter
-    private String CarToReviewList = "http://" + ROOT_IP +"/api/roadtrip/cartoreview.php?userID=";
+    private String CarToReviewList = ROOT_IP +"cartoreview.php?userID=";
 
     //Add Review
-    private String addReview = "http://" + ROOT_IP +"/api/roadtrip/addreview.php";
+    private String addReview = ROOT_IP +"addreview.php";
 
     //Add Review
-    private String addReviewOwner = "http://" + ROOT_IP +"/api/roadtrip/addreviewowner.php";
+    private String addReviewOwner = ROOT_IP +"addreviewowner.php";
 
     //Add Review
-    private String carAddReview = "http://" + ROOT_IP +"/api/roadtrip/addcarreview.php";
+    private String carAddReview = ROOT_IP +"addcarreview.php";
 
     //Insert Paypal
-    private String insertPaypal = "http://" + ROOT_IP +"/api/roadtrip/insertpaypal.php";
+    private String insertPaypal = ROOT_IP +"insertpaypal.php";
 
     //Get User Reviews to display in profile
-    private String getFeedbackProfile = "http://" + ROOT_IP +"/api/roadtrip/getreviewsprofile.php";
+    private String getFeedbackProfile = ROOT_IP +"getreviewsprofile.php";
 
     //Get User Reviews to display in profile
-    private String getAverageRatingProfile = "http://" + ROOT_IP +"/api/roadtrip/getaveragerating.php";
+    private String getAverageRatingProfile = ROOT_IP +"getaveragerating.php";
 
     //Get User Reviews to display in profile
-    private String getTotalTrips = "http://" + ROOT_IP +"/api/roadtrip/gettotaltrips.php";
+    private String getTotalTrips = ROOT_IP +"gettotaltrips.php";
 
     //Get User Reviews to display in profile
-    private String getTotalTripsOwner = "http://" + ROOT_IP +"/api/roadtrip/gettotaltripsowner.php";
+    private String getTotalTripsOwner = ROOT_IP +"gettotaltripsowner.php";
 
     //Get History Car Owner
-    private String get_history_owner = "http://" + ROOT_IP +"/api/roadtrip/gethistoryowner.php?ownerID=";
+    private String get_history_owner = ROOT_IP +"gethistoryowner.php?ownerID=";
 
     //View booking request Car renter display name
-    private String view_booking_request_owner = "http://" + ROOT_IP +"/api/roadtrip/viewbookingowner.php";
+    private String view_booking_request_owner = ROOT_IP +"viewbookingowner.php";
 
     //Get History Car Renter
-    private String toReviewListOwner = "http://" + ROOT_IP +"/api/roadtrip/toreviewowner.php?ownerID=";
+    private String toReviewListOwner = ROOT_IP +"toreviewowner.php?ownerID=";
 
     //List Review Profile
-    private String listReviewProfile = "http://" + ROOT_IP +"/api/roadtrip/listreviewprofile.php?userID=";
+    private String listReviewProfile = ROOT_IP +"listreviewprofile.php?userID=";
 
     //Add Favorites
-    private String addFavorites = "http://" + ROOT_IP +"/api/roadtrip/addfavorites.php";
+    private String addFavorites = ROOT_IP +"addfavorites.php";
 
     //Add Favorites
-    private String removeFavorites = "http://" + ROOT_IP +"/api/roadtrip/removefavorite.php";
+    private String removeFavorites = ROOT_IP +"removefavorite.php";
 
     //List Favorites
-    private String listFavorites = "http://" + ROOT_IP +"/api/roadtrip/listfavorites.php?userID=";
+    private String listFavorites = ROOT_IP +"listfavorites.php?userID=";
 
     //Total Earnings My Earnings
-    private String totalEarnings = "http://" + ROOT_IP +"/api/roadtrip/totalearnings.php";
+    private String totalEarnings = ROOT_IP +"totalearnings.php";
 
     //Total Cancel My earnings
-    private String totalCancel = "http://" + ROOT_IP +"/api/roadtrip/totalcancel.php";
+    private String totalCancel = ROOT_IP +"totalcancel.php";
 
     //Total Average My Earnings
-    private String totalAverage = "http://" + ROOT_IP +"/api/roadtrip/totalaverage.php";
+    private String totalAverage = ROOT_IP +"totalaverage.php";
 
     //Total Trips My Earnings
-    private String totalTrips = "http://" + ROOT_IP +"/api/roadtrip/totaltripsmyearnings.php";
+    private String totalTrips = ROOT_IP +"totaltripsmyearnings.php";
 
     //Total Bookings My Earnings
-    private String totalBookings = "http://" + ROOT_IP +"/api/roadtrip/totalbookingsmyearnings.php";
+    private String totalBookings = ROOT_IP +"totalbookingsmyearnings.php";
 
     //Total Bookings My Earnings
-    private String chatlist = "http://" + ROOT_IP +"/api/roadtrip/listchats.php?userID=";
+    private String chatlist = ROOT_IP +"listchats.php?userID=";
 
     //Total Bookings My Earnings
-    private String chatlistowner = "http://" + ROOT_IP +"/api/roadtrip/listchatsowner.php?userID=";
+    private String chatlistowner = ROOT_IP +"listchatsowner.php?userID=";
 
     //Total Bookings My Earnings
-    private String chatMessages = "http://" + ROOT_IP +"/api/roadtrip/chatcontent.php?chatID=";
+    private String chatMessages = ROOT_IP +"chatcontent.php?chatID=";
 
     //Total Bookings My Earnings
-    private String chatMessagesOwner = "http://" + ROOT_IP +"/api/roadtrip/chatcontentowner.php?chatID=";
+    private String chatMessagesOwner = ROOT_IP +"chatcontentowner.php?chatID=";
 
     //Total Bookings My Earnings
-    private String send_message_url = "http://" + ROOT_IP +"/api/roadtrip/sendmessage.php";
+    private String send_message_url = ROOT_IP +"sendmessage.php";
 
     //Get Faqs
-    private String faqs_list = "http://" + ROOT_IP +"/api/roadtrip/listfaqs.php";
+    private String faqs_list = ROOT_IP +"listfaqs.php";
 
     //Get Faqs
-    private String archive_record = "http://" + ROOT_IP +"/api/roadtrip/deleterecord.php";
+    private String archive_record = ROOT_IP +"deleterecord.php";
 
     //Get Faqs
-    private String cancelBooking = "http://" + ROOT_IP +"/api/roadtrip/cancelbooking.php";
+    private String cancelBooking = ROOT_IP +"cancelbooking.php";
 
     //Logout
-    private String logout = "http://" + ROOT_IP +"/api/roadtrip/logout.php";
+    private String logout = ROOT_IP +"logout.php";
 
     //Deactivate account
-    private String deactivate_account = "http://" + ROOT_IP +"/api/roadtrip/deactivateaccount.php";
+    private String deactivate_account = ROOT_IP +"deactivateaccount.php";
 
     //Deactivate account owner
-    private String deactivate_account_owner = "http://" + ROOT_IP +"/api/roadtrip/deactivateaccountowner.php";
+    private String deactivate_account_owner = ROOT_IP +"deactivateaccountowner.php";
 
     //Activate account
-    private String activate_account = "http://" + ROOT_IP +"/api/roadtrip/activateaccount.php";
+    private String activate_account = ROOT_IP +"activateaccount.php";
 
     //Archive account
-    private String archive_account = "http://" + ROOT_IP +"/api/roadtrip/archiveaccount.php";
+    private String archive_account = ROOT_IP +"/api/roadtrip/archiveaccount.php";
 
     //Mail Receipt
-    private String mail_receipt = "http://" + ROOT_IP +"/api/roadtrip/mailreceipt.php?bookingID=";
+    private String mail_receipt = ROOT_IP +"mailreceipt.php?bookingID=";
 
     //Mail Receipt
-    private String mail_receipt_owner = "http://" + ROOT_IP +"/api/roadtrip/mailreceiptowner.php?bookingID=";
+    private String mail_receipt_owner = ROOT_IP +"mailreceiptowner.php?bookingID=";
 
     //Edit Car Record
-    private String edit_car = "http://" + ROOT_IP +"/api/roadtrip/editcar.php";
+    private String edit_car = ROOT_IP +"editcar.php";
 
     //Edit Car Record
-    private String car_review = "http://" + ROOT_IP +"/api/roadtrip/listreviewcar.php?carID=";
+    private String car_review = ROOT_IP +"listreviewcar.php?carID=";
 
     //Get total average car
-    private String car_ave_review = "http://"+ ROOT_IP +"/api/roadtrip/totalaveragecar.php";
+    private String car_ave_review = ROOT_IP +"totalaveragecar.php";
 
 
 
