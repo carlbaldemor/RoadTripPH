@@ -77,6 +77,8 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         UrlBean url = new UrlBean();
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        setHasOptionsMenu(true);
+
         //Update User Data
         swipeRefreshLayout = view.findViewById(R.id.swiperefresh);
         onBackground();
@@ -185,6 +187,8 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
 
     }
 
+
+
     public void onBackground(){
         UrlBean url = new UrlBean();
         String getUserData = url.getGetUserDataUrl();
@@ -232,6 +236,14 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
         // Access the RequestQueue through your singleton class.
         MySingleton.getInstance(getActivity()).addToRequestQueue(jsArrayRequest);
 
+    }
+
+    //hide info button actionbar
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        MenuItem item=menu.findItem(R.id.action_info);
+        if(item!=null)
+            item.setVisible(false);
     }
 
     public void getReviewsTotal(){

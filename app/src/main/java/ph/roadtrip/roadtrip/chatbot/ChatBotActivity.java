@@ -16,12 +16,13 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import ph.roadtrip.roadtrip.BaseActivity;
 import ph.roadtrip.roadtrip.DashboardActivity;
 import ph.roadtrip.roadtrip.MyApplication;
 import ph.roadtrip.roadtrip.R;
 import ph.roadtrip.roadtrip.transactionhistory.TransactionHistoryFragment;
 
-public class ChatBotActivity extends DashboardActivity {
+public class ChatBotActivity extends BaseActivity {
 
     private LinearLayout linearLayout;
     private WebView myWebView;

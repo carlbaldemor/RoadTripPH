@@ -12,12 +12,13 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import ph.roadtrip.roadtrip.BaseOwnerActivity;
 import ph.roadtrip.roadtrip.DashboardOwnerActivity;
 import ph.roadtrip.roadtrip.MyApplication;
 import ph.roadtrip.roadtrip.R;
 import ph.roadtrip.roadtrip.transactionhistory.TransactionHistoryFragment;
 
-public class ChatBotOwnerActivity extends DashboardOwnerActivity {
+public class ChatBotOwnerActivity extends BaseOwnerActivity {
     private LinearLayout linearLayout;
 
     private static final String APIKEY = "44a83b83e1c05df03c0f2f0b3e0e242e";

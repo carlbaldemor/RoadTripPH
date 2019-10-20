@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 import ph.roadtrip.roadtrip.carmanagement.AppController;
@@ -75,6 +77,8 @@ public class CustomCarReviewAdapter extends BaseAdapter {
 
         // thumbnail imageS
         thumbNail.setImageUrl(m.getRecordPicture(), imageLoader);
+
+
 
         // title
         brandName.setText(m.getBrandName());

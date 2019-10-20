@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 import ph.roadtrip.roadtrip.MyApplication;
@@ -74,6 +76,7 @@ public class CustomPendingListAdapter extends BaseAdapter {
 
         // thumbnail imageS
         thumbNail.setImageUrl(m.getImageUrl(), imageLoader);
+
 
         // title
         brandName.setText(m.getBrandName());

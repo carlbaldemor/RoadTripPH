@@ -12,7 +12,7 @@
         android:layout_margin="30dp"
         android:elevation="3dp"
         android:gravity="center"
-        android:background="@color/translucent_white"
+        android:background="@drawable/whiteradius"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">

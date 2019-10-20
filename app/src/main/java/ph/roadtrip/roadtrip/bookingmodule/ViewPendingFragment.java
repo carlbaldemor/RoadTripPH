@@ -20,6 +20,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 import ph.roadtrip.roadtrip.R;
 import ph.roadtrip.roadtrip.classes.MySingleton;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
@@ -150,6 +153,8 @@ public class ViewPendingFragment extends Fragment {
                         carType = response.getString(KEY_CAR_TYPE);
                         serviceType = response.getString(KEY_SERVICE_TYPE);
                         renter_userID = response.getInt(KEY_RENTER_USER_ID);
+
+
 
                         tvStartDate.setText(startDate);
                         tvEndDate.setText(endDate);

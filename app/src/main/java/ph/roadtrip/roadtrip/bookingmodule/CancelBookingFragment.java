@@ -65,9 +65,9 @@ public class CancelBookingFragment extends Fragment {
         usertype = user.getUserTypeID();
 
         if (usertype.equalsIgnoreCase("1")){
-            booking_status = "Cancelled by Car Renter";
+            booking_status = "Canceled by Car Renter";
         } else {
-            booking_status = "Cancelled by Car Owner";
+            booking_status = "Canceled by Car Owner";
         }
 
         Booking booking = session.getBookingIDHistory();

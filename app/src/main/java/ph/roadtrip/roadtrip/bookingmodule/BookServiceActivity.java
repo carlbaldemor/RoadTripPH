@@ -27,12 +27,14 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import ph.roadtrip.roadtrip.BaseActivity;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
 import ph.roadtrip.roadtrip.DashboardActivity;
 import ph.roadtrip.roadtrip.MapsActivity;
 import ph.roadtrip.roadtrip.R;
+import ph.roadtrip.roadtrip.classes.SliderBookServiceActivity;
 
-public class BookServiceActivity extends DashboardActivity {
+public class BookServiceActivity extends BaseActivity {
 
     private static final String KEY_START_DATE = "startDate";
     private static final String KEY_END_DATE = "endDate";
@@ -66,7 +68,6 @@ public class BookServiceActivity extends DashboardActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_book_service);
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         @SuppressLint("InflateParams")
         View contentView = inflater.inflate(R.layout.activity_book_service, null, false);
@@ -413,11 +414,18 @@ public class BookServiceActivity extends DashboardActivity {
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.action_info).setVisible(true);
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Take appropriate action for each action item click
         switch (item.getItemId()) {
             case R.id.action_info:
-
+                load = new Intent(getApplicationContext(), SliderBookServiceActivity.class);
+                startActivity(load);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -449,6 +457,7 @@ public class BookServiceActivity extends DashboardActivity {
         }
         return null;
     }
+
     private DatePickerDialog.OnDateSetListener myDateListener = new
             DatePickerDialog.OnDateSetListener() {
                 @Override

@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -73,7 +75,7 @@ public class OwnerProfileFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         UrlBean url = new UrlBean();
-
+        setHasOptionsMenu(true);
         //Update User Data
         onBackground();
         String profPicUrl = url.getProfilePicUrl();
@@ -225,6 +227,14 @@ public class OwnerProfileFragment extends android.support.v4.app.Fragment {
         // Access the RequestQueue through your singleton class.
         MySingleton.getInstance(getActivity()).addToRequestQueue(jsArrayRequest);
 
+    }
+
+    //hide info button actionbar
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        MenuItem item=menu.findItem(R.id.action_add_car);
+        if(item!=null)
+            item.setVisible(false);
     }
 
     public void getReviewsTotal(){

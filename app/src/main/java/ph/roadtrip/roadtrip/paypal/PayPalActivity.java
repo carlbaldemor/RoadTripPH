@@ -25,12 +25,13 @@ import org.json.JSONObject;
 
 import java.math.BigDecimal;
 
+import ph.roadtrip.roadtrip.BaseActivity;
 import ph.roadtrip.roadtrip.classes.MySingleton;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
 import ph.roadtrip.roadtrip.classes.UrlBean;
 import ph.roadtrip.roadtrip.R;
 
-public class PayPalActivity extends AppCompatActivity implements View.OnClickListener {
+public class PayPalActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String KEY_STATUS = "status1";
     private static final String KEY_MESSAGE = "message";

@@ -29,6 +29,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
@@ -298,6 +299,8 @@ public class CurrentBookingFragment extends Fragment {
                         String address2 = addresses2.get(0).getAddressLine(0);
 
                         setView();
+
+
 
                         tvBrand.setText(brandName + " " + modelName + " " + modelYear + " " + color);
                         tvName.setText(firstName + " " + lastName);

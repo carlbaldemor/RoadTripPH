@@ -29,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
+import ph.roadtrip.roadtrip.BaseActivity;
 import ph.roadtrip.roadtrip.classes.MySingleton;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
 import ph.roadtrip.roadtrip.classes.UrlBean;
@@ -48,7 +50,7 @@ import ph.roadtrip.roadtrip.transactionhistory.Booking;
 import static android.view.View.GONE;
 
 
-public class ViewBookingOfferActivity extends DashboardActivity {
+public class ViewBookingOfferActivity extends BaseActivity {
 
     private static final String KEY_RECORD_ID = "recordID";
     private static final String KEY_STATUS = "status1";
@@ -327,6 +329,7 @@ public class ViewBookingOfferActivity extends DashboardActivity {
                         tvEndDate.setText(endDate);
                         tvService.setText(serviceType);
                         tvName.setText(fullName);
+
 
                         //Set Text Bot Sheet
                         lblStart.setText(sdate);

@@ -3,6 +3,16 @@ package ph.roadtrip.roadtrip.classes;
 public class UrlBean {
     private static final String ROOT_IP = "https://isproj2b.benilde.edu.ph/RoadTrip_Mobile/roadtrip/";
 
+    //Total Expenses
+    private String totalExpenses = ROOT_IP + "totalexpenses.php";
+
+
+    //Filter expenses
+    private String filterExpenses = ROOT_IP + "filterexpenses.php";
+
+    //filter Earnings
+    private String filterEarnings = ROOT_IP + "filterearnings.php";
+
     //Check Email
     private String forgetPasswordLink = ROOT_IP + "checkEmail.php";
 
@@ -221,6 +231,30 @@ public class UrlBean {
      *
      * GETTERS AND SETTERS
      */
+
+    public String getFilterExpenses() {
+        return filterExpenses;
+    }
+
+    public void setFilterExpenses(String filterExpenses) {
+        this.filterExpenses = filterExpenses;
+    }
+
+    public String getTotalExpenses() {
+        return totalExpenses;
+    }
+
+    public void setTotalExpenses(String totalExpenses) {
+        this.totalExpenses = totalExpenses;
+    }
+
+    public String getFilterEarnings() {
+        return filterEarnings;
+    }
+
+    public void setFilterEarnings(String filterEarnings) {
+        this.filterEarnings = filterEarnings;
+    }
 
     public String getCar_ave_review() {
         return car_ave_review;

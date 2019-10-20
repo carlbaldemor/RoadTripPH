@@ -36,6 +36,11 @@
     <string name="radio_male">Male</string>
     <string name="radio_female">Female</string>
 
+    <string name="title_activity_maps">Map</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
     <string-array name="gender_entries">
         <item>Male</item>
         <item>Female</item>
@@ -46,7 +51,6 @@
         <item>Total</item>
         <item>Year</item>
     </string-array>
-
 
     <string-array name="filter_size">
         <item>1</item>
@@ -75,7 +79,6 @@
         <item>8</item>
         <item>9</item>
     </string-array>
-
     <string-array name="filter_month">
         <item>January</item>
         <item>February</item>
@@ -90,6 +93,7 @@
         <item>November</item>
         <item>December</item>
     </string-array>
+
 
     <string-array name="filter_day">
         <item>1</item>
@@ -124,6 +128,8 @@
         <item>30</item>
         <item>31</item>
     </string-array>
+
+
     <string-array name="filter_week">
         <item>Week 1</item>
         <item>Week 2</item>
@@ -131,27 +137,23 @@
         <item>Week 4</item>
     </string-array>
 
-
     <string-array name="filter_values">
         <item>1</item>
         <item>2</item>
     </string-array>
-
-
     <string-array name="size_entries">
         <item>Car Renter</item>
         <item>Car Owner</item>
     </string-array>
 
+    <!--
+    Car Management
+    -->
+
     <string-array name="size_values">
         <item>1</item>
         <item>2</item>
     </string-array>
-    <string name="title_activity_maps">Map</string>
-
-    <!--
-    Car Management
-    -->
 
     <string-array name="car_color">
         <item>White</item>
@@ -173,6 +175,7 @@
         <item>Chauffeur</item>
     </string-array>
 
+
     <string-array name="car_year">
         <item>2008</item>
         <item>2009</item>
@@ -186,7 +189,6 @@
         <item>2017</item>
         <item>2019</item>
     </string-array>
-
 
     <string-array name="car_brand">
         <item>Toyota</item>
@@ -203,6 +205,10 @@
         <item>Tata</item>
     </string-array>
 
+    <!--
+    TOYOTA
+    -->
+
     <string-array name="car_brand_values">
         <item>1</item>
         <item>2</item>
@@ -217,10 +223,6 @@
         <item>11</item>
         <item>12</item>
     </string-array>
-
-    <!--
-    TOYOTA
-    -->
 
     <string-array name="toyota_models">
         <item>Wigo</item>
@@ -240,6 +242,10 @@
         <item>Hilux</item>
     </string-array>
 
+    <!--
+   Mitsubishi
+   -->
+
     <string-array name="toyota_models_values">
         <item>1</item>
         <item>2</item>
@@ -258,10 +264,6 @@
         <item>15</item>
     </string-array>
 
-    <!--
-   Mitsubishi
-   -->
-
     <string-array name="mitsubishi_models">
         <item>Mirage</item>
         <item>Mirage G4</item>
@@ -272,6 +274,10 @@
         <item>Strada</item>
         <item>L200</item>
     </string-array>
+
+    <!--
+  Hyundai
+  -->
 
     <string-array name="mitsubishu_models_values">
         <item>16</item>
@@ -284,10 +290,6 @@
         <item>23</item>
     </string-array>
 
-    <!--
-  Hyundai
-  -->
-
     <string-array name="hyundai_models">
         <item>Eon</item>
         <item>Veloster</item>
@@ -299,6 +301,10 @@
         <item>Santa Fe</item>
     </string-array>
 
+    <!--
+        Honda
+        -->
+
     <string-array name="hyundai_models_values">
         <item>24</item>
         <item>25</item>
@@ -309,10 +315,6 @@
         <item>30</item>
         <item>31</item>
     </string-array>
-
-    <!--
-        Honda
-        -->
 
     <string-array name="honda_models">
         <item>Jazz</item>
@@ -329,6 +331,9 @@
         <item>Pilot</item>
     </string-array>
 
+    <!--
+       Ford
+       -->
     <string-array name="honda_models_values">
         <item>32</item>
         <item>33</item>
@@ -344,9 +349,6 @@
         <item>43</item>
     </string-array>
 
-    <!--
-       Ford
-       -->
     <string-array name="ford_models">
         <item>Fiesta-Hatchback</item>
         <item>Focus-Hatchback</item>
@@ -359,6 +361,7 @@
         <item>Raptor</item>
         <item>Ranger</item>
     </string-array>
+
 
     <string-array name="ford_models_values">
         <item>44</item>
@@ -373,7 +376,6 @@
         <item>53</item>
     </string-array>
 
-
     <string-array name="kia_models">
         <item>Picanto</item>
         <item>Rio</item>
@@ -384,6 +386,11 @@
         <item>Grand Carnival</item>
         <item>Sportage</item>
     </string-array>
+
+
+    <!--
+     Suzuki
+      -->
 
     <string-array name="kia_models_values">
         <item>54</item>
@@ -396,11 +403,6 @@
         <item>61</item>
     </string-array>
 
-
-    <!--
-     Suzuki
-      -->
-
     <string-array name="suzuki_models">
         <item>Swift</item>
         <item>Celerio</item>
@@ -411,6 +413,10 @@
         <item>Ertiga</item>
         <item>Jimny</item>
     </string-array>
+
+    <!--
+       Isuzu
+       -->
 
     <string-array name="suzuki_models_values">
         <item>62</item>
@@ -423,26 +429,22 @@
         <item>69</item>
     </string-array>
 
-    <!--
-       Isuzu
-       -->
-
     <string-array name="isuzu_models">
         <item>Crosswind</item>
         <item>MU-X</item>
         <item>D-MAX</item>
     </string-array>
 
+
+    <!--
+      Mazda
+      -->
+
     <string-array name="isuzu_models_values">
         <item>70</item>
         <item>71</item>
         <item>72</item>
     </string-array>
-
-
-    <!--
-      Mazda
-      -->
 
     <string-array name="mazda_models">
         <item>Mazda2-Hatchback</item>
@@ -456,6 +458,10 @@
         <item>BT-50</item>
     </string-array>
 
+    <!--
+ Chevrolet
+  -->
+
     <string-array name="mazda_models_values">
         <item>73</item>
         <item>74</item>
@@ -468,10 +474,6 @@
         <item>81</item>
     </string-array>
 
-    <!--
- Chevrolet
-  -->
-
     <string-array name="chevrolet_models">
         <item>Spark</item>
         <item>Sail</item>
@@ -482,6 +484,11 @@
         <item>Suburban</item>
         <item>Colorado</item>
     </string-array>
+
+
+    <!--
+       Nissan
+       -->
 
     <string-array name="chevrolet_models_values">
         <item>82</item>
@@ -494,11 +501,6 @@
         <item>89</item>
     </string-array>
 
-
-    <!--
-       Nissan
-       -->
-
     <string-array name="nissan_models">
         <item>Almera</item>
         <item>Sylphy</item>
@@ -507,6 +509,11 @@
         <item>Terra</item>
         <item>Navara</item>
     </string-array>
+
+
+    <!--
+        Tata
+        -->
 
     <string-array name="nissan_models_values">
         <item>90</item>
@@ -517,11 +524,6 @@
         <item>95</item>
     </string-array>
 
-
-    <!--
-        Tata
-        -->
-
     <string-array name="tata_models">
         <item>Indica</item>
         <item>Vista</item>
@@ -530,6 +532,8 @@
         <item>Xenon</item>
     </string-array>
 
+
+    <!-- TODO: Remove or change this placeholder text -->
     <string-array name="tata_models_values">
         <item>96</item>
         <item>97</item>
@@ -537,9 +541,5 @@
         <item>99</item>
         <item>100</item>
     </string-array>
-
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -68,6 +70,8 @@ public class ListReviewProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile_review, container, false);
         reviewlist.clear();
+        //hide info button actionbar
+
         //ListView
         listView = (ListView) view.findViewById(R.id.listview);
         adapter = new CustomListReviewAdapter(getActivity(), reviewlist);
@@ -160,6 +164,17 @@ public class ListReviewProfileFragment extends Fragment {
         MyApplication.getInstance().addToRequestQueue(movieReq);
 
         return view;
+    }
+
+    //hide info button actionbar
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        MenuItem item=menu.findItem(R.id.action_info);
+        if(item!=null)
+            item.setVisible(false);
+        MenuItem item2=menu.findItem(R.id.action_add_car);
+        if (item2!=null)
+            item2.setVisible(false);
     }
 
 

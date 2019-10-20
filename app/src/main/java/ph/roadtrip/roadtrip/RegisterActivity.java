@@ -135,6 +135,7 @@ public class RegisterActivity extends AppCompatActivity implements TextWatcher {
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         etConfirmPassword = findViewById(R.id.etConfirmPassword);
+        etConfirmPassword.setLongClickable(false); //Disable copy paste in confirm password
         etFirstName = findViewById(R.id.etFirstName);
         etMiddleName = findViewById(R.id.etMiddleName);
         etLastName = findViewById(R.id.etLastName);

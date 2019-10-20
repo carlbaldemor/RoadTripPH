@@ -59,6 +59,7 @@ public class ChangePasswordFragment extends Fragment {
         etCurrentPassword = view.findViewById(R.id.etCurrentPassword);
         etNewPassword = view.findViewById(R.id.etNewPassword);
         etNewConfirmPassword = view.findViewById(R.id.etNewConfirmPassword);
+        etNewConfirmPassword.setLongClickable(false);
         btnSave = view.findViewById(R.id.btnSave);
 
         session = new SessionHandler(getActivity().getApplicationContext());

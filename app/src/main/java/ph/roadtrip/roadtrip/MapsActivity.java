@@ -55,6 +55,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
@@ -64,7 +66,7 @@ import ph.roadtrip.roadtrip.classes.CustomInfoWindowAdapter;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
 import ph.roadtrip.roadtrip.classes.UrlBean;
 
-public class MapsActivity extends DashboardActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
+public class MapsActivity extends BaseActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
     private GoogleMap mMap;
     private GoogleApiClient client;
@@ -219,38 +221,37 @@ public class MapsActivity extends DashboardActivity implements OnMapReadyCallbac
 
                         mo.position(latLng);
                         mo.title(brandName + " " + modelName + " " + amount);
-                        mMap.addMarker(mo);
 
                         address = addresses.get(0).getAddressLine(0);
 
                         if (carType.equals("Sedan")){
                             mMap.addMarker(new MarkerOptions()
-                                    .position(latLng).title(brandName + " " + modelName + " (P" + amount + ")")
-                                    .snippet("<b>Car Type: </b>" + carType+"\n"+status+"\n"+"Pickup: " + address +"\n"+ "Return: " + address2)
+                                    .position(latLng).title(brandName + " " + modelName + " (P" +  amount  + ")")
+                                    .snippet("Car Type: " + carType+"\n"+"\n"+"Pickup: " + address +"\n"+ "Return: " + address2)
                                     .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_sedan))));
 
                         } else if (carType.equals("Hatchback")){
                             mMap.addMarker(new MarkerOptions()
                                     .position(latLng).title(brandName + " " + modelName + " (P" + amount + ")")
-                                    .snippet("<b>Car Type: </b>" + carType+"\n"+status+"\n"+"Pickup: " + address +"\n"+ "Return: " + address2)
+                                    .snippet("Car Type: " + carType+"\n"+"\n"+"Pickup: " + address +"\n"+ "Return: " + address2)
                                     .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_hatchback))));
 
                         } else if (carType.equals("MPV")){
                             mMap.addMarker(new MarkerOptions()
                                     .position(latLng).title(brandName + " " + modelName + " (P" + amount + ")")
-                                    .snippet("<b>Car Type: </b>" + carType+"\n"+status+"\n"+"Pickup: " + address +"\n"+ "Return: " + address2)
+                                    .snippet("Car Type: " + carType+"\n"+"\n"+"Pickup: " + address +"\n"+ "Return: " + address2)
                                     .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_mpv))));
 
                         } else if (carType.equals("SUV")){
                             mMap.addMarker(new MarkerOptions()
                                     .position(latLng).title(brandName + " " + modelName + " (P" + amount + ")")
-                                    .snippet("<b>Car Type: </b>" + carType+"\n"+status+"\n"+"Pickup: " + address +"\n"+ "Return: " + address2)
+                                    .snippet("Car Type: " + carType+"\n"+"\n"+"Pickup: " + address +"\n"+ "Return: " + address2)
                                     .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_suv))));
 
                         } else if (carType.equals("Pickup")){
                             mMap.addMarker(new MarkerOptions()
                                     .position(latLng).title(brandName + " " + modelName + " (P" + amount + ")")
-                                    .snippet("<b>Car Type: </b>" + carType+"\n"+status+"\n"+"Pickup: " + address +"\n"+ "Return: " + address2)
+                                    .snippet("Car Type: " + carType+"\n"+"\n"+"Pickup: " + address +"\n"+ "Return: " + address2)
                                     .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_pickup))));
                         }
 
@@ -328,6 +329,10 @@ public class MapsActivity extends DashboardActivity implements OnMapReadyCallbac
         }
     }
 
+    public static String DoFormat(double myNumber)
+    {
+        return String.format("{0:0.00}", myNumber).replace(".00","");
+    }
 
 
     private Bitmap getMarkerBitmapFromView(@DrawableRes int resId) {
@@ -412,7 +417,7 @@ public class MapsActivity extends DashboardActivity implements OnMapReadyCallbac
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        locationRequest = new LocationRequest();
+        LocationRequest locationRequest = LocationRequest.create();
         locationRequest.setInterval(1000);
         locationRequest.setFastestInterval(1000);
         locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);

@@ -18,6 +18,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import ph.roadtrip.roadtrip.BaseActivity;
 import ph.roadtrip.roadtrip.bookingmodule.BookingFragment;
 import ph.roadtrip.roadtrip.bookingmodule.CurrentBookingFragment;
 import ph.roadtrip.roadtrip.classes.MySingleton;
@@ -26,7 +27,7 @@ import ph.roadtrip.roadtrip.classes.UrlBean;
 import ph.roadtrip.roadtrip.classes.User;
 import ph.roadtrip.roadtrip.R;
 
-public class ConfirmationActivity extends AppCompatActivity {
+public class ConfirmationActivity extends BaseActivity {
 
     private static final String KEY_USER_ID = "userID";
     private static final String KEY_AMOUNT = "amount";

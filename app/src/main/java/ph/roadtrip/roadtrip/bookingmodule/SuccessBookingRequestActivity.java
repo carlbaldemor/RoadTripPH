@@ -8,10 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 
+import ph.roadtrip.roadtrip.BaseActivity;
 import ph.roadtrip.roadtrip.DashboardActivity;
 import ph.roadtrip.roadtrip.R;
 
-public class SuccessBookingRequestActivity extends DashboardActivity {
+public class SuccessBookingRequestActivity extends BaseActivity {
 
     private Button btnMyBookings;
 

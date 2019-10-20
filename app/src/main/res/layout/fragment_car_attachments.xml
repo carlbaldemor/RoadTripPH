@@ -13,7 +13,7 @@
         android:layout_gravity="center"
         android:elevation="3dp"
         android:layout_margin="30dp"
-        android:background="@android:color/white"
+        android:background="@drawable/whiteradius"
         android:layout_centerVertical="true"
         android:orientation="vertical">
 

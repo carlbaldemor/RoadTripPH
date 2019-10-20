@@ -56,6 +56,7 @@ public class AcceptedBookingFragment extends Fragment {
         listView = (ListView) view.findViewById(R.id.listview);
         adapter = new CustomAcceptedListAdapter(getActivity(), movieList);
         listView.setAdapter(adapter);
+        setHasOptionsMenu(false);
 
         session = new SessionHandler(getActivity().getApplicationContext());
 

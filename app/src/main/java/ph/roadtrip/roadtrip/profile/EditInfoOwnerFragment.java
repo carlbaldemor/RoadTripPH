@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -82,7 +84,7 @@ public class EditInfoOwnerFragment extends android.support.v4.app.Fragment {
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_editinfo, container, false);
-
+        setHasOptionsMenu(true);
 
         UrlBean url = new UrlBean();
         editProfileLink = url.getEditProfileLink();
@@ -190,6 +192,14 @@ public class EditInfoOwnerFragment extends android.support.v4.app.Fragment {
         });
 
         return view;
+    }
+
+    //hide info button actionbar
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        MenuItem item=menu.findItem(R.id.action_add_car);
+        if(item!=null)
+            item.setVisible(false);
     }
 
     private void displayLoader() {

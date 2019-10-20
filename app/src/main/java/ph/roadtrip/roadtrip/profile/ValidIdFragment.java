@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -22,7 +24,7 @@ public class ValidIdFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_valid_id, container, false);
-
+        setHasOptionsMenu(true);
         lvRecommmended = view.findViewById(R.id.lvRecommmended);
         ArrayList<String> recommended = new ArrayList<>();
         recommended.add("UMID");
@@ -49,6 +51,14 @@ public class ValidIdFragment extends Fragment {
         lvOthers.setAdapter(othersAdapater);
 
         return view;
+    }
+
+    //hide info button actionbar
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        MenuItem item=menu.findItem(R.id.action_info);
+        if(item!=null)
+            item.setVisible(false);
     }
 
 }

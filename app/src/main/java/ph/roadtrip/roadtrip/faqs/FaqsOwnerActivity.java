@@ -19,12 +19,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import ph.roadtrip.roadtrip.BaseOwnerActivity;
 import ph.roadtrip.roadtrip.DashboardActivity;
 import ph.roadtrip.roadtrip.DashboardOwnerActivity;
 import ph.roadtrip.roadtrip.R;
 import ph.roadtrip.roadtrip.classes.UrlBean;
 
-public class FaqsOwnerActivity extends DashboardOwnerActivity {
+public class FaqsOwnerActivity extends BaseOwnerActivity {
 
     ExpandListAdapter listAdapter;
     ExpandableListView expListView;

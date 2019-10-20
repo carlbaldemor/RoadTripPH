@@ -8,10 +8,13 @@
     android:background="@drawable/profile_full_bg"
     tools:context=".PayPal.PayPalActivity">
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:elevation="3dp">
+        android:background="@drawable/whiteradius"
+        android:layout_margin="20dp"
+        android:elevation="3dp"
+        android:gravity="center">
         <TextView
             android:layout_width="320dp"
             android:layout_centerHorizontal="true"
@@ -19,6 +22,7 @@
             android:paddingLeft="15dp"
             android:layout_height="wrap_content"
             android:text="Car Details"
+            android:layout_marginTop="20dp"
             android:background="@android:color/white"
             android:textColor="@color/endblue"
             android:id="@+id/tvCarDetails"
@@ -204,9 +208,11 @@
             android:layout_centerHorizontal="true"
             android:paddingLeft="45dp"
             android:layout_marginTop="30dp"
+
             android:background="@drawable/paypal_button"
             android:gravity="start|center_vertical"
-            android:text="Pay Now" />
+            android:text="Pay Now"
+            android:layout_marginBottom="30dp"/>
     </LinearLayout>
 
 </RelativeLayout>

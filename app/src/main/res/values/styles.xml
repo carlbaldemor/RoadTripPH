@@ -23,6 +23,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="MyActionButtonStyle" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:minWidth">28dip</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

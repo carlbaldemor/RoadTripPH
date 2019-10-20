@@ -58,6 +58,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import ph.roadtrip.roadtrip.BaseActivity;
 import ph.roadtrip.roadtrip.bookingmodule.ViewBookingOfferActivity;
 import ph.roadtrip.roadtrip.carmanagement.ListCarsFragment;
 import ph.roadtrip.roadtrip.classes.CustomInfoWindowAdapter;
@@ -67,7 +68,7 @@ import ph.roadtrip.roadtrip.DashboardActivity;
 import ph.roadtrip.roadtrip.MyApplication;
 import ph.roadtrip.roadtrip.R;
 
-public class MapsFavoritesActivity extends DashboardActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
+public class MapsFavoritesActivity extends BaseActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
     private GoogleMap mMap;
     private GoogleApiClient client;

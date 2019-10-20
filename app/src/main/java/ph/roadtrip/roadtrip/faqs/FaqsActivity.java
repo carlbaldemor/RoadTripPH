@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import ph.roadtrip.roadtrip.BaseActivity;
 import ph.roadtrip.roadtrip.DashboardActivity;
 import ph.roadtrip.roadtrip.R;
 
@@ -41,7 +42,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import ph.roadtrip.roadtrip.classes.UrlBean;
 
-public class FaqsActivity extends DashboardActivity {
+public class FaqsActivity extends BaseActivity {
 
     ExpandListAdapter listAdapter;
     ExpandableListView expListView;

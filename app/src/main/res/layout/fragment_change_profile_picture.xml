@@ -14,7 +14,7 @@
         android:layout_marginRight="30dp"
         android:elevation="3dp"
         android:gravity="center_vertical"
-        android:background="@android:color/white"
+        android:background="@drawable/whiteradius"
         android:orientation="vertical">
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"

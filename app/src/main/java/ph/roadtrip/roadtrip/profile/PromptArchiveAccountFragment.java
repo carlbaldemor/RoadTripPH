@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -71,7 +73,7 @@ public class PromptArchiveAccountFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_prompt_delete_record, container, false);
-
+        setHasOptionsMenu(true);
         session = new SessionHandler(getActivity().getApplicationContext());
 
         User user = session.getUserDetails();
@@ -152,5 +154,13 @@ public class PromptArchiveAccountFragment extends Fragment {
 
         // Access the RequestQueue through your singleton class.
         MySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(jsArrayRequest);
+    }
+
+    //hide info button actionbar
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        MenuItem item=menu.findItem(R.id.action_info);
+        if(item!=null)
+            item.setVisible(false);
     }
 }

@@ -10,11 +10,12 @@
         android:gravity="center"
         android:orientation="vertical">
         <LinearLayout
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/startblue"
-            android:layout_gravity=""
+            android:background="@drawable/startblueradius"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
             android:elevation="5dp">
             <LinearLayout
                 android:layout_width="262dp"
@@ -31,11 +32,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$ 160,500"
+                    android:text="P 0.00"
                     android:layout_gravity="left"
                     android:textSize="40dp"
                     android:textStyle="bold"
-                    android:textColor="@color/white">
+                    android:textColor="@color/white"
+                    android:id="@+id/tvTotalEarnings">
                 </TextView>
 
                 <LinearLayout
@@ -59,7 +61,8 @@
                             android:layout_height="wrap_content"
                             android:text="+ $2,000"
                             android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal">
+                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/tvTotalWeek">
                         </TextView>
                     </LinearLayout>
 
@@ -79,7 +82,8 @@
                             android:layout_height="wrap_content"
                             android:text="+ $25,000"
                             android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal">
+                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/tvTotalMonth">
                         </TextView>
                     </LinearLayout>
 
@@ -99,7 +103,8 @@
                             android:layout_height="wrap_content"
                             android:text="+ $80,000"
                             android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal">
+                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/tvTotalYear">
                         </TextView>
                     </LinearLayout>
 
@@ -112,10 +117,12 @@
 
         </LinearLayout>
         <LinearLayout
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/white"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/whiteradius"
             android:elevation="5dp">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -129,72 +136,106 @@
 
                 </TextView>
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <LinearLayout
-                        android:layout_width="131dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginLeft="20dp"
-                        android:layout_margin="-10dp">
-                        <TextView
-                            android:layout_width="70dp"
-                            android:layout_height="wrap_content"
-                            android:text="Start Date"></TextView>
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
 
-                        <EditText
-                            android:id="@+id/editText2"
+                        <Button
+                            android:id="@+id/btnStartDate"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/textGrid"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/login_button"
+                            android:onClick="setDate"
+                            android:text="Start Date"
+                            android:textColor="@android:color/white" />
+                        <TextView
+                            android:id="@+id/start_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:inputType="date" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="131dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_margin="-10dp">
-                        <TextView
-                            android:layout_width="70dp"
-                            android:layout_height="wrap_content"
-                            android:text="End Date"></TextView>
+                            android:text="Date Selected"
+                            android:layout_marginLeft="10dp"
+                            android:layout_gravity="center"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@android:color/black" />
 
-                        <EditText
-                            android:id="@+id/editText3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:inputType="date" />
-                    </LinearLayout>
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp">
+
+                        <Button
+                            android:id="@+id/btnEndDate"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/textGrid"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/login_button"
+                            android:onClick="setEndDate"
+                            android:text="End Date"
+                            android:textColor="@android:color/white" />
+                    <TextView
+                        android:id="@+id/end_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Date Selected"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@android:color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="Default date"
-                    android:layout_marginTop="10dp"/>
-
-
-
+                    android:text="Default"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/btnDefault"/>
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="Filter date"
+                            android:layout_gravity=""
+                            android:layout_marginTop="10dp"
+                            android:id="@+id/btnFilter"
+                            />
+                    </LinearLayout>
+</LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="0dp"
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
                         >
-
-                        <Spinner
-                            android:id="@+id/SpinnerFilter"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:entries="@array/filter_entries"
-                            android:prompt="@array/filter_entries" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -247,22 +288,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="20dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Total Bookings: "
-                            android:textStyle="bold">
-                        </TextView>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="25 Bookings"
-                            android:textStyle="bold"
-                            android:textSize="17dp"></TextView>
-                    </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -277,7 +303,8 @@
                             android:layout_height="wrap_content"
                             android:text="15 Trips"
                             android:textStyle="bold"
-                            android:textSize="17dp"></TextView>
+                            android:textSize="17dp"
+                            android:id="@+id/tvTotalTrips"></TextView>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -293,7 +320,8 @@
                             android:layout_height="wrap_content"
                             android:text="$50,000"
                             android:textStyle="bold"
-                            android:textSize="17dp"></TextView>
+                            android:textSize="17dp"
+                            android:id="@+id/tvTotalCancel"></TextView>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -309,7 +337,8 @@
                             android:layout_height="wrap_content"
                             android:text="$50,000"
                             android:textStyle="bold"
-                            android:textSize="17dp"></TextView>
+                            android:textSize="17dp"
+                            android:id="@+id/tvTotalEarningsDef"></TextView>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -325,7 +354,8 @@
                             android:layout_height="wrap_content"
                             android:text="$50,000"
                             android:textStyle="bold"
-                            android:textSize="17dp"></TextView>
+                            android:textSize="17dp"
+                            android:id="@+id/tvTotalAverage"></TextView>
                     </LinearLayout>
 
 

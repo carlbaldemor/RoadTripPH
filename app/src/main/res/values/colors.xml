@@ -10,5 +10,8 @@
     <color name="startblue">#152853</color>
     <color name="endblue">#152853</color>
     <color name="white">#FFF</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorTransparentWhite">#00CCCCCC</color>
+
 </resources>
 

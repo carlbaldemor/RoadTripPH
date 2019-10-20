@@ -3,6 +3,8 @@ package ph.roadtrip.roadtrip.bookingmodule;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 import ph.roadtrip.roadtrip.classes.MySingleton;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
@@ -144,6 +149,8 @@ public class ViewRequestFragment extends Fragment {
 
                         Toast.makeText(getActivity(), String.valueOf(renter_userID), Toast.LENGTH_SHORT).show();
 
+
+
                         tvStartDate.setText(startDate);
                         tvEndDate.setText(endDate);
                         tvBrandName.setText(brandName);
@@ -200,7 +207,11 @@ public class ViewRequestFragment extends Fragment {
                     if (response.getInt(KEY_STATUS) == 0) {
 
                         Toast.makeText(getActivity().getApplicationContext(), response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
-
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.fragment_container, new SuccessAcceptFragment());
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
                     } else {
                         Toast.makeText(getActivity().getApplicationContext(), response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
 

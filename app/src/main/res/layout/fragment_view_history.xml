@@ -6,9 +6,10 @@
     android:gravity="center"
     android:background="@drawable/profile_full_bg">
 <LinearLayout
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-android:background="@android:color/white"
+android:background="@drawable/whiteradius"
+    android:layout_margin="20dp"
     android:elevation="3dp">
     <LinearLayout
         android:layout_width="match_parent"
@@ -267,6 +268,7 @@ android:background="@android:color/white"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:text="Total: "
+                    android:layout_marginBottom="20dp"
                     android:textStyle="bold"
                     android:textColor="@color/endblue"/>
 

@@ -20,6 +20,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 import ph.roadtrip.roadtrip.classes.MySingleton;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
 import ph.roadtrip.roadtrip.classes.UrlBean;
@@ -161,6 +164,7 @@ public class ViewAcceptedBooking extends Fragment {
                         totalAmount = response.getString(KEY_TOTAL_AMOUNT);
                         carType = response.getString(KEY_CAR_TYPE);
                         serviceType = response.getString(KEY_SERVICE_TYPE);
+
 
                         tvStartDate.setText(startDate);
                         tvEndDate.setText(endDate);

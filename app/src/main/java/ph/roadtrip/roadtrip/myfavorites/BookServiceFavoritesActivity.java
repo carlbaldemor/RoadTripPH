@@ -24,12 +24,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import ph.roadtrip.roadtrip.BaseActivity;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
 import ph.roadtrip.roadtrip.DashboardActivity;
 import ph.roadtrip.roadtrip.MapsActivity;
 import ph.roadtrip.roadtrip.R;
 
-public class BookServiceFavoritesActivity extends DashboardActivity {
+public class BookServiceFavoritesActivity extends BaseActivity {
 
     private static final String KEY_START_DATE = "startDate";
     private static final String KEY_END_DATE = "endDate";
