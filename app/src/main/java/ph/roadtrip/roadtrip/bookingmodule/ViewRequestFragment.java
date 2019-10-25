@@ -1,5 +1,8 @@
 package ph.roadtrip.roadtrip.bookingmodule;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +21,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.bumptech.glide.Glide;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,10 +35,13 @@ import ph.roadtrip.roadtrip.classes.UrlBean;
 import ph.roadtrip.roadtrip.R;
 import ph.roadtrip.roadtrip.classes.User;
 
+import static com.google.android.gms.internal.zzbgp.NULL;
+
 public class ViewRequestFragment extends Fragment {
 
-    private TextView tvStartDate, tvEndDate, tvBrandName, tvModelName, tvFullname, tvTotalAmount, tvCarType, tvServiceType;
+    private TextView tvSpecialNote, tvStartDate, tvEndDate, tvBrandName, tvModelName, tvFullname, tvTotalAmount, tvCarType, tvServiceType;
     private Button btnAccept, btnDecline;
+    private ImageView imgPicture;
 
     private int bookingID;
     private int renter_userID;
@@ -62,10 +71,20 @@ public class ViewRequestFragment extends Fragment {
     private static final String KEY_MODEL_NAME = "modelName";
     private static final String KEY_RENTER_USER_ID = "renter_userID";
     private static final String KEY_USER_ID = "userID";
+    private static final String KEY_RENTER_PROF_PIC = "renterProfilePicture";
+    private static final String KEY_SPECIAL_NOTE = "specialNote";
+    private static final String KEY_DRIVER_FULL_NAME = "driverFullName";
+    private static final String KEY_DRIVER_MOBILE_NUMBER = "driverMobileNumber";
+    private static final String KEY_EMPTY = "";
 
     private String fetch_booking_data;
     private String accept_booking;
     private String decline_booking;
+    private String renterProfilePic;
+    private String specialNote;
+    private EditText driverName, mobileNumber;
+    private String driverFullName, driverMobileNumber;
+    private Button btnAccept2, btnCancel2;
 
     @Nullable
     @Override
@@ -81,7 +100,7 @@ public class ViewRequestFragment extends Fragment {
         userID = user.getUserID();
 
         UrlBean urlBean = new UrlBean();
-        fetch_booking_data = urlBean.getView_booking_request();
+        fetch_booking_data = urlBean.getFetch_bdata();
         accept_booking = urlBean.getAccept_booking();
         decline_booking = urlBean.getDecline_booking();
         onBackground();
@@ -94,6 +113,8 @@ public class ViewRequestFragment extends Fragment {
         tvTotalAmount = view.findViewById(R.id.tvTotalAmount);
         tvCarType = view.findViewById(R.id.tvCarType);
         tvServiceType = view.findViewById(R.id.tvServiceType);
+        tvSpecialNote = view.findViewById(R.id.tvSpecialNote);
+        imgPicture = view.findViewById(R.id.imgPicture);
 
         btnAccept = view.findViewById(R.id.btnAccept);
         btnDecline = view.findViewById(R.id.btnDecline);
@@ -101,8 +122,15 @@ public class ViewRequestFragment extends Fragment {
         btnAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Accept Booking Offer
-                acceptBooking();
+                if (serviceType.equals("Chauffeur")) {
+                    callLoginDialog();
+                } else if (serviceType.equals("Chauffeur")){
+                    //Accept Booking Offer
+                    acceptBooking();
+                } else {
+
+                }
+
             }
         });
 
@@ -146,6 +174,8 @@ public class ViewRequestFragment extends Fragment {
                         carType = response.getString(KEY_CAR_TYPE);
                         serviceType = response.getString(KEY_SERVICE_TYPE);
                         renter_userID = response.getInt(KEY_RENTER_USER_ID);
+                        renterProfilePic = response.getString(KEY_RENTER_PROF_PIC);
+                        specialNote = response.getString(KEY_SPECIAL_NOTE);
 
                         Toast.makeText(getActivity(), String.valueOf(renter_userID), Toast.LENGTH_SHORT).show();
 
@@ -159,6 +189,15 @@ public class ViewRequestFragment extends Fragment {
                         tvTotalAmount.setText(totalAmount);
                         tvCarType.setText(carType);
                         tvServiceType.setText(serviceType);
+                        tvSpecialNote.setText(specialNote);
+
+                        //Display Picture of renter
+                        UrlBean url = new UrlBean();
+                        String profPicUrl = url.getProfilePicUrl();
+                        String image = profPicUrl+renterProfilePic;
+                        Glide.with(getActivity().getApplicationContext())
+                                .load(image)
+                                .into(imgPicture);
 
 
                     } else {
@@ -185,54 +224,100 @@ public class ViewRequestFragment extends Fragment {
     }
 
     public void acceptBooking(){
-        final JSONObject request = new JSONObject();
-        try {
-            //Populate the request parameters
-            if (bookingID == 0){
-                Toast.makeText(getActivity().getApplicationContext(), "Record ID is 0", Toast.LENGTH_SHORT).show();
-            } else {
-                request.put(KEY_BOOKING_ID, bookingID);
-                request.put(KEY_USER_ID, userID);
-                request.put(KEY_RENTER_USER_ID, renter_userID);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if (driverFullName.equals(KEY_EMPTY) && driverMobileNumber.equals(KEY_EMPTY)){
+            driverFullName = NULL;
+            driverMobileNumber = NULL;
         }
-        JsonObjectRequest jsArrayRequest = new JsonObjectRequest(Request.Method.POST, accept_booking, request, new Response.Listener<JSONObject>() {
+
+           final JSONObject request = new JSONObject();
+           try {
+               //Populate the request parameters
+               if (bookingID == 0){
+                   Toast.makeText(getActivity().getApplicationContext(), "Record ID is 0", Toast.LENGTH_SHORT).show();
+               } else {
+                   request.put(KEY_BOOKING_ID, bookingID);
+                   request.put(KEY_USER_ID, userID);
+                   request.put(KEY_RENTER_USER_ID, renter_userID);
+                   request.put(KEY_DRIVER_FULL_NAME, driverFullName);
+                   request.put(KEY_DRIVER_MOBILE_NUMBER, driverMobileNumber);
+               }
+           } catch (JSONException e) {
+               e.printStackTrace();
+           }
+           JsonObjectRequest jsArrayRequest = new JsonObjectRequest(Request.Method.POST, accept_booking, request, new Response.Listener<JSONObject>() {
+               @Override
+               public void onResponse(JSONObject response) {
+                   try {
+                       //Check if user got logged in successfully
+
+                       if (response.getInt(KEY_STATUS) == 0) {
+
+                           Toast.makeText(getActivity().getApplicationContext(), response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
+                           FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                           FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                           fragmentTransaction.replace(R.id.fragment_container, new SuccessAcceptFragment());
+                           fragmentTransaction.addToBackStack(null);
+                           fragmentTransaction.commit();
+                       } else {
+                           Toast.makeText(getActivity().getApplicationContext(), response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
+
+                       }
+                   } catch (JSONException e) {
+                       e.printStackTrace();
+                   }
+               }
+           }, new Response.ErrorListener() {
+
+               @Override
+               public void onErrorResponse(VolleyError error) {
+
+                   //Display error message whenever an error occurs
+                   Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+
+               }
+           });
+
+           // Access the RequestQueue through your singleton class.
+           MySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(jsArrayRequest);
+       }
+
+    private void callLoginDialog()
+    {
+        final Dialog myDialog = new Dialog(getActivity());
+        myDialog.setContentView(R.layout.driver_details);
+        myDialog.setCancelable(false);
+
+        driverName = (EditText) myDialog.findViewById(R.id.etDriverName);
+        mobileNumber = (EditText) myDialog.findViewById(R.id.etDriverMobileNumber);
+        btnAccept2 =  (Button) myDialog.findViewById(R.id.btnAccept2);
+        btnCancel2 =  (Button) myDialog.findViewById(R.id.btnCancel2);
+        myDialog.show();
+
+        btnAccept2.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    //Check if user got logged in successfully
+            public void onClick(View v)
+            {
+                driverFullName = driverName.getText().toString();
+                driverMobileNumber = mobileNumber.getText().toString();
 
-                    if (response.getInt(KEY_STATUS) == 0) {
+                if (validateInputs() == false) {
 
-                        Toast.makeText(getActivity().getApplicationContext(), response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
-                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.fragment_container, new SuccessAcceptFragment());
-                        fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.commit();
-                    } else {
-                        Toast.makeText(getActivity().getApplicationContext(), response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
-
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                } else {
+                    acceptBooking();
+                    myDialog.hide();
                 }
             }
-        }, new Response.ErrorListener() {
-
+        });
+        btnCancel2.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onErrorResponse(VolleyError error) {
-
-                //Display error message whenever an error occurs
-                Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-
+            public void onClick(View v)
+            {
+                myDialog.hide();
             }
         });
 
-        // Access the RequestQueue through your singleton class.
-        MySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(jsArrayRequest);
     }
 
     public void declineBooking(){
@@ -276,5 +361,27 @@ public class ViewRequestFragment extends Fragment {
 
         // Access the RequestQueue through your singleton class.
         MySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(jsArrayRequest);
+    }
+
+    private boolean validateInputs() {
+
+        if (KEY_EMPTY.equals(driverFullName)) {
+            driverName.setError("Driver Name cannot be empty");
+            driverName.requestFocus();
+            return false;
+        }
+
+        if (KEY_EMPTY.equals(driverMobileNumber)) {
+            mobileNumber.setError("Driver Number cannot be empty");
+            mobileNumber.requestFocus();
+            return false;
+        }
+        if (mobileNumber.length() != 11){
+            mobileNumber.setError("Mobile Number is Invalid");
+            mobileNumber.requestFocus();
+            return false;
+        }
+
+        return true;
     }
 }

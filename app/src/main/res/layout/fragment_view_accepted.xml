@@ -283,7 +283,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="18sp"
-                            android:text="Model: "
+                            android:text="Total Amount: "
                             android:textStyle="bold"
                             android:textColor="@color/endblue"/>
 
@@ -300,9 +300,99 @@
                     </RelativeLayout>
                 </FrameLayout>
 
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="30dp">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/textView22"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:text="Special Note: "
+                            android:textStyle="bold"
+                            android:textColor="@color/endblue"/>
 
+                        <TextView
+                            android:id="@+id/tvSpecialNote"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toEndOf="@+id/textView22"
+                            android:layout_toRightOf="@+id/textView22"
+                            android:text="Special Note" />
 
+                    </RelativeLayout>
+                </FrameLayout>
 
+                <FrameLayout
+                    android:id="@+id/frameDriverName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:visibility="gone">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/textView23"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:text="Driver Name: "
+                            android:textStyle="bold"
+                            android:textColor="@color/endblue"/>
+
+                        <TextView
+                            android:id="@+id/tvDriverFullName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toEndOf="@+id/textView23"
+                            android:layout_toRightOf="@+id/textView23"
+                            android:text="Driver Name" />
+
+                    </RelativeLayout>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/frameDriverMobile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:visibility="gone">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/textView24"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:text="Driver Mobile: "
+                            android:textStyle="bold"
+                            android:textColor="@color/endblue"/>
+
+                        <TextView
+                            android:id="@+id/tvDriverMobileNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toEndOf="@+id/textView24"
+                            android:layout_toRightOf="@+id/textView24"
+                            android:text="Driver Number" />
+
+                    </RelativeLayout>
+                </FrameLayout>
 
 
 

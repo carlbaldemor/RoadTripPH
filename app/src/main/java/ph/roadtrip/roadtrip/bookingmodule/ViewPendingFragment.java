@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.bumptech.glide.Glide;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,6 +36,7 @@ public class ViewPendingFragment extends Fragment {
 
     private TextView tvStartDate, tvEndDate, tvBrandName, tvModelName, tvFullname, tvTotalAmount, tvCarType, tvServiceType;
     private Button btnCancel, btnGoBack;
+    private ImageView imgPicture;
 
     private int bookingID;
     private int renter_userID;
@@ -64,9 +67,11 @@ public class ViewPendingFragment extends Fragment {
     private static final String KEY_RENTER_USER_ID = "renter_userID";
     private static final String KEY_USER_ID = "userID";
 
+
     private String fetch_booking_data;
     private String accept_booking;
     private String decline_booking;
+
 
     @Nullable
     @Override
@@ -93,6 +98,7 @@ public class ViewPendingFragment extends Fragment {
         tvTotalAmount = view.findViewById(R.id.tvTotalAmount);
         tvCarType = view.findViewById(R.id.tvCarType);
         tvServiceType = view.findViewById(R.id.tvServiceType);
+
 
         btnCancel = view.findViewById(R.id.btnCancel);
         btnGoBack = view.findViewById(R.id.btnGoBack);

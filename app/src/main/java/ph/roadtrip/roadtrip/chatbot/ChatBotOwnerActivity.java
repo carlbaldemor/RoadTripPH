@@ -28,7 +28,10 @@ public class ChatBotOwnerActivity extends BaseOwnerActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.client_support_page);
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        @SuppressLint("InflateParams")
+        View contentView = inflater.inflate(R.layout.client_support_page, null, false);
+        drawer.addView(contentView, 0);
 
         linearLayout = findViewById(R.id.linearChat);
 
@@ -37,7 +40,7 @@ public class ChatBotOwnerActivity extends BaseOwnerActivity {
             public void onClick(View v) {
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new ChatBotFragment());
+                fragmentTransaction.replace(R.id.fragment_container, new ChatBotOwnerFragment());
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }

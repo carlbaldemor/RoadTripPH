@@ -1,11 +1,10 @@
 package ph.roadtrip.roadtrip.classes;
 
 public class UrlBean {
-    private static final String ROOT_IP = "https://isproj2b.benilde.edu.ph/RoadTrip_Mobile/roadtrip/";
+    private static final String ROOT_IP = "http://192.168.8.76/api/roadtrip/";
 
     //Total Expenses
     private String totalExpenses = ROOT_IP + "totalexpenses.php";
-
 
     //Filter expenses
     private String filterExpenses = ROOT_IP + "filterexpenses.php";
@@ -60,6 +59,11 @@ public class UrlBean {
 
     //Fetch booking data (View Booking offer)
     private String fetch_booking_data = ROOT_IP +"getrecorddata.php";
+
+
+
+    //Get Booking data (view booking offer owner)
+    private String fetch_bdata = ROOT_IP + "getbookingdata.php";
 
     //List cars maps activity
     private String listCarsMaps =ROOT_IP +"listavailablecars.php?startDate=";
@@ -231,6 +235,14 @@ public class UrlBean {
      *
      * GETTERS AND SETTERS
      */
+
+    public String getFetch_bdata() {
+        return fetch_bdata;
+    }
+
+    public void setFetch_bdata(String fetch_bdata) {
+        this.fetch_bdata = fetch_bdata;
+    }
 
     public String getFilterExpenses() {
         return filterExpenses;

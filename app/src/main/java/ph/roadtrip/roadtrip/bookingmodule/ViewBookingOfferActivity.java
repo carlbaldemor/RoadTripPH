@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -77,6 +78,7 @@ public class ViewBookingOfferActivity extends BaseActivity {
     private static final String KEY_OWNER_USER_ID = "owner_userID";
     private static final String KEY_OWNER_USER_ID_2 = "userID";
     private static final String KEY_CAR_ID = "carID";
+    private static final String KEY_SPECIAL_NOTE = "specialNote";
 
     private int userID;
     private String longIssue;
@@ -103,6 +105,7 @@ public class ViewBookingOfferActivity extends BaseActivity {
 
     private TextView tvBrand, tvPickup, tvStartDate, tvEndDate, tvService, tvName, tvRating;
     private TextView lblTotalDays, lblAmount, lblStart, lblEnd, lblTotalAmount, lblTotalAmount2;
+    private EditText etSpecialNote;
     private ImageView profilePicture;
     private LinearLayout btmSheet;
     private BottomSheetBehavior mBottomSheetBehavior;
@@ -113,7 +116,7 @@ public class ViewBookingOfferActivity extends BaseActivity {
     private static int NUM_PAGES = 0;
     private ArrayList<ImageModel> imageModelArrayList;
     private int recordID;
-    private String startDate, endDate, address, serviceType;
+    private String startDate, endDate, address, serviceType, specialNote;
     private String fetch_booking_data, request_booking;
     private SessionHandler session;
     private String user_status;
@@ -169,6 +172,7 @@ public class ViewBookingOfferActivity extends BaseActivity {
         btnConfirm = findViewById(R.id.btnConfirm);
         tvService = findViewById(R.id.tvServiceType);
         tvRating = findViewById(R.id.tvRating);
+        etSpecialNote = findViewById(R.id.etSpecialNote);
 
         final View bottomSheet = findViewById(R.id.bottom_sheet);
         mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
@@ -376,6 +380,7 @@ public class ViewBookingOfferActivity extends BaseActivity {
     }
 
     public void confirmBooking(){
+        specialNote = etSpecialNote.getText().toString();
         JSONObject request = new JSONObject();
         try {
             //Populate the request parameters
@@ -385,6 +390,7 @@ public class ViewBookingOfferActivity extends BaseActivity {
             request.put(KEY_TOTAL_AMOUNT, totalAmount);
             request.put(KEY_START_DATE, startDate);
             request.put(KEY_END_DATE, endDate);
+            request.put(KEY_SPECIAL_NOTE, specialNote);
 
         } catch (JSONException e) {
             e.printStackTrace();

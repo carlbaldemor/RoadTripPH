@@ -77,13 +77,19 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp">
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="horizontal">
+                        <LinearLayout
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp">
                         <de.hdodenhof.circleimageview.CircleImageView
                             xmlns:app="http://schemas.android.com/apk/res-auto"
 
@@ -92,6 +98,7 @@
                             app:civ_border_color="#FFFFFFFF"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
+                            android:layout_gravity="center"
                             android:padding="20dp"
                             android:scaleType="centerCrop"
                             android:src="@drawable/man"
@@ -125,7 +132,7 @@
 
                         <TextView
                             android:id="@+id/tvName"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/tvRating"
                             android:gravity="center_horizontal"
@@ -137,6 +144,86 @@
                             android:textStyle="bold" />
 
                     </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="10dp">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+                                    <TextView
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Start Date: "
+                                        android:textSize="15sp"
+                                        android:textColor="@color/endblue"
+                                        android:textStyle="bold"/>
+                                    <TextView
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="date"
+                                        android:textSize="15sp"
+                                        android:id="@+id/tvStartDate"/>
+                                    />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="End Date: "
+                                    android:textSize="15sp"
+                                    android:textColor="@color/endblue"
+                                    android:textStyle="bold"/>
+                                <TextView
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="End Date: "
+                                    android:textSize="15sp"
+                                    android:id="@+id/tvEndDate"
+                                    />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Service Type: "
+                                    android:textSize="15sp"
+                                    android:textColor="@color/endblue"
+                                    android:textStyle="bold"/>
+                                <TextView
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Service Type: "
+                                    android:textSize="15sp"
+                                    android:id="@+id/tvServiceType"
+                                    />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -164,72 +251,30 @@
                                 android:id="@+id/tvPickup"
                                 />
                         </LinearLayout>
-                        <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:layout_gravity="center_vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:text="Start Date: "
-                                android:textSize="15sp"
-                                android:textColor="@color/endblue"
-                                android:textStyle="bold"/>
-                            <TextView
-                                android:layout_gravity="center_vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="date"
-                                android:textSize="15sp"
-                                android:id="@+id/tvStartDate"/>
-                            />
-                        </LinearLayout>
-                        <LinearLayout
+
+
+
+                        <TextView
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Special Note: "
                             android:layout_marginTop="10dp"
-                            android:orientation="vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:layout_gravity="center_vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="End Date: "
-                                android:textSize="15sp"
-                                android:textColor="@color/endblue"
-                                android:textStyle="bold"/>
-                            <TextView
-                                android:layout_gravity="center_vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="End Date: "
-                                android:textSize="15sp"
-                                android:id="@+id/tvEndDate"
-                                />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_marginTop="10dp"
-                            android:orientation="vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:layout_gravity="center_vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Service Type: "
-                                android:textSize="15sp"
-                                android:textColor="@color/endblue"
-                                android:textStyle="bold"/>
-                            <TextView
-                                android:layout_gravity="center_vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Service Type: "
-                                android:textSize="15sp"
-                                android:id="@+id/tvServiceType"
-                                />
-                        </LinearLayout>
+                            android:textSize="15sp"
+                            android:textColor="@color/endblue"
+                            android:textStyle="bold"/>
+                        <EditText
+                            android:inputType="textMultiLine"
+                            android:id="@+id/etSpecialNote"
+                        android:lines="8"
+                        android:minLines="6"
+                        android:gravity="top|left"
+                        android:maxLines="10"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:scrollbars="vertical"
+                            android:hint="Special Notes to rental service.."/>
+
                     </LinearLayout>
 
 
@@ -245,7 +290,8 @@
                     android:background="@drawable/login_button"
                     android:text="BOOK NOW"
                     android:layout_margin="30dp"
-                    android:textColor="#fff" />
+                    android:textColor="#fff"
+                    />
             </LinearLayout>
 
 

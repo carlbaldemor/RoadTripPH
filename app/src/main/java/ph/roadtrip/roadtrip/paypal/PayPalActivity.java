@@ -97,8 +97,6 @@ public class PayPalActivity extends BaseActivity implements View.OnClickListener
 
         doBackground();
 
-
-
         buttonPay.setOnClickListener(this);
 
         Intent intent = new Intent(this, PayPalService.class);

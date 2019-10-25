@@ -71,6 +71,9 @@ public class CurrentBookingFragment extends Fragment {
     private static final String KEY_LAST_NAME = "lastName";
     private static final String KEY_TOTAL_RATING = "totalRating";
     private static final String KEY_MOBILE_NUMBER = "mobileNumber";
+    private static final String KEY_SPECIAL_NOTE = "specialNote";
+    private static final String KEY_DRIVER_FULL_NAME = "driverFullName";
+    private static final String KEY_DRIVER_MOBILE_NUMBER = "driverMobileNumber";
 
 
     private Button btnBookNow, btnpaypal, btnCancel;
@@ -101,13 +104,17 @@ public class CurrentBookingFragment extends Fragment {
     private String firstName;
     private String lastName;
     private String profilePicture;
+    private String specialNote;
+    private String driverFullName;
+    private String driverMobileNumber;
 
-    private TextView tvService, tvPaid;
+    private TextView tvService, tvPaid, tvSpecialNote, tvDriverMobileNumber, tvDriverFullName;
     private TextView tvBrand, tvRating, tvName, tvPickup, tvReturn, tvAmount, tvTotalAmount, tvCarType, tvStartDate, tvEndDate;
     private View blank;
     private LinearLayout view1, view2;
-    private ImageView proppic, call, sms;
+    private ImageView proppic, call, sms, call2, sms2;
     private String rating;
+    private LinearLayout frameDriverName, frameDriverMobileNumber;
 
     @Nullable
     @Override
@@ -137,8 +144,16 @@ public class CurrentBookingFragment extends Fragment {
         tvStartDate = view.findViewById(R.id.tvStartDate);
         tvEndDate = view.findViewById(R.id.tvEndDate);
         tvRating = view.findViewById(R.id.tvRating);
+        tvSpecialNote = view.findViewById(R.id.tvSpecialNote);
         call = view.findViewById(R.id.call);
         sms = view.findViewById(R.id.sms);
+        tvDriverMobileNumber = view.findViewById(R.id.tvDriverMobileNumber);
+        tvDriverFullName = view.findViewById(R.id.tvDriverFullName);
+
+        frameDriverName = view.findViewById(R.id.frameDriverName);
+        frameDriverMobileNumber = view.findViewById(R.id.frameDriverMobile);
+        sms2 = view.findViewById(R.id.sms2);
+        call2 = view.findViewById(R.id.call2);
 
         onBackground();
 
@@ -206,12 +221,29 @@ public class CurrentBookingFragment extends Fragment {
                 startActivity(sendIntent);
             }
         });
-
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + mobileNumber));
                 startActivity(intent);
+            }
+        });
+
+        call2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + driverMobileNumber));
+                startActivity(intent);
+            }
+        });
+        sms2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+                sendIntent.setType("vnd.android-dir/mms-sms");
+                sendIntent.putExtra("address"  , new String(driverMobileNumber));
+                sendIntent.putExtra("sms_body", "");
+                startActivity(sendIntent);
             }
         });
 
@@ -275,6 +307,22 @@ public class CurrentBookingFragment extends Fragment {
                         endDate = response.getString(KEY_END_DATE);
                         userID = response.getInt(KEY_USER_ID);
                         mobileNumber = response.getString(KEY_MOBILE_NUMBER);
+                        specialNote = response.getString(KEY_SPECIAL_NOTE);
+                        serviceType = response.getString(KEY_SERVICE_TYPE);
+
+                        if (serviceType.equalsIgnoreCase("Chauffeur")){
+                            frameDriverName.setVisibility(View.VISIBLE);
+                            frameDriverMobileNumber.setVisibility(View.VISIBLE);
+                            sms2.setVisibility(View.VISIBLE);
+                            call2.setVisibility(View.VISIBLE);
+
+
+                            driverFullName = response.getString(KEY_DRIVER_FULL_NAME);
+                            driverMobileNumber = response.getString(KEY_DRIVER_MOBILE_NUMBER);
+
+                            tvDriverMobileNumber.setText(driverMobileNumber);
+                            tvDriverFullName.setText(driverFullName);
+                        }
 
                         session.setOwnerUserID(userID, firstName, lastName, profilePicture);
 
@@ -311,6 +359,7 @@ public class CurrentBookingFragment extends Fragment {
                         tvCarType.setText(carType);
                         tvStartDate.setText(startDate);
                         tvEndDate.setText(endDate);
+                        tvSpecialNote.setText(specialNote);
 
                         UrlBean getPic = new UrlBean();
                         String getPickUrl = getPic.getProfilePicUrl()+profilePicture;

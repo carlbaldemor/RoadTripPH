@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,8 +32,10 @@ import ph.roadtrip.roadtrip.classes.User;
 
 public class ViewAcceptedBooking extends Fragment {
 
-    private TextView tvStartDate, tvEndDate, tvBrandName, tvModelName, tvFullname, tvTotalAmount, tvCarType, tvServiceType;
+    private TextView tvSpecialNote, tvStartDate, tvEndDate, tvBrandName, tvModelName, tvFullname, tvTotalAmount, tvCarType, tvServiceType;
+    private TextView tvDriverFullName, tvDriverMobileNumber;
     private Button btnAccept, btnDecline;
+    private FrameLayout frameDriverMobile, frameDriverFullName;
 
     private int bookingID;
     private String startDate;
@@ -59,11 +62,17 @@ public class ViewAcceptedBooking extends Fragment {
     private static final String KEY_TOTAL_AMOUNT = "totalAmount";
     private static final String KEY_BRAND_NAME = "brandName";
     private static final String KEY_MODEL_NAME = "modelName";
+    private static final String KEY_DRIVER_FULL_NAME = "driverFullName";
+    private static final String KEY_DRIVER_MOBILE_NUMBER = "driverMobileNumber";
+    private static final String KEY_SPECIAL_NOTE = "specialNote";
 
     private String fetch_booking_data;
     private String scanPickup;
     private String scanReturn;
     private Button btnPickup, btnReturn, btnCancel;
+    private String driverFullName;
+    private String driverMobileNumber;
+    private String specialNote;
 
     @Nullable
     @Override
@@ -91,6 +100,11 @@ public class ViewAcceptedBooking extends Fragment {
         tvTotalAmount = view.findViewById(R.id.tvTotalAmount);
         tvCarType = view.findViewById(R.id.tvCarType);
         tvServiceType = view.findViewById(R.id.tvServiceType);
+        tvSpecialNote = view.findViewById(R.id.tvSpecialNote);
+        tvDriverFullName = view.findViewById(R.id.tvDriverFullName);
+        tvDriverMobileNumber = view.findViewById(R.id.tvDriverMobileNumber);
+        frameDriverMobile = view.findViewById(R.id.frameDriverMobile);
+        frameDriverFullName = view.findViewById(R.id.frameDriverName);
 
         btnPickup = view.findViewById(R.id.btnPickup);
         btnReturn = view.findViewById(R.id.btnReturn);
@@ -164,6 +178,18 @@ public class ViewAcceptedBooking extends Fragment {
                         totalAmount = response.getString(KEY_TOTAL_AMOUNT);
                         carType = response.getString(KEY_CAR_TYPE);
                         serviceType = response.getString(KEY_SERVICE_TYPE);
+                        specialNote = response.getString(KEY_SPECIAL_NOTE);
+
+                        if (serviceType.equals("Chauffeur")){
+                            frameDriverFullName.setVisibility(View.VISIBLE);
+                            frameDriverMobile.setVisibility(View.VISIBLE);
+
+                            driverFullName = response.getString(KEY_DRIVER_FULL_NAME);
+                            driverMobileNumber = response.getString(KEY_DRIVER_MOBILE_NUMBER);
+                            tvDriverFullName.setText(driverFullName);
+                            tvDriverMobileNumber.setText("+63 " + driverMobileNumber);
+                        }
+
 
 
                         tvStartDate.setText(startDate);
@@ -174,6 +200,7 @@ public class ViewAcceptedBooking extends Fragment {
                         tvTotalAmount.setText(totalAmount);
                         tvCarType.setText(carType);
                         tvServiceType.setText(serviceType);
+                        tvSpecialNote.setText(specialNote);
 
                         Toast.makeText(getActivity().getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
                     } else {

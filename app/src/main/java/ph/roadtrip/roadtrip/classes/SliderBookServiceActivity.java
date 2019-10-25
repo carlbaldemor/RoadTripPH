@@ -2,6 +2,9 @@ package ph.roadtrip.roadtrip.classes;
 
 
 
+import android.content.Intent;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,7 +15,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import ph.roadtrip.roadtrip.BaseActivity;
+import ph.roadtrip.roadtrip.DashboardActivity;
 import ph.roadtrip.roadtrip.R;
+import ph.roadtrip.roadtrip.bookingmodule.BookServiceActivity;
+import ph.roadtrip.roadtrip.bookingmodule.CancelBookingFragment;
 
 public class SliderBookServiceActivity extends AppCompatActivity {
 
@@ -104,6 +110,15 @@ public class SliderBookServiceActivity extends AppCompatActivity {
 
                 mNextBtn.setText("Finish");
                 mPrevBtn.setText("Back");
+
+                mNextBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //Go Back to Booking Activity Page
+                        Intent load = new Intent(getApplicationContext(), BookServiceActivity.class);
+                        startActivity(load);
+                    }
+                });
 
             } else {
                 mNextBtn.setEnabled(true);

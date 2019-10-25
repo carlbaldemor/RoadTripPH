@@ -122,11 +122,6 @@
                                 android:src="@drawable/yellowstar" />
 
                         </LinearLayout>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
                         <TextView
                             android:id="@+id/tvName"
                             android:layout_width="wrap_content"
@@ -138,111 +133,140 @@
                             android:textColor="@color/endblue"
                             android:textSize="16sp"
                             android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center">
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:clickable="true"
+                                android:id="@+id/call"
+                                android:background="@drawable/ic_phone"
+                                android:visibility="visible"/>
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:clickable="true"
+                                android:id="@+id/sms"
+                                android:layout_marginLeft="20dp"
+                                android:background="@drawable/ic_message"
+                                android:visibility="visible"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
-                        <LinearLayout
-                            android:layout_marginTop="5dp"
-                            android:orientation="vertical"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:layout_gravity="center_vertical"
+                            <LinearLayout
+                                android:layout_marginTop="5dp"
+                                android:orientation="vertical"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Start Date: "
-                                android:textSize="15sp"
-                                android:textColor="@color/endblue"
-                                android:textStyle="bold"
-                                />
-                            <TextView
-                                android:layout_gravity="center_vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="start keme"
-                                android:textSize="15sp"
-                                android:id="@+id/tvStartDate"
-                                />
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Start Date: "
+                                    android:textSize="15sp"
+                                    android:textColor="@color/endblue"
+                                    android:textStyle="bold"
+                                    />
+                                <TextView
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="start keme"
+                                    android:textSize="15sp"
+                                    android:id="@+id/tvStartDate"
+                                    />
 
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_marginTop="5dp"
-                            android:orientation="vertical"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:layout_gravity="center_vertical"
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_marginTop="5dp"
+                                android:orientation="vertical"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="End Date: "
-                                android:textSize="15sp"
-                                android:textColor="@color/endblue"
-                                android:textStyle="bold"
-                                />
-                            <TextView
-                                android:layout_gravity="center_vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="end keme"
-                                android:textSize="15sp"
-                                android:id="@+id/tvEndDate"
-                                />
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="End Date: "
+                                    android:textSize="15sp"
+                                    android:textColor="@color/endblue"
+                                    android:textStyle="bold"
+                                    />
+                                <TextView
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="end keme"
+                                    android:textSize="15sp"
+                                    android:id="@+id/tvEndDate"
+                                    />
 
+                            </LinearLayout>
                         </LinearLayout>
-                        </LinearLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
                         <LinearLayout
-                            android:layout_marginTop="5dp"
-                            android:orientation="vertical"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content">
-                            <TextView
-                                android:layout_gravity="center_vertical"
+                            <LinearLayout
+                                android:layout_marginTop="5dp"
+                                android:orientation="vertical"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Payment Status: "
-                                android:textSize="15sp"
-                                android:textColor="@color/endblue"
-                                android:textStyle="bold"
-                                />
-                            <TextView
-                                android:layout_gravity="center_vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Paid"
-                                android:textSize="15sp"
-                                android:id="@+id/tvPaid"
-                                />
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Payment Status: "
+                                    android:textSize="15sp"
+                                    android:textColor="@color/endblue"
+                                    android:textStyle="bold"
+                                    />
+                                <TextView
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Paid"
+                                    android:textSize="15sp"
+                                    android:id="@+id/tvPaid"
+                                    />
 
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_marginTop="5dp"
-                            android:layout_marginLeft="10dp"
-                            android:orientation="vertical"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:layout_gravity="center_vertical"
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_marginTop="5dp"
+                                android:layout_marginLeft="10dp"
+                                android:orientation="vertical"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Price per day: "
-                                android:textSize="15sp"
-                                android:textColor="@color/endblue"
-                                android:textStyle="bold"
-                                />
-                            <TextView
-                                android:layout_gravity="center_vertical"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Price per day: "
-                                android:textSize="15sp"
-                                android:id="@+id/tvAmount"
-                                />
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Price per day: "
+                                    android:textSize="15sp"
+                                    android:textColor="@color/endblue"
+                                    android:textStyle="bold"
+                                    />
+                                <TextView
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Price per day: "
+                                    android:textSize="15sp"
+                                    android:id="@+id/tvAmount"
+                                    />
+                            </LinearLayout>
                         </LinearLayout>
-</LinearLayout>
                         <LinearLayout
                             android:layout_marginTop="5dp"
                             android:orientation="horizontal"
@@ -345,20 +369,85 @@
                             android:layout_marginTop="10dp"
                             android:textColor="@color/endblue"
                             android:textStyle="bold"/>
-                        />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Return Address: "
                             android:textSize="15sp"
                             android:id="@+id/tvReturn"/>
-                        />
+
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Special Note: "
+                            android:textSize="15sp"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/endblue"
+                            android:textStyle="bold"/>
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Special Note: "
+                            android:textSize="15sp"
+                            android:id="@+id/tvSpecialNote"/>
 
+                    </LinearLayout>
 
+                    <LinearLayout
+                        android:id="@+id/frameDriverName"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Driver Name: "
+                            android:textSize="15sp"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/endblue"
+                            android:textStyle="bold"/>
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Return Address: "
+                            android:textSize="15sp"
+                            android:id="@+id/tvDriverFullName"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/frameDriverMobile"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Driver Mobile Number: "
+                            android:textSize="15sp"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/endblue"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mobile Number"
+                            android:textSize="15sp"
+                            android:id="@+id/tvDriverMobileNumber"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
                 <LinearLayout
@@ -372,15 +461,18 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:clickable="true"
-                        android:id="@+id/call"
-                        android:background="@drawable/ic_phone"/>
+                        android:id="@+id/call2"
+                        android:background="@drawable/ic_phone"
+                        android:visibility="gone"/>
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:clickable="true"
-                        android:id="@+id/sms"
+                        android:id="@+id/sms2"
                         android:layout_marginLeft="20dp"
-                        android:background="@drawable/ic_message"/>
+                        android:background="@drawable/ic_message"
+                        android:visibility="gone"/>
+
                 </LinearLayout>
                 <Button
                     android:id="@+id/btnpaypal"

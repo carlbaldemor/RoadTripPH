@@ -18,7 +18,7 @@
             android:layout_marginLeft="30dp"
             android:elevation="5dp">
             <LinearLayout
-                android:layout_width="262dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:orientation="vertical">
@@ -41,14 +41,17 @@
                 </TextView>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="10dp">
+
                     <LinearLayout
-                        android:layout_width="87dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:layout_gravity="start"
+                        >
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -67,9 +70,11 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="87dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:layout_marginLeft="13dp"
+                        android:layout_gravity="center">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -88,9 +93,11 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="87dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_marginLeft="13dp"
+                        android:orientation="vertical"
+                        android:layout_gravity="right">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -203,6 +210,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="20dp">
@@ -213,15 +221,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Default"
-                            android:layout_marginTop="10dp"
                             android:id="@+id/btnDefault"/>
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:text="Filter date"
-                            android:layout_gravity=""
-                            android:layout_marginTop="10dp"
                             android:id="@+id/btnFilter"
                             />
                     </LinearLayout>
@@ -291,7 +296,8 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -301,14 +307,16 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
                             android:text="15 Trips"
                             android:textStyle="bold"
-                            android:textSize="17dp"
-                            android:id="@+id/tvTotalTrips"></TextView>
+                            android:textSize="17sp"
+                            android:id="@+id/tvTotalTrips"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -320,12 +328,14 @@
                             android:layout_height="wrap_content"
                             android:text="$50,000"
                             android:textStyle="bold"
-                            android:textSize="17dp"
-                            android:id="@+id/tvTotalCancel"></TextView>
+                            android:layout_marginLeft="15dp"
+                            android:textSize="17sp"
+                            android:id="@+id/tvTotalCancel"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -337,12 +347,14 @@
                             android:layout_height="wrap_content"
                             android:text="$50,000"
                             android:textStyle="bold"
-                            android:textSize="17dp"
-                            android:id="@+id/tvTotalExpensesDef"></TextView>
+                            android:textSize="17sp"
+                            android:layout_marginLeft="15dp"
+                            android:id="@+id/tvTotalExpensesDef"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -354,8 +366,9 @@
                             android:layout_height="wrap_content"
                             android:text="$50,000"
                             android:textStyle="bold"
-                            android:textSize="17dp"
-                            android:id="@+id/tvTotalAverage"></TextView>
+                            android:textSize="17sp"
+                            android:layout_marginLeft="15dp"
+                            android:id="@+id/tvTotalAverage"/>
                     </LinearLayout>
 
 

@@ -21,6 +21,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.time.LocalDateTime;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -99,31 +101,38 @@ public class BookServiceActivity extends BaseActivity {
 
         ServiceSpinner = findViewById(R.id.ServiceSpinner);
 
+        //Convert DateTime
+        final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-ddhh:mm aa");
+        Date current = new Date();
+        final String currentDateFinal = formatter.format(current);
+
         //Cardview On Clicks
         sedan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            dateStart = startDate.getText().toString();
-            dateEnd = endDate.getText().toString();
-            startTime = DisplayTime.getText().toString();
-            returnTime = DisplayReturnTime.getText().toString();
-            serviceType = ServiceSpinner.getSelectedItem().toString();
+                dateStart = startDate.getText().toString();
+                dateEnd = endDate.getText().toString();
+                startTime = DisplayTime.getText().toString();
+                returnTime = DisplayReturnTime.getText().toString();
+                serviceType = ServiceSpinner.getSelectedItem().toString();
 
                 sdate = startDate.getText().toString();
                 edate = endDate.getText().toString();
 
+                DateFormat inFormat = new SimpleDateFormat("yyyy-MM-ddhh:mm aa");
+                DateFormat outFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String startDateTime = dateStart + startTime;
+                String endDateTime = dateEnd + returnTime;
 
-                //Convert DateTime
-                DateFormat inFormat = new SimpleDateFormat( "yyyy-MM-ddhh:mm aa");
-                DateFormat outFormat = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
-                String startDateTime = dateStart+startTime;
-                String endDateTime = dateEnd+returnTime;
 
                 Date date = null;
                 Date date2 = null;
+                Date date3 = null;
+
                 try {
                     date = inFormat.parse(startDateTime);
                     date2 = inFormat.parse(endDateTime);
+                    date3 = formatter.parse(currentDateFinal);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -133,19 +142,24 @@ public class BookServiceActivity extends BaseActivity {
                     myDate = outFormat.format(date);
                     myDate2 = outFormat.format(date2);
 
-
-                    Intent i = new Intent(BookServiceActivity.this, MapsActivity.class);
-                    i.putExtra("KEY_START", sdate);
-                    i.putExtra("KEY_END", edate);
-                    i.putExtra("KEY_START_DATE", myDate);
-                    i.putExtra("KEY_END_DATE", myDate2);
-                    i.putExtra("KEY_SERVICE_TYPE", serviceType);
-                    i.putExtra("KEY_CAR_TYPE", "Sedan");
-                    startActivity(i);
-                    finish();
+                    if (date.after(date3)) {
+                        if (!date2.before(date)) {
+                            Intent i = new Intent(BookServiceActivity.this, MapsActivity.class);
+                            i.putExtra("KEY_START", sdate);
+                            i.putExtra("KEY_END", edate);
+                            i.putExtra("KEY_START_DATE", myDate);
+                            i.putExtra("KEY_END_DATE", myDate2);
+                            i.putExtra("KEY_SERVICE_TYPE", serviceType);
+                            i.putExtra("KEY_CAR_TYPE", "Sedan");
+                            startActivity(i);
+                            finish();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "End Date must not be before Start Date", Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Start Date must not be before the Current Date", Toast.LENGTH_LONG).show();
+                    }
                 }
-
-
             }
         });
 
@@ -171,9 +185,11 @@ public class BookServiceActivity extends BaseActivity {
 
                 Date date = null;
                 Date date2 = null;
+                Date date3 = null;
                 try {
                     date = inFormat.parse(startDateTime);
                     date2 = inFormat.parse(endDateTime);
+                    date3 = formatter.parse(currentDateFinal);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -183,16 +199,24 @@ public class BookServiceActivity extends BaseActivity {
                     myDate = outFormat.format(date);
                     myDate2 = outFormat.format(date2);
 
+                    if (date.after(date3)) {
+                    if (!date2.before(date)){
+                        Intent i = new Intent(BookServiceActivity.this, MapsActivity.class);
+                        i.putExtra("KEY_START", sdate);
+                        i.putExtra("KEY_END", edate);
+                        i.putExtra("KEY_START_DATE", myDate);
+                        i.putExtra("KEY_END_DATE", myDate2);
+                        i.putExtra("KEY_SERVICE_TYPE", serviceType);
+                        i.putExtra("KEY_CAR_TYPE", "Hatchback");
+                        startActivity(i);
+                        finish();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "End Date must not be before Start Date", Toast.LENGTH_LONG).show();
+                    }
 
-                    Intent i = new Intent(BookServiceActivity.this, MapsActivity.class);
-                    i.putExtra("KEY_START", sdate);
-                    i.putExtra("KEY_END", edate);
-                    i.putExtra("KEY_START_DATE", myDate);
-                    i.putExtra("KEY_END_DATE", myDate2);
-                    i.putExtra("KEY_SERVICE_TYPE", serviceType);
-                    i.putExtra("KEY_CAR_TYPE", "Hatchback");
-                    startActivity(i);
-                    finish();
+                } else {
+                        Toast.makeText(getApplicationContext(), "Start Date must not be before the Current Date", Toast.LENGTH_LONG).show();
+                    }
                 }
 
             }
@@ -219,9 +243,11 @@ public class BookServiceActivity extends BaseActivity {
 
                 Date date = null;
                 Date date2 = null;
+                Date date3 = null;
                 try {
                     date = inFormat.parse(startDateTime);
                     date2 = inFormat.parse(endDateTime);
+                    date3 = formatter.parse(currentDateFinal);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -231,16 +257,23 @@ public class BookServiceActivity extends BaseActivity {
                     myDate = outFormat.format(date);
                     myDate2 = outFormat.format(date2);
 
-
-                    Intent i = new Intent(BookServiceActivity.this, MapsActivity.class);
-                    i.putExtra("KEY_START", sdate);
-                    i.putExtra("KEY_END", edate);
-                    i.putExtra("KEY_START_DATE", myDate);
-                    i.putExtra("KEY_END_DATE", myDate2);
-                    i.putExtra("KEY_SERVICE_TYPE", serviceType);
-                    i.putExtra("KEY_CAR_TYPE", "MPV");
-                    startActivity(i);
-                    finish();
+                    if (date.after(date3)) {
+                        if (!date2.before(date)) {
+                            Intent i = new Intent(BookServiceActivity.this, MapsActivity.class);
+                            i.putExtra("KEY_START", sdate);
+                            i.putExtra("KEY_END", edate);
+                            i.putExtra("KEY_START_DATE", myDate);
+                            i.putExtra("KEY_END_DATE", myDate2);
+                            i.putExtra("KEY_SERVICE_TYPE", serviceType);
+                            i.putExtra("KEY_CAR_TYPE", "MPV");
+                            startActivity(i);
+                            finish();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "End Date must not be before Start Date", Toast.LENGTH_LONG).show();
+                        }
+                    }else {
+                        Toast.makeText(getApplicationContext(), "Start Date must not be before the Current Date", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });
@@ -266,9 +299,11 @@ public class BookServiceActivity extends BaseActivity {
 
                 Date date = null;
                 Date date2 = null;
+                Date date3 = null;
                 try {
                     date = inFormat.parse(startDateTime);
                     date2 = inFormat.parse(endDateTime);
+                    date3 = formatter.parse(currentDateFinal);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -278,16 +313,23 @@ public class BookServiceActivity extends BaseActivity {
                     myDate = outFormat.format(date);
                     myDate2 = outFormat.format(date2);
 
-
-                    Intent i = new Intent(BookServiceActivity.this, MapsActivity.class);
-                    i.putExtra("KEY_START", sdate);
-                    i.putExtra("KEY_END", edate);
-                    i.putExtra("KEY_START_DATE", myDate);
-                    i.putExtra("KEY_END_DATE", myDate2);
-                    i.putExtra("KEY_SERVICE_TYPE", serviceType);
-                    i.putExtra("KEY_CAR_TYPE", "SUV");
-                    startActivity(i);
-                    finish();
+                    if (date.after(date3)) {
+                        if (!date2.before(date)) {
+                            Intent i = new Intent(BookServiceActivity.this, MapsActivity.class);
+                            i.putExtra("KEY_START", sdate);
+                            i.putExtra("KEY_END", edate);
+                            i.putExtra("KEY_START_DATE", myDate);
+                            i.putExtra("KEY_END_DATE", myDate2);
+                            i.putExtra("KEY_SERVICE_TYPE", serviceType);
+                            i.putExtra("KEY_CAR_TYPE", "SUV");
+                            startActivity(i);
+                            finish();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "End Date must not be before Start Date", Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Start Date must not be before the Current Date", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });
@@ -312,9 +354,11 @@ public class BookServiceActivity extends BaseActivity {
 
                 Date date = null;
                 Date date2 = null;
+                Date date3 = null;
                 try {
                     date = inFormat.parse(startDateTime);
                     date2 = inFormat.parse(endDateTime);
+                    date3 = formatter.parse(currentDateFinal);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -324,14 +368,22 @@ public class BookServiceActivity extends BaseActivity {
                     myDate = outFormat.format(date);
                     myDate2 = outFormat.format(date2);
 
-                    Intent i = new Intent(BookServiceActivity.this, MapsActivity.class);
-                    i.putExtra("KEY_START", sdate);
-                    i.putExtra("KEY_END", edate);
-                    i.putExtra("KEY_START_DATE", myDate);
-                    i.putExtra("KEY_END_DATE", myDate2);
-                    i.putExtra("KEY_SERVICE_TYPE", serviceType);
-                    i.putExtra("KEY_CAR_TYPE", "Pickup");
-                    startActivity(i);
+                    if (date.after(date3)) {
+                        if (!date2.before(date)) {
+                            Intent i = new Intent(BookServiceActivity.this, MapsActivity.class);
+                            i.putExtra("KEY_START", sdate);
+                            i.putExtra("KEY_END", edate);
+                            i.putExtra("KEY_START_DATE", myDate);
+                            i.putExtra("KEY_END_DATE", myDate2);
+                            i.putExtra("KEY_SERVICE_TYPE", serviceType);
+                            i.putExtra("KEY_CAR_TYPE", "Pickup");
+                            startActivity(i);
+                        } else {
+                            Toast.makeText(getApplicationContext(), "End Date must not be before Start Date", Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Start Date must not be before the Current Date", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });

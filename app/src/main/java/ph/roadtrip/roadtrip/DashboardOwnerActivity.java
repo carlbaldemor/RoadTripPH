@@ -34,7 +34,7 @@ public class DashboardOwnerActivity extends BaseOwnerActivity {
     // class for being re-used by several instances
     protected void setFragment(HomeOwnerFragment fragment) {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new HomeFragment()).commit();
+                new HomeOwnerFragment()).commit();
 
     }
 
