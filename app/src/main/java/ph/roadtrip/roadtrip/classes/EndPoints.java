@@ -2,7 +2,7 @@ package ph.roadtrip.roadtrip.classes;
 
 public class EndPoints {
 
-    private static final String ROOT_IP = "http://192.168.8.76/api/roadtrip/";
+    private static final String ROOT_IP = "https://isproj2b.benilde.edu.ph/RoadTrip_Mobile/roadtrip/";
 
     private static final String ROOT_URL = ROOT_IP +"fileupload.php?apicall=";
     public static final String UPLOAD_URL = ROOT_URL + "uploadpic";

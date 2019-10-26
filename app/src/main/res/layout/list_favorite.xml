@@ -7,87 +7,88 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-    <com.android.volley.toolbox.NetworkImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:id="@+id/picture_list"
-            android:src="@drawable/add_pic"
-            android:clickable="true"/>
-</LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/tvFirstName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="2dip"
-        android:layout_marginLeft="10dp"
-        android:text="FirstName"
-        android:textStyle="bold"
-        android:textSize="16dp"
-        android:layout_toRightOf="@id/picture_list"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <com.android.volley.toolbox.NetworkImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/picture_list"
+                android:src="@drawable/add_pic"
+                android:clickable="true"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tvFirstName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="2dip"
+                    android:layout_marginLeft="10dp"
+                    android:text="FirstName"
+                    android:textStyle="bold"
+                    android:textSize="16dp"
+                    android:layout_toRightOf="@id/picture_list"/>
 
-    <TextView
-        android:id="@+id/tvLastName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:text="Last Name"
-        android:textStyle="bold"
-        android:textSize="16dp"
-        android:layout_toRightOf="@id/tvFirstName"/>
-</LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/tvAdded"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:textColor="@color/colorAccent"
-        android:text="ADDED ON"
-        android:textStyle="italic"
-        android:textSize="10sp"
-        android:layout_toRightOf="@id/picture_list"
-        android:layout_below="@id/tvFirstName"/>
+                <TextView
+                    android:id="@+id/tvLastName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="Last Name"
+                    android:textStyle="bold"
+                    android:textSize="16dp"
+                    android:layout_toRightOf="@id/tvFirstName"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tvAdded"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorAccent"
+                    android:text="ADDED ON"
+                    android:textStyle="italic"
+                    android:textSize="10sp"
+                    android:layout_toRightOf="@id/picture_list"
+                    android:layout_below="@id/tvFirstName"/>
 
-    <TextView
-        android:id="@+id/tvDateAdded"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:textColor="@color/colorAccent"
-        android:text="DATE"
-        android:textStyle="italic"
-        android:textSize="10sp"
-        android:layout_toRightOf="@id/tvAdded"
-        android:layout_below="@id/tvFirstName"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="right">
+                <TextView
+                    android:id="@+id/tvDateAdded"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/colorAccent"
+                    android:text="DATE"
+                    android:textStyle="italic"
+                    android:textSize="10sp"
+                    android:layout_toRightOf="@id/tvAdded"
+                    android:layout_below="@id/tvFirstName"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right">
 
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:text="View Bookings"
-        android:id="@+id/btnView"
-        android:layout_toRightOf="@id/picture_list"
-        android:background="@drawable/login_button"
-        android:textColor="#FFF"/>
-    </LinearLayout>
+                <Button
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:text="View Bookings"
+                    android:id="@+id/btnView"
+                    android:layout_toRightOf="@id/picture_list"
+                    android:background="@drawable/login_button"
+                    android:textColor="#FFF"/>
+            </LinearLayout>
 
 
-    </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

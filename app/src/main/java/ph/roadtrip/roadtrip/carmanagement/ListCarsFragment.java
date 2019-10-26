@@ -3,6 +3,8 @@ package ph.roadtrip.roadtrip.carmanagement;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import ph.roadtrip.roadtrip.classes.SessionHandler;
 import ph.roadtrip.roadtrip.classes.UrlBean;
 import ph.roadtrip.roadtrip.MyApplication;
 import ph.roadtrip.roadtrip.R;
+import ph.roadtrip.roadtrip.myfavorites.ListMyFavoritesFragment;
 
 import android.util.Log;
 import android.widget.ImageView;
@@ -125,6 +128,15 @@ public class ListCarsFragment extends Fragment {
 
         // Adding request to request queue
         MyApplication.getInstance().addToRequestQueue(movieReq);
+
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new AddCarOneFragment()).commit();
+            }
+        });
 
         return view;
     }

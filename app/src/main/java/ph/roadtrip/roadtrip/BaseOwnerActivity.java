@@ -27,6 +27,7 @@ import org.json.JSONObject;
 
 import ph.roadtrip.roadtrip.bookingmodule.MyBookingOwnerFragment;
 import ph.roadtrip.roadtrip.carmanagement.CarManagementFragment;
+import ph.roadtrip.roadtrip.carmanagement.ListCarsFragment;
 import ph.roadtrip.roadtrip.chat.ListChatsOwnerFragment;
 import ph.roadtrip.roadtrip.chatbot.ChatBotOwnerActivity;
 import ph.roadtrip.roadtrip.classes.MySingleton;
@@ -177,7 +178,7 @@ public class BaseOwnerActivity extends AppCompatActivity implements NavigationVi
                         break;
                     case R.id.nav_car:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                                new CarManagementFragment()).commit();
+                                new ListCarsFragment()).commit();
                         break;
                     case R.id.nav_history:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

@@ -1,13 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:fitsSystemWindows="true"
+tools:context=".BaseOwnerActivity">
 
-    <ListView
-        android:id="@+id/listview"
-        android:layout_width="fill_parent"
+<ListView
+    android:id="@+id/listview"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"/>
-</RelativeLayout>
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_add_circle_black_24dp" />
+
+</android.support.design.widget.CoordinatorLayout>

@@ -1,13 +1,16 @@
 package ph.roadtrip.roadtrip.classes;
 
 public class UrlBean {
-    private static final String ROOT_IP = "http://192.168.8.76/api/roadtrip/";
+    private static final String ROOT_IP = "https://isproj2b.benilde.edu.ph/RoadTrip_Mobile/roadtrip/";
 
     //Total Expenses
     private String totalExpenses = ROOT_IP + "totalexpenses.php";
 
     //Filter expenses
     private String filterExpenses = ROOT_IP + "filterexpenses.php";
+
+    //Get brand name
+    private String getBrandName = ROOT_IP + "getbrandname.php";
 
     //filter Earnings
     private String filterEarnings = ROOT_IP + "filterearnings.php";
@@ -235,6 +238,14 @@ public class UrlBean {
      *
      * GETTERS AND SETTERS
      */
+
+    public String getGetBrandName() {
+        return getBrandName;
+    }
+
+    public void setGetBrandName(String getBrandName) {
+        this.getBrandName = getBrandName;
+    }
 
     public String getFetch_bdata() {
         return fetch_bdata;

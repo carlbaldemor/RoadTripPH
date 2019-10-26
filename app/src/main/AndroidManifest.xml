@@ -54,10 +54,12 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".paypal.ConfirmationActivity"
-            android:configChanges="keyboardHidden|orientation" />
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".paypal.PayPalActivity"
-            android:configChanges="keyboardHidden|orientation" />
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:configChanges="keyboardHidden|orientation" />
