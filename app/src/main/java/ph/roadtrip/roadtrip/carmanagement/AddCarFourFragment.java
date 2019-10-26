@@ -3,6 +3,7 @@ package ph.roadtrip.roadtrip.carmanagement;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.github.kimkevin.cachepot.CachePot;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.GoogleMap;
@@ -28,6 +31,8 @@ import com.google.android.gms.maps.model.Marker;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import ph.roadtrip.roadtrip.R;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
@@ -54,6 +59,9 @@ public class AddCarFourFragment extends Fragment {
     private static final String KEY_AMOUNT = "amount";
     private static final String KEY_RECORD_STATUS = "status";
 
+    private static final String KEY_IMG1 = "image1";
+    private static final String KEY_IMG2 = "image2";
+
     private int ownerID;
     private int modelID;
     private String recordID;
@@ -77,11 +85,13 @@ public class AddCarFourFragment extends Fragment {
     private Bitmap img1, img2;
     private boolean validPic1, validPic2;
     private String user_status;
+    private String str1, str2, str3, str4, str5, str6;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_car_page_four, container, false);
+
 
         //Retrieve the value
         color = getArguments().getString("color");
@@ -95,14 +105,24 @@ public class AddCarFourFragment extends Fragment {
         longReturn = getArguments().getString("longReturn");
         serviceType = getArguments().getString("serviceType");
         amount = getArguments().getString("amount");
-
-        Toast.makeText(getActivity().getApplicationContext(),
-                "color: " + color + " year: " + year + " modelID: " +
-                        String.valueOf(modelID) + " PlateNumber: " + plateNumber +
-                        " chassis: " + chassisNumber + " latIssue: " + latIssue +
-                        " longIssue: " + longIssue + " latReturn: " + longReturn + " Service Type: " + serviceType,
-                Toast.LENGTH_LONG).show();
-
+        if (str1 != null){
+            str1 = getArguments().getString("testImage1");
+        }
+        if (str2 != null){
+            str2 = getArguments().getString("testImage2");
+        }
+        if (str3 != null){
+            str3 = getArguments().getString("testImage3");
+        }
+        if (str4 != null){
+            str4 = getArguments().getString("testImage4");
+        }
+        if (str5 != null){
+            str5 = getArguments().getString("testImage5");
+        }
+        if (str6 != null){
+            str6 = getArguments().getString("testImage6");
+        }
 
         //Get Username of user
         session = new SessionHandler(getActivity().getApplicationContext());
@@ -151,6 +171,30 @@ public class AddCarFourFragment extends Fragment {
                 args.putString("longReturn", longReturn);
                 args.putString("serviceType", serviceType);
                 args.putString("amount", amount);
+                if (str1 != null){
+                    args.putString("testImage1", str1);
+                }
+                if (str2 != null) {
+                    args.putString("testImage2", str2);
+                }
+                if (str3 != null) {
+                    args.putString("testImage3", str3);
+                }
+                if (str4 != null) {
+                    args.putString("testImage4", str4);
+                }
+                if (str5 != null) {
+                    args.putString("testImage5", str5);
+                }
+                if (str6 != null){
+                    args.putString("testImage6", str6);
+                }
+                if (img1 != null){
+                    args.putString("imageOR", BitMapToString(img1));
+                }
+                if (img2 != null) {
+                    args.putString("imageCR", BitMapToString(img2));
+                }
                 ldf.setArguments(args);
 
                 //Inflate the fragment
@@ -163,6 +207,29 @@ public class AddCarFourFragment extends Fragment {
         });
 
         return view;
+    }
+
+    public String BitMapToString(Bitmap bitmap){
+        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
+        byte [] b=baos.toByteArray();
+        String temp=Base64.encodeToString(b, Base64.DEFAULT);
+        return temp;
+    }
+
+    /**
+     * @param encodedString
+     * @return bitmap (from given string)
+     */
+    public Bitmap StringToBitMap(String encodedString){
+        try {
+            byte [] encodeByte=Base64.decode(encodedString, Base64.DEFAULT);
+            Bitmap bitmap= BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        } catch(Exception e) {
+            e.getMessage();
+            return null;
+        }
     }
 
     @Override

@@ -2,6 +2,7 @@ package ph.roadtrip.roadtrip.carmanagement;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
@@ -11,6 +12,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +21,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -32,11 +37,14 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import ph.roadtrip.roadtrip.R;
 import ph.roadtrip.roadtrip.bookingmodule.SuccessAddCarFragment;
+import ph.roadtrip.roadtrip.classes.EndPoints;
 import ph.roadtrip.roadtrip.classes.MySingleton;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
 import ph.roadtrip.roadtrip.classes.UrlBean;
@@ -90,6 +98,7 @@ public class AddCarFiveFragment extends Fragment {
     private String user_status;
     private TextView tvBrandName, tvModel, tvColor, tvYear,
             tvPlateNumber, tvChassisNumber, tvReturn, tvPickup, tvServiceType, tvPrice;
+    private String str1, str2, str3, str4, str5, str6, imgOR, imgCR;
 
 
     @Nullable
@@ -109,6 +118,30 @@ public class AddCarFiveFragment extends Fragment {
         longReturn = getArguments().getString("longReturn");
         serviceType = getArguments().getString("serviceType");
         amount = getArguments().getString("amount");
+        if (str1 != null){
+            str1 = getArguments().getString("testImage1");
+        }
+        if (str2 != null){
+            str2 = getArguments().getString("testImage2");
+        }
+        if (str3 != null){
+            str3 = getArguments().getString("testImage3");
+        }
+        if (str4 != null){
+            str4 = getArguments().getString("testImage4");
+        }
+        if (str5 != null){
+            str5 = getArguments().getString("testImage5");
+        }
+        if (str6 != null){
+            str6 = getArguments().getString("testImage6");
+        }
+        if (imgOR != null){
+            imgOR = getArguments().getString("testImage5");
+        }
+        if (imgCR != null){
+            imgCR = getArguments().getString("testImage6");
+        }
 
 
         //Get Username of user
@@ -202,7 +235,6 @@ public class AddCarFiveFragment extends Fragment {
             request.put(KEY_LONG_RETURN, longReturn);
             request.put(KEY_SERVICE_TYPE, serviceType);
             request.put(KEY_AMOUNT, amount);
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -213,6 +245,31 @@ public class AddCarFiveFragment extends Fragment {
                         try {
                             //Check if user got registered successfully
                             if (response.getInt(KEY_STATUS) == 0) {
+
+                                if (str1 != null){
+                                    uploadBitmap(StringToBitMap(str1));
+                                }
+                                if (str2 != null){
+                                    uploadBitmap(StringToBitMap(str2));
+                                }
+                                if (str3 != null){
+                                    uploadBitmap(StringToBitMap(str3));
+                                }
+                                if (str4 != null){
+                                    uploadBitmap(StringToBitMap(str4));
+                                }
+                                if (str5 != null){
+                                    uploadBitmap(StringToBitMap(str5));
+                                }
+                                if (str6 != null){
+                                    uploadBitmap(StringToBitMap(str6));
+                                }
+                                if (imgOR != null){
+                                    uploadBitmapOR(StringToBitMap(imgOR));
+                                }
+                                if (imgCR != null){
+                                    uploadBitmapCR(StringToBitMap(imgCR));
+                                }
 
                                 //Inflate the fragment
                                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -244,6 +301,21 @@ public class AddCarFiveFragment extends Fragment {
 
         // Access the RequestQueue through your singleton class.
         MySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(jsArrayRequest);
+    }
+
+    /**
+     * @param encodedString
+     * @return bitmap (from given string)
+     */
+    public Bitmap StringToBitMap(String encodedString){
+        try {
+            byte [] encodeByte= Base64.decode(encodedString, Base64.DEFAULT);
+            Bitmap bitmap= BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        } catch(Exception e) {
+            e.getMessage();
+            return null;
+        }
     }
 
     public void getBrandName(){
@@ -288,6 +360,180 @@ public class AddCarFiveFragment extends Fragment {
 
         // Access the RequestQueue through your singleton class.
         MySingleton.getInstance(getActivity()).addToRequestQueue(jsArrayRequest);
+    }
+
+    public byte[] getFileDataFromDrawable(Bitmap bitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
+        return byteArrayOutputStream.toByteArray();
+    }
+
+    private void uploadBitmap(final Bitmap bitmap) {
+
+        //getting the tag from the edittext
+        final String tags = recordID;
+
+        //our custom volley request
+        VolleyMultipartRequestCarMan volleyMultipartRequestCarMan = new VolleyMultipartRequestCarMan(Request.Method.POST, EndPoints.UPLOAD_CARPICS_URL,
+                new Response.Listener<NetworkResponse>() {
+                    @Override
+                    public void onResponse(NetworkResponse response) {
+                        try {
+                            JSONObject obj = new JSONObject(new String(response.data));
+                            Toast.makeText(getActivity().getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+
+            /*
+             * If you want to add more parameters with the image
+             * you can do it here
+             * here we have only one parameter with the image
+             * which is tags
+             * */
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("tags", tags);
+                return params;
+            }
+
+            /*
+             * Here we are passing image by renaming it with a unique name
+             * */
+            @Override
+            protected Map<String, DataPart> getByteData() {
+                Map<String, DataPart> params = new HashMap<>();
+                long imagename = System.currentTimeMillis();
+                params.put("pic", new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
+                return params;
+            }
+        };
+
+        //adding the request to volley
+        Volley.newRequestQueue(getActivity().getApplicationContext()).add(volleyMultipartRequestCarMan);
+    }
+
+    private void uploadBitmapOR(final Bitmap bitmap) {
+
+        //getting the tag from the edittext
+        final String tags = recordID;
+
+        //our custom volley request
+        VolleyMultipartRequestCarMan volleyMultipartRequestCarMan = new VolleyMultipartRequestCarMan(Request.Method.POST, EndPoints.UPLOAD_CAR_ATTACH_URL,
+                new Response.Listener<NetworkResponse>() {
+                    @Override
+                    public void onResponse(NetworkResponse response) {
+                        try {
+                            JSONObject obj = new JSONObject(new String(response.data));
+                            Toast.makeText(getActivity().getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+
+            /*
+             * If you want to add more parameters with the image
+             * you can do it here
+             * here we have only one parameter with the image
+             * which is tags
+             * */
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("tags", tags);
+                return params;
+            }
+
+            /*
+             * Here we are passing image by renaming it with a unique name
+             * */
+            @Override
+            protected Map<String, DataPart> getByteData() {
+                Map<String, DataPart> params = new HashMap<>();
+                long imagename = System.currentTimeMillis();
+                params.put("pic", new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
+                return params;
+            }
+        };
+
+        //adding the request to volley
+        Volley.newRequestQueue(getActivity().getApplicationContext()).add(volleyMultipartRequestCarMan);
+    }
+
+    private void uploadBitmapCR(final Bitmap bitmap) {
+
+        //getting the tag from the edittext
+        final String tags = recordID;
+
+        //our custom volley request
+        VolleyMultipartRequestCarMan volleyMultipartRequestCarMan = new VolleyMultipartRequestCarMan(Request.Method.POST, EndPoints.UPLOAD_CAR_ATTACH_CR_URL,
+                new Response.Listener<NetworkResponse>() {
+                    @Override
+                    public void onResponse(NetworkResponse response) {
+                        try {
+                            JSONObject obj = new JSONObject(new String(response.data));
+                            Toast.makeText(getActivity().getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+
+            /*
+             * If you want to add more parameters with the image
+             * you can do it here
+             * here we have only one parameter with the image
+             * which is tags
+             * */
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("tags", tags);
+                return params;
+            }
+
+            /*
+             * Here we are passing image by renaming it with a unique name
+             * */
+            @Override
+            protected Map<String, DataPart> getByteData() {
+                Map<String, DataPart> params = new HashMap<>();
+                long imagename = System.currentTimeMillis();
+                params.put("pic", new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
+                return params;
+            }
+        };
+
+        //adding the request to volley
+        Volley.newRequestQueue(getActivity().getApplicationContext()).add(volleyMultipartRequestCarMan);
     }
 
 }

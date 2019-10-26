@@ -20,6 +20,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.github.kimkevin.cachepot.CachePot;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -57,6 +59,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -90,6 +93,9 @@ public class AddCarThreeFragment extends Fragment {
     private static final String KEY_SERVICE_TYPE = "serviceType";
     private static final String KEY_AMOUNT = "amount";
     private static final String KEY_RECORD_STATUS = "status";
+
+    private static final String KEY_IMG1 = "image1";
+    private static final String KEY_IMG2 = "image2";
 
     private int ownerID;
     private int modelID;
@@ -224,6 +230,10 @@ public class AddCarThreeFragment extends Fragment {
             public void onClick(View view) {
                 serviceType = serviceSpinner.getSelectedItem().toString();
                 amount = etAmount.getText().toString();
+                List<Bitmap> imageList = new ArrayList<>();
+
+
+                CachePot.getInstance().push(imageList);
 
                 //Put the value
                 AddCarFourFragment ldf = new AddCarFourFragment ();
@@ -239,6 +249,24 @@ public class AddCarThreeFragment extends Fragment {
                 args.putString("longReturn", longReturn);
                 args.putString("serviceType", serviceType);
                 args.putString("amount", amount);
+                if (img1 != null){
+                    args.putString("testImage1", BitMapToString(img1));
+                }
+                if (img2 != null) {
+                    args.putString("testImage2", BitMapToString(img2));
+                }
+                if (img3 != null) {
+                    args.putString("testImage3", BitMapToString(img3));
+                }
+                if (img4 != null) {
+                    args.putString("testImage4", BitMapToString(img4));
+                }
+                if (img5 != null) {
+                    args.putString("testImage5", BitMapToString(img5));
+                }
+                if (img6 != null){
+                    args.putString("testImage6", BitMapToString(img6));
+                }
                 ldf.setArguments(args);
 
                 //Inflate the fragment
@@ -251,6 +279,14 @@ public class AddCarThreeFragment extends Fragment {
         });
 
         return view;
+    }
+
+    public String BitMapToString(Bitmap bitmap){
+        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
+        byte [] b=baos.toByteArray();
+        String temp=Base64.encodeToString(b, Base64.DEFAULT);
+        return temp;
     }
 
     @Override

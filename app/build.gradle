@@ -79,6 +79,8 @@ dependencies {
     implementation 'io.grpc:grpc-okhttp:1.13.1'
 
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.github.kimkevin:cachepot:1.2.0'
+
 
 }
 

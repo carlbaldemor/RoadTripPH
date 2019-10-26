@@ -190,6 +190,7 @@
     <orderEntry type="library" name="Gradle: com.paypal.sdk:paypal-android-sdk:2.14.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: io.card:android-sdk:5.3.4@aar" level="project" />
     <orderEntry type="library" name="Gradle: ai.api:sdk:2.0.7@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.kimkevin:cachepot:1.2.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.http.legacy-android-26" level="project" />
   </component>
 </module>
