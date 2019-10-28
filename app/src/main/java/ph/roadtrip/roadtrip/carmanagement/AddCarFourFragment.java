@@ -85,7 +85,7 @@ public class AddCarFourFragment extends Fragment {
     private Bitmap img1, img2;
     private boolean validPic1, validPic2;
     private String user_status;
-    private String str1, str2, str3, str4, str5, str6;
+    private String str1 = null, str2 = null, str3 = null, str4 = null, str5 = null, str6 = null;
 
     @Nullable
     @Override
@@ -105,22 +105,22 @@ public class AddCarFourFragment extends Fragment {
         longReturn = getArguments().getString("longReturn");
         serviceType = getArguments().getString("serviceType");
         amount = getArguments().getString("amount");
-        if (str1 != null){
+        if (getArguments().getString("testImage1") != null){
             str1 = getArguments().getString("testImage1");
         }
-        if (str2 != null){
+        if (getArguments().getString("testImage2") != null){
             str2 = getArguments().getString("testImage2");
         }
-        if (str3 != null){
+        if (getArguments().getString("testImage3") != null){
             str3 = getArguments().getString("testImage3");
         }
-        if (str4 != null){
+        if (getArguments().getString("testImage4") != null){
             str4 = getArguments().getString("testImage4");
         }
-        if (str5 != null){
+        if (getArguments().getString("testImage5") != null){
             str5 = getArguments().getString("testImage5");
         }
-        if (str6 != null){
+        if (getArguments().getString("testImage6") != null){
             str6 = getArguments().getString("testImage6");
         }
 

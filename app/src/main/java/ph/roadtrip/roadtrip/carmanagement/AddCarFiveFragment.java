@@ -72,9 +72,11 @@ public class AddCarFiveFragment extends Fragment {
     private static final String KEY_RECORD_STATUS = "status";
     private static final String KEY_BRAND_NAME = "brandName";
     private static final String KEY_MODEL_NAME = "modelName";
+    private static final String KEY_CAR_ID = "carID";
 
     private int ownerID;
     private int modelID;
+    private String carID;
     private String recordID;
     private String color;
     private String year;
@@ -98,7 +100,8 @@ public class AddCarFiveFragment extends Fragment {
     private String user_status;
     private TextView tvBrandName, tvModel, tvColor, tvYear,
             tvPlateNumber, tvChassisNumber, tvReturn, tvPickup, tvServiceType, tvPrice;
-    private String str1, str2, str3, str4, str5, str6, imgOR, imgCR;
+    private String str1 = null, str2 = null, str3 = null, str4 = null, str5 = null, str6 = null, imgOR = null, imgCR = null;
+    private boolean str11, str22, str33, str44, str55, str66, imgORR, imgCRR;
 
 
     @Nullable
@@ -118,29 +121,37 @@ public class AddCarFiveFragment extends Fragment {
         longReturn = getArguments().getString("longReturn");
         serviceType = getArguments().getString("serviceType");
         amount = getArguments().getString("amount");
-        if (str1 != null){
+        if (getArguments().getString("testImage1") != null){
             str1 = getArguments().getString("testImage1");
+            str11 = true;
         }
-        if (str2 != null){
+        if (getArguments().getString("testImage2") != null){
             str2 = getArguments().getString("testImage2");
+            str22 = true;
         }
-        if (str3 != null){
+        if (getArguments().getString("testImage3") != null){
             str3 = getArguments().getString("testImage3");
+            str33 = true;
         }
-        if (str4 != null){
+        if (getArguments().getString("testImage4") != null){
             str4 = getArguments().getString("testImage4");
+            str44 = true;
         }
-        if (str5 != null){
+        if (getArguments().getString("testImage5") != null){
             str5 = getArguments().getString("testImage5");
+            str55 = true;
         }
-        if (str6 != null){
+        if (getArguments().getString("testImage6")!= null){
             str6 = getArguments().getString("testImage6");
+            str66 = true;
         }
-        if (imgOR != null){
-            imgOR = getArguments().getString("testImage5");
+        if (getArguments().getString("imageOR") != null){
+            imgOR = getArguments().getString("imageOR");
+            imgORR = true;
         }
-        if (imgCR != null){
-            imgCR = getArguments().getString("testImage6");
+        if (getArguments().getString("imageCR") != null){
+            imgCR = getArguments().getString("imageCR");
+            imgCRR = true;
         }
 
 
@@ -246,29 +257,38 @@ public class AddCarFiveFragment extends Fragment {
                             //Check if user got registered successfully
                             if (response.getInt(KEY_STATUS) == 0) {
 
-                                if (str1 != null){
+                                recordID = response.getString(KEY_RECORD_ID);
+                                carID = response.getString(KEY_CAR_ID);
+                                Toast.makeText(getActivity().getApplicationContext(),
+                                        carID, Toast.LENGTH_SHORT).show();
+
+                                if (str11){
                                     uploadBitmap(StringToBitMap(str1));
                                 }
-                                if (str2 != null){
+                                if (str22){
                                     uploadBitmap(StringToBitMap(str2));
                                 }
-                                if (str3 != null){
+                                if (str33){
                                     uploadBitmap(StringToBitMap(str3));
                                 }
-                                if (str4 != null){
+                                if (str44){
                                     uploadBitmap(StringToBitMap(str4));
                                 }
-                                if (str5 != null){
+                                if (str55){
                                     uploadBitmap(StringToBitMap(str5));
                                 }
-                                if (str6 != null){
+                                if (str66){
                                     uploadBitmap(StringToBitMap(str6));
                                 }
-                                if (imgOR != null){
+                                if (imgORR){
                                     uploadBitmapOR(StringToBitMap(imgOR));
+                                    Toast.makeText(getActivity().getApplicationContext(),
+                                            "Uploading OR", Toast.LENGTH_SHORT).show();
                                 }
-                                if (imgCR != null){
+                                if (imgCRR){
                                     uploadBitmapCR(StringToBitMap(imgCR));
+                                    Toast.makeText(getActivity().getApplicationContext(),
+                                            "Uploading CR", Toast.LENGTH_SHORT).show();
                                 }
 
                                 //Inflate the fragment
@@ -427,7 +447,7 @@ public class AddCarFiveFragment extends Fragment {
     private void uploadBitmapOR(final Bitmap bitmap) {
 
         //getting the tag from the edittext
-        final String tags = recordID;
+        final String tags = carID;
 
         //our custom volley request
         VolleyMultipartRequestCarMan volleyMultipartRequestCarMan = new VolleyMultipartRequestCarMan(Request.Method.POST, EndPoints.UPLOAD_CAR_ATTACH_URL,
@@ -483,7 +503,7 @@ public class AddCarFiveFragment extends Fragment {
     private void uploadBitmapCR(final Bitmap bitmap) {
 
         //getting the tag from the edittext
-        final String tags = recordID;
+        final String tags = carID;
 
         //our custom volley request
         VolleyMultipartRequestCarMan volleyMultipartRequestCarMan = new VolleyMultipartRequestCarMan(Request.Method.POST, EndPoints.UPLOAD_CAR_ATTACH_CR_URL,

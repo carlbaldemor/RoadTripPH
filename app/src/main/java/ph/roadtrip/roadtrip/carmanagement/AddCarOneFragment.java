@@ -76,6 +76,8 @@ import static android.view.View.GONE;
 
 public class AddCarOneFragment extends Fragment {
 
+    private static final String KEY_EMPTY = "";
+
     private int ownerID;
     private int modelID;
     private String recordID;
@@ -208,7 +210,7 @@ public class AddCarOneFragment extends Fragment {
                 String[] size_values;
                 int size;
 
-                switch (model_pos){
+                switch (model_pos) {
                     case 0:
                         spinner_pos = modelSpinner.getSelectedItemPosition();
                         size_values = getResources().getStringArray(R.array.toyota_models_values);
@@ -284,31 +286,42 @@ public class AddCarOneFragment extends Fragment {
                 }
 
 
-                //Put the value
-                AddCarTwoFragment ldf = new AddCarTwoFragment ();
-                Bundle args = new Bundle();
-                args.putString("color", color);
-                args.putString("year", year);
-                args.putInt("modelID", modelID);
-                args.putString("plateNumber", plateNumber);
-                args.putString("chassisNumber", chassisNumber);
-                ldf.setArguments(args);
+                if (!validateInputs()) {
+                    //Put the value
+                    AddCarTwoFragment ldf = new AddCarTwoFragment();
+                    Bundle args = new Bundle();
+                    args.putString("color", color);
+                    args.putString("year", year);
+                    args.putInt("modelID", modelID);
+                    args.putString("plateNumber", plateNumber);
+                    args.putString("chassisNumber", chassisNumber);
+                    ldf.setArguments(args);
 
-                //Inflate the fragment
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, ldf);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                    //Inflate the fragment
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_container, ldf);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                }
             }
         });
 
         return view;
     }
 
-    /**
-     * Display Progress bar while registering
-     */
+    private boolean validateInputs(){
+        if (plateNumber.equalsIgnoreCase(KEY_EMPTY)){
+            etPlateNumber.setError("Plate Number cannot be empty!");
+            etPlateNumber.requestFocus();
+            return false;
+        }
+        if(plateNumber.length() > 8 && plateNumber.length() < 5){
+            
+        }
+
+        return false;
+    }
 
 
 
