@@ -47,6 +47,17 @@ public class SessionHandler {
     private static final String KEY_GENDER = "gender";
     private static final String KEY_RECORD_STATUS = "status";
 
+    //Car Pictures
+    private static final String KEY_CAR_PIC_1 = "carPic1";
+    private static final String KEY_CAR_PIC_2 = "carPic2";
+    private static final String KEY_CAR_PIC_3 = "carPic3";
+    private static final String KEY_CAR_PIC_4 = "carPic4";
+    private static final String KEY_CAR_PIC_5 = "carPic5";
+    private static final String KEY_CAR_PIC_6 = "carPic6";
+    private static final String KEY_CAR_OR = "carOR";
+    private static final String KEY_CAR_CR = "carCR";
+    private static final String KEY_CAR_SIR = "carSIR";
+
     //BOOKING DETAILS
     private static final String KEY_BRAND_NAME = "brandName";
     private static final String KEY_MODEL_NAME = "modelName";
@@ -347,6 +358,130 @@ public class SessionHandler {
     }
 
     /**
+     * Car Pictures Add Car
+     * @return
+     */
+
+    public CarPictures getCarPic1(){
+        CarPictures carPictures = new CarPictures();
+        carPictures.setCarPic1(mPreferences.getString(KEY_CAR_PIC_1, KEY_EMPTY));
+        //bookingRequests.setOwner_userID(mPreferences.getInt(KEY_OWNER_USER_ID, 0));
+        return carPictures;
+    }
+
+    public void setCarPic1(String carPic1){
+        mEditor.putString(KEY_CAR_PIC_1, carPic1);
+        mEditor.commit();
+    }
+
+    public CarPictures getCarPic2(){
+        CarPictures carPictures = new CarPictures();
+        carPictures.setCarPic2(mPreferences.getString(KEY_CAR_PIC_2, KEY_EMPTY));
+        //bookingRequests.setOwner_userID(mPreferences.getInt(KEY_OWNER_USER_ID, 0));
+        return carPictures;
+    }
+
+    public void setCarPic2(String carPic2){
+        mEditor.putString(KEY_CAR_PIC_2, carPic2);
+        mEditor.commit();
+    }
+
+    public CarPictures getCarPic3(){
+        CarPictures carPictures = new CarPictures();
+        carPictures.setCarPic3(mPreferences.getString(KEY_CAR_PIC_3, KEY_EMPTY));
+        //bookingRequests.setOwner_userID(mPreferences.getInt(KEY_OWNER_USER_ID, 0));
+        return carPictures;
+    }
+
+    public void setCarPic3(String carPic3){
+        mEditor.putString(KEY_CAR_PIC_3, carPic3);
+        mEditor.commit();
+    }
+
+    public CarPictures getCarPic4(){
+        CarPictures carPictures = new CarPictures();
+        carPictures.setCarPic4(mPreferences.getString(KEY_CAR_PIC_4, KEY_EMPTY));
+        //bookingRequests.setOwner_userID(mPreferences.getInt(KEY_OWNER_USER_ID, 0));
+        return carPictures;
+    }
+
+    public void setCarPic4(String carPic4){
+        mEditor.putString(KEY_CAR_PIC_4, carPic4);
+        mEditor.commit();
+    }
+
+    public CarPictures getCarPic5(){
+        CarPictures carPictures = new CarPictures();
+        carPictures.setCarPic5(mPreferences.getString(KEY_CAR_PIC_5, KEY_EMPTY));
+        //bookingRequests.setOwner_userID(mPreferences.getInt(KEY_OWNER_USER_ID, 0));
+        return carPictures;
+    }
+
+    public void setCarPic5(String carPic5){
+        mEditor.putString(KEY_CAR_PIC_2, carPic5);
+        mEditor.commit();
+    }
+
+    public CarPictures getCarPic6(){
+        CarPictures carPictures = new CarPictures();
+        carPictures.setCarPic5(mPreferences.getString(KEY_CAR_PIC_5, KEY_EMPTY));
+        //bookingRequests.setOwner_userID(mPreferences.getInt(KEY_OWNER_USER_ID, 0));
+        return carPictures;
+    }
+
+    public void setCarPic6(String carPic6){
+        mEditor.putString(KEY_CAR_PIC_6, carPic6);
+        mEditor.commit();
+    }
+
+    public CarPictures getCarOR(){
+        CarPictures carPictures = new CarPictures();
+        carPictures.setCarOR(mPreferences.getString(KEY_CAR_OR, KEY_EMPTY));
+        //bookingRequests.setOwner_userID(mPreferences.getInt(KEY_OWNER_USER_ID, 0));
+        return carPictures;
+    }
+
+    public void setCarOR(String carOR){
+        mEditor.putString(KEY_CAR_OR, carOR);
+        mEditor.commit();
+    }
+
+    public CarPictures getCarCR(){
+        CarPictures carPictures = new CarPictures();
+        carPictures.setCarCR(mPreferences.getString(KEY_CAR_CR, KEY_EMPTY));
+        //bookingRequests.setOwner_userID(mPreferences.getInt(KEY_OWNER_USER_ID, 0));
+        return carPictures;
+    }
+
+    public void setCarCR(String carCR){
+        mEditor.putString(KEY_CAR_CR, carCR);
+        mEditor.commit();
+    }
+
+    public CarPictures getCarSIR(){
+        CarPictures carPictures = new CarPictures();
+        carPictures.setCarSIR(mPreferences.getString(KEY_CAR_SIR, KEY_EMPTY));
+        //bookingRequests.setOwner_userID(mPreferences.getInt(KEY_OWNER_USER_ID, 0));
+        return carPictures;
+    }
+
+    public void setCarSIR(String carSIR){
+        mEditor.putString(KEY_CAR_SIR, carSIR);
+        mEditor.commit();
+    }
+
+
+
+    /**
+     *
+     * public void setItBaby(int recordID, String status, int carID){
+     *         mEditor.putInt(KEY_RECORD_ID, recordID);
+     *         mEditor.putString(KEY_RECORD_STATUS, status);
+     *         mEditor.putInt(KEY_CAR_ID, carID);
+     *
+     *         mEditor.commit();
+     *     }
+     *
      * Logs out user by clearing the session
      */
     public void logoutUser(){

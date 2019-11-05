@@ -104,6 +104,7 @@ public class ListCarsFragment extends Fragment {
                         movie.setPlateNumber(obj.getString("plateNumber"));
                         movie.setRecordID(obj.getInt("recordID"));
                         movie.setCarID(obj.getInt("carID"));
+                        movie.setDateAdded(obj.getString("dateAdded"));
                         // adding movie to movies array
                         movieList.add(movie);
 

@@ -95,6 +95,10 @@ public class UrlBean {
     //View booking request Car Owner
     private String view_booking_request = ROOT_IP +"viewbooking.php";
 
+    private String view_booking_request_history = ROOT_IP +"viewbookinghistory.php";
+
+    private String view_booking_request_history_owner = ROOT_IP + "viewbookinghistoryowner.php";
+
     //Accepted booking request display in listview
     private String acceptedBookings = ROOT_IP +"acceptedbookings.php?ownerID=";
 
@@ -213,7 +217,7 @@ public class UrlBean {
     private String activate_account = ROOT_IP +"activateaccount.php";
 
     //Archive account
-    private String archive_account = ROOT_IP +"/api/roadtrip/archiveaccount.php";
+    private String archive_account = ROOT_IP +"archiveaccount.php";
 
     //Mail Receipt
     private String mail_receipt = ROOT_IP +"mailreceipt.php?bookingID=";
@@ -230,6 +234,12 @@ public class UrlBean {
     //Get total average car
     private String car_ave_review = ROOT_IP +"totalaveragecar.php";
 
+    //check password
+    private String check_password = ROOT_IP + "checkpassword.php";
+
+    //complete button booking (owner)
+    private String completebooking = ROOT_IP + "completebooking.php?bookingID=";
+
 
 
 
@@ -238,6 +248,38 @@ public class UrlBean {
      *
      * GETTERS AND SETTERS
      */
+
+    public String getCheck_password() {
+        return check_password;
+    }
+
+    public void setCheck_password(String check_password) {
+        this.check_password = check_password;
+    }
+
+    public String getCompletebooking() {
+        return completebooking;
+    }
+
+    public void setCompletebooking(String completebooking) {
+        this.completebooking = completebooking;
+    }
+
+    public String getView_booking_request_history_owner() {
+        return view_booking_request_history_owner;
+    }
+
+    public void setView_booking_request_history_owner(String view_booking_request_history_owner) {
+        this.view_booking_request_history_owner = view_booking_request_history_owner;
+    }
+
+    public String getView_booking_request_history() {
+        return view_booking_request_history;
+    }
+
+    public void setView_booking_request_history(String view_booking_request_history) {
+        this.view_booking_request_history = view_booking_request_history;
+    }
 
     public String getGetBrandName() {
         return getBrandName;

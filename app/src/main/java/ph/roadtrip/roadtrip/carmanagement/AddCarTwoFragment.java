@@ -49,6 +49,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -176,24 +177,25 @@ public class AddCarTwoFragment extends Fragment implements OnMapReadyCallback, G
                         Geocoder geocoder = new Geocoder(getActivity().getApplicationContext());
                         try{
                             addressList = geocoder.getFromLocationName(location, 5);
+                            for(int i = 0; i<addressList.size(); i++){
+                                Address myAddress = addressList.get(i);
+                                LatLng latLng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
+                                mo.position(latLng);
+                                mo.title("Location");
+                                mMap.addMarker(mo);
+                                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+
+                                //Assign the location to a variable
+                                latIssue = Double.toString(myAddress.getLatitude());
+                                longIssue = Double.toString(myAddress.getLongitude());
+
+                                Toast.makeText(getActivity().getApplicationContext(), "Latitude: " + myAddress.getLatitude() + " Longitude: " + myAddress.getLongitude(), Toast.LENGTH_LONG).show();
+                            }
                         }catch (IOException e){
                             e.printStackTrace();
                         }
 
-                        for(int i = 0; i<addressList.size(); i++){
-                            Address myAddress = addressList.get(i);
-                            LatLng latLng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
-                            mo.position(latLng);
-                            mo.title("Location");
-                            mMap.addMarker(mo);
-                            mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
 
-                            //Assign the location to a variable
-                            latIssue = Double.toString(myAddress.getLatitude());
-                            longIssue = Double.toString(myAddress.getLongitude());
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Latitude: " + myAddress.getLatitude() + " Longitude: " + myAddress.getLongitude(), Toast.LENGTH_LONG).show();
-                        }
                     }
                 }
 
@@ -213,23 +215,22 @@ public class AddCarTwoFragment extends Fragment implements OnMapReadyCallback, G
                         Geocoder geocoder = new Geocoder(getActivity().getApplicationContext());
                         try{
                             addressList = geocoder.getFromLocationName(location, 5);
+                            for(int i = 0; i<addressList.size(); i++){
+                                Address myAddress = addressList.get(i);
+                                LatLng latLng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
+                                mo.position(latLng);
+                                mo.title("Location");
+                                mMap.addMarker(mo);
+                                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+
+                                //Assign the location to a variable
+                                latReturn = Double.toString(myAddress.getLatitude());
+                                longReturn = Double.toString(myAddress.getLongitude());
+
+                                Toast.makeText(getActivity().getApplicationContext(), "Latitude: " + myAddress.getLatitude() + " Longitude: " + myAddress.getLongitude(), Toast.LENGTH_LONG).show();
+                            }
                         }catch (IOException e){
                             e.printStackTrace();
-                        }
-
-                        for(int i = 0; i<addressList.size(); i++){
-                            Address myAddress = addressList.get(i);
-                            LatLng latLng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
-                            mo.position(latLng);
-                            mo.title("Location");
-                            mMap.addMarker(mo);
-                            mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-
-                            //Assign the location to a variable
-                            latReturn = Double.toString(myAddress.getLatitude());
-                            longReturn = Double.toString(myAddress.getLongitude());
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Latitude: " + myAddress.getLatitude() + " Longitude: " + myAddress.getLongitude(), Toast.LENGTH_LONG).show();
                         }
                     }
                 }
@@ -307,6 +308,13 @@ public class AddCarTwoFragment extends Fragment implements OnMapReadyCallback, G
             buildGoogleApiClient();
             mMap.setMyLocationEnabled(true);
         }
+
+        LatLngBounds PHILIPPINES = new LatLngBounds(
+                new LatLng(14.599512, 120.984222), new LatLng(14.599512, 120.984222));
+
+        // Set the camera to the greatest possible zoom level that includes the
+        // bounds
+        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(PHILIPPINES, 0));
     }
 
     public void onClick(View view){
@@ -328,8 +336,6 @@ public class AddCarTwoFragment extends Fragment implements OnMapReadyCallback, G
                     Address myAddress = addressList.get(i);
                     LatLng latLng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
                     mo.position(latLng);
-                    mo.title("Toyota Vios Red Carl Baldemor");
-                    mMap.addMarker(mo);
                     mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
                 }
             }
@@ -352,18 +358,6 @@ public class AddCarTwoFragment extends Fragment implements OnMapReadyCallback, G
         if (currentLocationMarker != null){
             currentLocationMarker.remove();
         }
-
-        LatLng latlng = new LatLng(location.getLatitude(), location.getLongitude());
-
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(latlng);
-        markerOptions.title("Current Location");
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-
-        currentLocationMarker = mMap.addMarker(markerOptions);
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));
-        mMap.animateCamera(CameraUpdateFactory.zoomBy(10));
 
         if(client != null){
             LocationServices.FusedLocationApi.removeLocationUpdates(client, this);

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,20 +15,25 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.bumptech.glide.Glide;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.DecimalFormat;
 
 import ph.roadtrip.roadtrip.bookingmodule.BookingRequests;
 import ph.roadtrip.roadtrip.classes.MySingleton;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
 import ph.roadtrip.roadtrip.classes.UrlBean;
 import ph.roadtrip.roadtrip.R;
+import ph.roadtrip.roadtrip.classes.User;
 
 public class ViewHistoryRecord extends Fragment {
 
-    private TextView tvStartDate, tvEndDate, tvBrandName, tvModelName, tvFullname, tvTotalAmount, tvCarType, tvServiceType;
+    private TextView tvStartDate, tvEndDate, tvBrandName, tvModelName, tvFullname, tvTotalAmount, tvCarType, tvServiceType, tvStatus, tvRating;
     private Button btnAccept, btnDecline;
+    private ImageView imgPicture;
 
     private int bookingID;
     private String startDate;
@@ -40,6 +46,8 @@ public class ViewHistoryRecord extends Fragment {
     private String carType;
     private String serviceType;
     private String userID;
+    private String status;
+    private String profilePicture;
     private SessionHandler session;
 
     private static final String KEY_MESSAGE = "message";
@@ -54,6 +62,10 @@ public class ViewHistoryRecord extends Fragment {
     private static final String KEY_TOTAL_AMOUNT = "totalAmount";
     private static final String KEY_BRAND_NAME = "brandName";
     private static final String KEY_MODEL_NAME = "modelName";
+    private static final String KEY_PROFILE_PICTURE = "profilePicture";
+    private static final String KEY_STATUS_RECORD = "status";
+    private static final String KEY_USER_ID = "userID";
+    private static final String KEY_TOTAL_RATING = "totalRating";
 
     private String fetch_booking_data;
     private String scanPickup;
@@ -71,7 +83,7 @@ public class ViewHistoryRecord extends Fragment {
         bookingID = bookingRequests.getBookingID();
 
         UrlBean urlBean = new UrlBean();
-        fetch_booking_data = urlBean.getView_booking_request();
+        fetch_booking_data = urlBean.getView_booking_request_history();
         scanPickup = urlBean.getAccept_booking();
         scanReturn = urlBean.getDecline_booking();
         onBackground();
@@ -84,6 +96,9 @@ public class ViewHistoryRecord extends Fragment {
         tvTotalAmount = view.findViewById(R.id.tvTotalAmount);
         tvCarType = view.findViewById(R.id.tvCarType);
         tvServiceType = view.findViewById(R.id.tvServiceType);
+        imgPicture = view.findViewById(R.id.imgPicture);
+        tvStatus = view.findViewById(R.id.tvStatus);
+        tvRating = view.findViewById(R.id.tvRating);
 
         return view;
     }
@@ -116,7 +131,11 @@ public class ViewHistoryRecord extends Fragment {
                         totalAmount = response.getString(KEY_TOTAL_AMOUNT);
                         carType = response.getString(KEY_CAR_TYPE);
                         serviceType = response.getString(KEY_SERVICE_TYPE);
+                        profilePicture = response.getString(KEY_PROFILE_PICTURE);
+                        status = response.getString(KEY_STATUS_RECORD);
+                        userID = response.getString(KEY_USER_ID);
 
+                        getAverageRating();
                         tvStartDate.setText(startDate);
                         tvEndDate.setText(endDate);
                         tvBrandName.setText(brandName);
@@ -125,8 +144,16 @@ public class ViewHistoryRecord extends Fragment {
                         tvTotalAmount.setText(totalAmount);
                         tvCarType.setText(carType);
                         tvServiceType.setText(serviceType);
+                        tvStatus.setText(status);
 
-                        Toast.makeText(getActivity().getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                        //Get User Data from session
+                        UrlBean url = new UrlBean();
+                        String profPicUrl = url.getProfilePicUrl();
+                        String image = profPicUrl+profilePicture;
+
+                        Glide.with(getActivity())
+                                    .load(image)
+                                    .into(imgPicture);
                     } else {
                         Toast.makeText(getActivity().getApplicationContext(), response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
 
@@ -148,5 +175,54 @@ public class ViewHistoryRecord extends Fragment {
 
         // Access the RequestQueue through your singleton class.
         MySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(jsArrayRequest);
+    }
+
+    public void getAverageRating(){
+        UrlBean url = new UrlBean();
+        String getUserData3 = url.getGetAverageRatingProfile();
+
+        JSONObject request = new JSONObject();
+        try {
+            request.put(KEY_USER_ID, userID);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsArrayRequest = new JsonObjectRequest
+                (Request.Method.POST, getUserData3, request, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            //Check if user got registered successfully
+                            if (response.getInt(KEY_STATUS) == 0) {
+                                Double rate = response.getDouble(KEY_TOTAL_RATING);
+
+                                DecimalFormat df = new DecimalFormat("#.#");
+                                df.format(rate);
+
+                                tvRating.setText(String.valueOf(rate) + "/5");
+
+                            } else{
+                                Toast.makeText(getActivity(),
+                                        response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //Display error message whenever an error occurs
+                        Toast.makeText(getActivity(),
+                                error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+        // Access the RequestQueue through your singleton class.
+        MySingleton.getInstance(getActivity()).addToRequestQueue(jsArrayRequest);
+
     }
 }

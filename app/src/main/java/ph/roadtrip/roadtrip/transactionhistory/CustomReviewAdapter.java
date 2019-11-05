@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 import ph.roadtrip.roadtrip.carmanagement.AppController;
@@ -68,21 +70,27 @@ public class CustomReviewAdapter extends BaseAdapter {
         TextView plateNumber = (TextView) convertView.findViewById(R.id.plateNumber);
         TextView status = (TextView) convertView.findViewById(R.id.status);
         TextView totalAmount = (TextView) convertView.findViewById(R.id.totalAmount);
+        TextView dateAdded = (TextView) convertView.findViewById(R.id.tvDateAdded);
+        TextView firstName = (TextView) convertView.findViewById(R.id.tvFirstName);
+        TextView lastName = (TextView) convertView.findViewById(R.id.tvLastName);
         Button btnView = (Button) convertView.findViewById(R.id.btnView);
 
         // getting movie data for the row
         Booking m = toReviewItems.get(position);
 
         // thumbnail imageS
-        thumbNail.setImageUrl(m.getRecordPicture(), imageLoader);
+        thumbNail.setImageUrl(m.getProfilePicture(), imageLoader);
 
         // title
         brandName.setText(m.getBrandName());
         modelName.setText(m.getModelName());
         modelYear.setText(m.getModelYear());
-        plateNumber.setText(m.getModelYear());
+        plateNumber.setText(m.getPlateNumber());
         status.setText(m.getStatus());
-        totalAmount.setText(m.getTotalAmount());
+        totalAmount.setText("P"+m.getTotalAmount());
+        dateAdded.setText(m.getDateAdded());
+        firstName.setText(m.getFirstName());
+        lastName.setText(m.getLastName());
 
         final Booking items = toReviewItems.get(position);
 

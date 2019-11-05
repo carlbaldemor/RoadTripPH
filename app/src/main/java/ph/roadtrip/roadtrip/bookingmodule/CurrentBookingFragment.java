@@ -324,6 +324,10 @@ public class CurrentBookingFragment extends Fragment {
                             tvDriverFullName.setText(driverFullName);
                         }
 
+                        if (specialNote.equalsIgnoreCase("null")){
+                            specialNote = "N/A";
+                        }
+
                         session.setOwnerUserID(userID, firstName, lastName, profilePicture);
 
                         Toast.makeText(getActivity(), String.valueOf(userID), Toast.LENGTH_LONG).show();

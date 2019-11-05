@@ -118,8 +118,8 @@ public class ListReviewBookingFragment extends Fragment {
                         movie.setReviewID(obj.getInt("reviewID"));
                         movie.setBookingID(obj.getInt("bookingID"));
                         movie.setReviewer(obj.getInt("reviewer"));
-                        movie.setReviewerFirstName(obj.getString("firstName"));
-                        movie.setReviewerLastName(obj.getString("lastName"));
+                        movie.setFirstName(obj.getString("firstName"));
+                        movie.setLastName(obj.getString("lastName"));
                         movie.setMessage(obj.getString("message"));
                         movie.setRating(obj.getInt("rating"));
                         movie.setDateAdded(obj.getString("dateAdded"));

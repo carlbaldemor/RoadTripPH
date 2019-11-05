@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ph.roadtrip.roadtrip.R;
+import ph.roadtrip.roadtrip.classes.CarPictures;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
 import ph.roadtrip.roadtrip.classes.User;
 
@@ -76,14 +77,15 @@ public class AddCarFourFragment extends Fragment {
     private String serviceType;
     private String amount;
     private int model_pos;
+    private long imageSize;
 
-    private ImageView apic1, bpic1;
+    private ImageView apic1, bpic1, cpic1;
     public static final int REQUEST_LOCATION_CODE = 99;
     private Button btnNext;
     private SessionHandler session;
     private String username;
-    private Bitmap img1, img2;
-    private boolean validPic1, validPic2;
+    private Bitmap img1, img2, img3;
+    private boolean validPic1, validPic2, validPic3;
     private String user_status;
     private String str1 = null, str2 = null, str3 = null, str4 = null, str5 = null, str6 = null;
 
@@ -91,7 +93,6 @@ public class AddCarFourFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_car_page_four, container, false);
-
 
         //Retrieve the value
         color = getArguments().getString("color");
@@ -105,24 +106,6 @@ public class AddCarFourFragment extends Fragment {
         longReturn = getArguments().getString("longReturn");
         serviceType = getArguments().getString("serviceType");
         amount = getArguments().getString("amount");
-        if (getArguments().getString("testImage1") != null){
-            str1 = getArguments().getString("testImage1");
-        }
-        if (getArguments().getString("testImage2") != null){
-            str2 = getArguments().getString("testImage2");
-        }
-        if (getArguments().getString("testImage3") != null){
-            str3 = getArguments().getString("testImage3");
-        }
-        if (getArguments().getString("testImage4") != null){
-            str4 = getArguments().getString("testImage4");
-        }
-        if (getArguments().getString("testImage5") != null){
-            str5 = getArguments().getString("testImage5");
-        }
-        if (getArguments().getString("testImage6") != null){
-            str6 = getArguments().getString("testImage6");
-        }
 
         //Get Username of user
         session = new SessionHandler(getActivity().getApplicationContext());
@@ -135,6 +118,9 @@ public class AddCarFourFragment extends Fragment {
 
         apic1 = view.findViewById(R.id.apic1);
         bpic1 = view.findViewById(R.id.bpic1);
+        cpic1 = view.findViewById(R.id.cpic1);
+
+        final CarPictures carPictures = new CarPictures();
 
         //Open Gallery
         view.findViewById(R.id.apic1).setOnClickListener(new View.OnClickListener() {
@@ -151,6 +137,14 @@ public class AddCarFourFragment extends Fragment {
                 //Open Gallery
                 Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(i, 200);
+            }
+        });
+        view.findViewById(R.id.cpic1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Open Gallery
+                Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(i, 300);
             }
         });
 
@@ -171,29 +165,14 @@ public class AddCarFourFragment extends Fragment {
                 args.putString("longReturn", longReturn);
                 args.putString("serviceType", serviceType);
                 args.putString("amount", amount);
-                if (str1 != null){
-                    args.putString("testImage1", str1);
-                }
-                if (str2 != null) {
-                    args.putString("testImage2", str2);
-                }
-                if (str3 != null) {
-                    args.putString("testImage3", str3);
-                }
-                if (str4 != null) {
-                    args.putString("testImage4", str4);
-                }
-                if (str5 != null) {
-                    args.putString("testImage5", str5);
-                }
-                if (str6 != null){
-                    args.putString("testImage6", str6);
-                }
                 if (img1 != null){
-                    args.putString("imageOR", BitMapToString(img1));
+                    session.setCarOR(BitMapToString(img1));
                 }
                 if (img2 != null) {
-                    args.putString("imageCR", BitMapToString(img2));
+                    session.setCarCR(BitMapToString(img2));
+                }
+                if(img3 != null){
+                    session.setCarSIR(BitMapToString(img3));
                 }
                 ldf.setArguments(args);
 
@@ -210,8 +189,8 @@ public class AddCarFourFragment extends Fragment {
     }
 
     public String BitMapToString(Bitmap bitmap){
-        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
+        ByteArrayOutputStream baos = new  ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,60, baos);
         byte [] b=baos.toByteArray();
         String temp=Base64.encodeToString(b, Base64.DEFAULT);
         return temp;
@@ -243,15 +222,18 @@ public class AddCarFourFragment extends Fragment {
                 //getting bitmap object from uri
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getActivity().getApplicationContext().getContentResolver(), imageUri);
 
-                //displaying selected image to imageview
-                apic1.setImageBitmap(bitmap);
+                imageSize = getFileDataFromDrawable(bitmap).length / 1024;
 
-                //Check this if user placed a picture
-                validPic1 = true;
-                img1 = bitmap;
+                if (imageSize > 2000) {
+                    Toast.makeText(getActivity(), String.valueOf(imageSize) + "KB " + "File too large!", Toast.LENGTH_LONG).show();
+                } else {
+                    //displaying selected image to imageview
+                    apic1.setImageBitmap(bitmap);
 
-                //calling the method uploadBitmap to upload image
-                //uploadBitmap(bitmap);
+                    //Check this if user placed a picture
+                    validPic1 = true;
+                    img1 = bitmap;
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -263,25 +245,50 @@ public class AddCarFourFragment extends Fragment {
                 //getting bitmap object from uri
                 Bitmap bitmap2 = MediaStore.Images.Media.getBitmap(this.getActivity().getApplicationContext().getContentResolver(), imageUri);
 
-                //displaying selected image to imageview
-                bpic1.setImageBitmap(bitmap2);
-                //Check this if user placed a picture
-                validPic2 = true;
-                img2 = bitmap2;
+                imageSize = getFileDataFromDrawable(bitmap2).length / 1024;
 
-                //calling the method uploadBitmap to upload image
-                //uploadBitmap(bitmap);
+                if (imageSize > 2000) {
+                    Toast.makeText(getActivity(), String.valueOf(imageSize) + "KB " + "File too large!", Toast.LENGTH_LONG).show();
+                } else {
+                    //displaying selected image to imageview
+                    bpic1.setImageBitmap(bitmap2);
+
+                    //Check this if user placed a picture
+                    validPic2 = true;
+                    img2 = bitmap2;
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
+        } else if (requestCode == 300 && resultCode == RESULT_OK && data != null) {
+            //getting the image URI
+            Uri imageUri = data.getData();
 
+            try{
+                //getting bitmap object from uri
+                Bitmap bitmap3 = MediaStore.Images.Media.getBitmap(this.getActivity().getApplicationContext().getContentResolver(), imageUri);
+
+                imageSize = getFileDataFromDrawable(bitmap3).length / 1024;
+
+                if (imageSize > 2000) {
+                    Toast.makeText(getActivity(), String.valueOf(imageSize) + "KB " + "File too large!", Toast.LENGTH_LONG).show();
+                } else {
+                    //displaying selected image to imageview
+                    cpic1.setImageBitmap(bitmap3);
+
+                    //Check this if user placed a picture
+                    validPic3 = true;
+                    img3 = bitmap3;
+                }
+            }catch (IOException e){
+                e.printStackTrace();
+            }
         }
     }
 
     public byte[] getFileDataFromDrawable(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 60, byteArrayOutputStream);
         return byteArrayOutputStream.toByteArray();
     }
 

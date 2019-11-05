@@ -146,20 +146,19 @@ public class ViewRecordFragment extends android.support.v4.app.Fragment {
                                 List<Address> addresses = null;
                                 try {
                                     addresses = geocoder.getFromLocation(Double.parseDouble(latIssue), Double.parseDouble(longIssue), 1);
+                                    pickupAddress = addresses.get(0).getAddressLine(0);
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
-                                //pickupAddress = addresses.get(0).getAddressLine(0);
-                                pickupAddress = addresses.get(0).getAddressLine(0);
+
 
                                 List<Address> addresses2 = null;
                                 try {
                                     addresses2 = geocoder.getFromLocation(Double.parseDouble(latReturn), Double.parseDouble(longReturn), 1);
+                                    returnAddress = addresses2.get(0).getAddressLine(0);
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
-                                //pickupAddress = addresses.get(0).getAddressLine(0);
-                                returnAddress = addresses2.get(0).getAddressLine(0);
 
                                 tvBrand.setText(brandName);
                                 tvModel.setText(modelName);

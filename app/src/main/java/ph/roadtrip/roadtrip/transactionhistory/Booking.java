@@ -13,6 +13,9 @@ public class Booking {
     private int bookingID;
     private int recordID;
     private int carID;
+    private String firstName;
+    private String profilePicture;
+    private String lastName;
     private String totalAmount;
     private String status;
     private String startDate;
@@ -27,6 +30,7 @@ public class Booking {
     private String color;
     private String recordPicture;
     private String plateNumber;
+    private String dateAdded;
     private int carowner_userID;
     private int renter_userID;
     private boolean favorite;
@@ -56,6 +60,41 @@ public class Booking {
             }
         }
         return bookings;
+    }
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+    public String getDateAdded() {
+        return dateAdded;
+    }
+
+    public void setDateAdded(String dateAdded) {
+        this.dateAdded = dateAdded;
     }
 
     public boolean getFavorite() {

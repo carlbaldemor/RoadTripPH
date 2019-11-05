@@ -26,6 +26,30 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
     <TextView
+    android:id="@+id/tvFirstName"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingBottom="2dip"
+    android:layout_marginLeft="10dp"
+    android:text="First"
+    android:textStyle="bold"
+    android:textSize="16sp"
+    android:layout_toRightOf="@id/picture_list"/>
+    <TextView
+        android:id="@+id/tvLastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="2dip"
+        android:layout_marginLeft="10dp"
+        android:text="Last"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_toRightOf="@id/picture_list"/>
+</LinearLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
         android:id="@+id/brandName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,10 +79,6 @@
         android:textStyle="bold"
         android:textSize="16sp"
         android:layout_toRightOf="@id/modelName"/>
-</LinearLayout>
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
         <TextView
             android:id="@+id/plateNumber"
             android:layout_width="wrap_content"
@@ -104,6 +124,18 @@
         android:textSize="15sp"
         android:layout_toRightOf="@id/status"/>
 </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvDateAdded"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Amount"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:textSize="10sp" />
+        </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

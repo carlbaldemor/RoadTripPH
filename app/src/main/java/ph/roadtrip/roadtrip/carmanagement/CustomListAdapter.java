@@ -68,7 +68,7 @@ public class CustomListAdapter extends BaseAdapter {
         TextView plateNumber = (TextView) convertView.findViewById(R.id.plateNumber);
         TextView carType = (TextView) convertView.findViewById(R.id.carType);
         TextView status = (TextView) convertView.findViewById(R.id.status);
-        final TextView recordID = (TextView) convertView.findViewById(R.id.recordID);
+        TextView dateAdded = (TextView) convertView.findViewById(R.id.dateAdded);
         Button btnView = (Button) convertView.findViewById(R.id.btnView);
 
         // getting movie data for the row
@@ -84,7 +84,7 @@ public class CustomListAdapter extends BaseAdapter {
         plateNumber.setText(m.getModelYear());
         carType.setText(m.getCarType());
         status.setText(m.getStatus());
-        recordID.setText(String.valueOf(m.getRecordID()));
+        dateAdded.setText(m.getDateAdded());
 
         final CarRecord items = movieItems.get(position);
 

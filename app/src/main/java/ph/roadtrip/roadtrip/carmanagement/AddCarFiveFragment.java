@@ -44,6 +44,7 @@ import java.util.Map;
 
 import ph.roadtrip.roadtrip.R;
 import ph.roadtrip.roadtrip.bookingmodule.SuccessAddCarFragment;
+import ph.roadtrip.roadtrip.classes.CarPictures;
 import ph.roadtrip.roadtrip.classes.EndPoints;
 import ph.roadtrip.roadtrip.classes.MySingleton;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
@@ -90,7 +91,6 @@ public class AddCarFiveFragment extends Fragment {
     private String amount;
     private int model_pos;
 
-    private ImageView apic1, bpic1;
     public static final int REQUEST_LOCATION_CODE = 99;
     private Button btnConfirm;
     private SessionHandler session;
@@ -98,16 +98,20 @@ public class AddCarFiveFragment extends Fragment {
     private Bitmap img1, img2;
     private boolean validPic1, validPic2;
     private String user_status;
+    private String pickupAdd, returnAdd;
     private TextView tvBrandName, tvModel, tvColor, tvYear,
             tvPlateNumber, tvChassisNumber, tvReturn, tvPickup, tvServiceType, tvPrice;
-    private String str1 = null, str2 = null, str3 = null, str4 = null, str5 = null, str6 = null, imgOR = null, imgCR = null;
-    private boolean str11, str22, str33, str44, str55, str66, imgORR, imgCRR;
+    private String str1 = null, str2 = null, str3 = null, str4 = null, str5 = null, str6 = null, imgOR = null, imgCR = null, imgSIR = null;
+    private boolean str11, str22, str33, str44, str55, str66, imgORR, imgCRR, imgSIRR;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_car_page_five, container, false);
+        session = new SessionHandler(getActivity().getApplicationContext());
+        CarPictures carPictures = new CarPictures();
+
 
         //Retrieve the value
         color = getArguments().getString("color");
@@ -121,42 +125,56 @@ public class AddCarFiveFragment extends Fragment {
         longReturn = getArguments().getString("longReturn");
         serviceType = getArguments().getString("serviceType");
         amount = getArguments().getString("amount");
-        if (getArguments().getString("testImage1") != null){
-            str1 = getArguments().getString("testImage1");
+        CarPictures car1 = session.getCarPic1();
+        if (car1 != null){
+            str1 = car1.getCarPic1();
             str11 = true;
+            Toast.makeText(getActivity(), str1, Toast.LENGTH_SHORT).show();
         }
-        if (getArguments().getString("testImage2") != null){
-            str2 = getArguments().getString("testImage2");
+        CarPictures car2 = session.getCarPic2();
+        if (car2 != null){
+            str2 = car2.getCarPic2();
             str22 = true;
         }
-        if (getArguments().getString("testImage3") != null){
-            str3 = getArguments().getString("testImage3");
+        CarPictures car3 = session.getCarPic3();
+        if (car3 != null){
+            str3 = car3.getCarPic3();
             str33 = true;
         }
-        if (getArguments().getString("testImage4") != null){
-            str4 = getArguments().getString("testImage4");
+        CarPictures car4 = session.getCarPic4();
+        if (car4 != null){
+            str4 = car4.getCarPic4();
             str44 = true;
         }
-        if (getArguments().getString("testImage5") != null){
-            str5 = getArguments().getString("testImage5");
+        CarPictures car5 = session.getCarPic5();
+        if (car5 != null){
+            str5 = car5.getCarPic5();
             str55 = true;
         }
-        if (getArguments().getString("testImage6")!= null){
-            str6 = getArguments().getString("testImage6");
+        CarPictures car6 = session.getCarPic6();
+        if (car6 != null){
+            str6 = car6.getCarPic6();
             str66 = true;
         }
-        if (getArguments().getString("imageOR") != null){
-            imgOR = getArguments().getString("imageOR");
+        CarPictures carOR = session.getCarOR();
+        if (carOR != null){
+            imgOR = carOR.getCarOR();
             imgORR = true;
+            Toast.makeText(getActivity(), imgOR, Toast.LENGTH_SHORT).show();
         }
-        if (getArguments().getString("imageCR") != null){
-            imgCR = getArguments().getString("imageCR");
+        CarPictures carCR = session.getCarCR();
+        if (carCR != null){
+            imgCR = carCR.getCarCR();
             imgCRR = true;
         }
-
+        CarPictures carSIR = session.getCarSIR();
+        if (carSIR != null){
+            imgSIR = carSIR.getCarSIR();
+            imgSIRR = true;
+        }
 
         //Get Username of user
-        session = new SessionHandler(getActivity().getApplicationContext());
+
         User user = session.getUserDetails();
         username = user.getUsername();
         user_status = user.getStatus();
@@ -164,14 +182,7 @@ public class AddCarFiveFragment extends Fragment {
         CarRecord user2 = session.getOwnerID();
         ownerID = user2.getOwnerID();
 
-        apic1 = view.findViewById(R.id.apic1);
-        bpic1 = view.findViewById(R.id.bpic1);
         btnConfirm = view.findViewById(R.id.btnConfirm);
-
-        /*
-        private TextView tvBrandName, tvModel, tvColor, tvYear,
-            tvPlateNumber, tvChassisNumber, tvReturn, tvPickup, tvServiceType, tvPrice;
-         */
 
         tvBrandName = view.findViewById(R.id.tvBrandName);
         tvModel = view.findViewById(R.id.tvModel);
@@ -186,12 +197,12 @@ public class AddCarFiveFragment extends Fragment {
 
         getBrandName();
 
-
         Geocoder geocoder;
         geocoder = new Geocoder(getActivity(), Locale.getDefault());
         List<Address> addresses = null;
         try {
             addresses = geocoder.getFromLocation(Double.parseDouble(latIssue), Double.parseDouble(longIssue), 1);
+            pickupAdd = addresses.get(0).getAddressLine(0);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -199,13 +210,10 @@ public class AddCarFiveFragment extends Fragment {
         List<Address> addresses2 = null;
         try {
             addresses2 = geocoder.getFromLocation(Double.parseDouble(latReturn), Double.parseDouble(longReturn), 1);
+            returnAdd = addresses2.get(0).getAddressLine(0);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        String returnAdd = addresses2.get(0).getAddressLine(0);
-        String pickupAdd = addresses.get(0).getAddressLine(0);
-
 
         tvColor.setText(color);
         tvYear.setText(year);
@@ -259,8 +267,6 @@ public class AddCarFiveFragment extends Fragment {
 
                                 recordID = response.getString(KEY_RECORD_ID);
                                 carID = response.getString(KEY_CAR_ID);
-                                Toast.makeText(getActivity().getApplicationContext(),
-                                        carID, Toast.LENGTH_SHORT).show();
 
                                 if (str11){
                                     uploadBitmap(StringToBitMap(str1));
@@ -282,13 +288,12 @@ public class AddCarFiveFragment extends Fragment {
                                 }
                                 if (imgORR){
                                     uploadBitmapOR(StringToBitMap(imgOR));
-                                    Toast.makeText(getActivity().getApplicationContext(),
-                                            "Uploading OR", Toast.LENGTH_SHORT).show();
                                 }
                                 if (imgCRR){
                                     uploadBitmapCR(StringToBitMap(imgCR));
-                                    Toast.makeText(getActivity().getApplicationContext(),
-                                            "Uploading CR", Toast.LENGTH_SHORT).show();
+                                }
+                                if(imgSIRR){
+                                    uploadBitMapSIR(StringToBitMap(imgSIR));
                                 }
 
                                 //Inflate the fragment
@@ -384,7 +389,7 @@ public class AddCarFiveFragment extends Fragment {
 
     public byte[] getFileDataFromDrawable(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 60, byteArrayOutputStream);
         return byteArrayOutputStream.toByteArray();
     }
 
@@ -507,6 +512,62 @@ public class AddCarFiveFragment extends Fragment {
 
         //our custom volley request
         VolleyMultipartRequestCarMan volleyMultipartRequestCarMan = new VolleyMultipartRequestCarMan(Request.Method.POST, EndPoints.UPLOAD_CAR_ATTACH_CR_URL,
+                new Response.Listener<NetworkResponse>() {
+                    @Override
+                    public void onResponse(NetworkResponse response) {
+                        try {
+                            JSONObject obj = new JSONObject(new String(response.data));
+                            Toast.makeText(getActivity().getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+
+            /*
+             * If you want to add more parameters with the image
+             * you can do it here
+             * here we have only one parameter with the image
+             * which is tags
+             * */
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("tags", tags);
+                return params;
+            }
+
+            /*
+             * Here we are passing image by renaming it with a unique name
+             * */
+            @Override
+            protected Map<String, DataPart> getByteData() {
+                Map<String, DataPart> params = new HashMap<>();
+                long imagename = System.currentTimeMillis();
+                params.put("pic", new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
+                return params;
+            }
+        };
+
+        //adding the request to volley
+        Volley.newRequestQueue(getActivity().getApplicationContext()).add(volleyMultipartRequestCarMan);
+    }
+
+    private void uploadBitMapSIR(final Bitmap bitmap) {
+
+        //getting the tag from the edittext
+        final String tags = carID;
+
+        //our custom volley request
+        VolleyMultipartRequestCarMan volleyMultipartRequestCarMan = new VolleyMultipartRequestCarMan(Request.Method.POST, EndPoints.UPLOAD_CAR_ATTACH_SIR_URL,
                 new Response.Listener<NetworkResponse>() {
                     @Override
                     public void onResponse(NetworkResponse response) {

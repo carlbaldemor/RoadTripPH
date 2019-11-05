@@ -1,5 +1,7 @@
 package ph.roadtrip.roadtrip.bookingmodule;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,11 +27,15 @@ import org.json.JSONObject;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
+import io.grpc.netty.shaded.io.netty.handler.codec.spdy.SpdyHttpResponseStreamIdHandler;
 import ph.roadtrip.roadtrip.classes.MySingleton;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
 import ph.roadtrip.roadtrip.classes.UrlBean;
 import ph.roadtrip.roadtrip.R;
 import ph.roadtrip.roadtrip.classes.User;
+import ph.roadtrip.roadtrip.classes.updateData;
+
+import static com.google.android.gms.internal.zzbgp.NULL;
 
 public class ViewAcceptedBooking extends Fragment {
 
@@ -47,9 +54,15 @@ public class ViewAcceptedBooking extends Fragment {
     private String totalAmount;
     private String carType;
     private String serviceType;
+    private String latIssue;
+    private String longIssue;
+    private String latReturn;
+    private String longReturn;
+    private boolean overEndDate;
     private int userID;
     private SessionHandler session;
 
+    private static final String KEY_MOBILE_NUMER = "mobileNumber";
     private static final String KEY_MESSAGE = "message";
     private static final String KEY_STATUS  = "status1";
     private static final String KEY_BOOKING_ID = "bookingID";
@@ -65,14 +78,22 @@ public class ViewAcceptedBooking extends Fragment {
     private static final String KEY_DRIVER_FULL_NAME = "driverFullName";
     private static final String KEY_DRIVER_MOBILE_NUMBER = "driverMobileNumber";
     private static final String KEY_SPECIAL_NOTE = "specialNote";
+    private static final String KEY_OVER_END_DATE = "overEndDate";
+
+    private static final String KEY_LAT_ISSUE = "latIssue";
+    private static final String KEY_LONG_ISSUE = "longIssue";
+    private static final String KEY_LAT_RETURN = "latReturn";
+    private static final String KEY_LONG_RETURN = "longReturn";
 
     private String fetch_booking_data;
     private String scanPickup;
     private String scanReturn;
-    private Button btnPickup, btnReturn, btnCancel;
+    private Button btnPickup, btnReturn, btnCancel, btnComplete;
     private String driverFullName;
     private String driverMobileNumber;
     private String specialNote;
+    private String mobileNumber;
+    private ImageView sms, call;
 
     @Nullable
     @Override
@@ -86,7 +107,7 @@ public class ViewAcceptedBooking extends Fragment {
         User user = session.getUserDetails();
         userID = user.getUserID();
 
-        UrlBean urlBean = new UrlBean();
+        final UrlBean urlBean = new UrlBean();
         fetch_booking_data = urlBean.getView_booking_request();
         scanPickup = urlBean.getAccept_booking();
         scanReturn = urlBean.getDecline_booking();
@@ -105,10 +126,36 @@ public class ViewAcceptedBooking extends Fragment {
         tvDriverMobileNumber = view.findViewById(R.id.tvDriverMobileNumber);
         frameDriverMobile = view.findViewById(R.id.frameDriverMobile);
         frameDriverFullName = view.findViewById(R.id.frameDriverName);
+        sms = view.findViewById(R.id.sms);
+        call = view.findViewById(R.id.call);
 
         btnPickup = view.findViewById(R.id.btnPickup);
         btnReturn = view.findViewById(R.id.btnReturn);
         btnCancel = view.findViewById(R.id.btnCancel);
+        btnComplete = view.findViewById(R.id.btnComplete);
+
+        sms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Accept Booking Offer
+                Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+                sendIntent.setType("vnd.android-dir/mms-sms");
+                sendIntent.putExtra("address"  , new String(mobileNumber));
+                sendIntent.putExtra("sms_body", "");
+                startActivity(sendIntent);
+
+            }
+        });
+
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Accept Booking Offer
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + mobileNumber));
+                startActivity(intent);
+
+            }
+        });
 
         btnPickup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,6 +194,31 @@ public class ViewAcceptedBooking extends Fragment {
             }
         });
 
+        btnComplete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Complete the booking offer
+                String complete = urlBean.getCompletebooking() + bookingID;
+                new updateData().execute(complete);
+
+                //Send email to respective users
+                //Email Receipt to renter
+                String mailreceipt = urlBean.getMail_receipt() + bookingID;
+                new updateData().execute(mailreceipt);
+
+                //Email Receipt to owner
+                String mailreceiptowner = urlBean.getMail_receipt_owner() + bookingID;
+                new updateData().execute(mailreceiptowner);
+
+                //Success Page
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, new SuccessCompleteFragment());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+
         return view;
     }
 
@@ -179,6 +251,28 @@ public class ViewAcceptedBooking extends Fragment {
                         carType = response.getString(KEY_CAR_TYPE);
                         serviceType = response.getString(KEY_SERVICE_TYPE);
                         specialNote = response.getString(KEY_SPECIAL_NOTE);
+                        latIssue = response.getString(KEY_LAT_ISSUE);
+                        longIssue = response.getString(KEY_LONG_ISSUE);
+                        latReturn = response.getString(KEY_LAT_RETURN);
+                        longReturn = response.getString(KEY_LONG_RETURN);
+                        overEndDate = response.getBoolean(KEY_OVER_END_DATE);
+                        mobileNumber = response.getString(KEY_MOBILE_NUMER);
+
+                        if (overEndDate){
+                            btnComplete.setVisibility(View.VISIBLE);
+                        }
+
+                        Toast.makeText(getActivity().getApplicationContext(), String.valueOf(overEndDate), Toast.LENGTH_SHORT).show();
+
+                        if (latIssue.equalsIgnoreCase("null")) {
+                            btnReturn.setVisibility(View.GONE);
+                        } else if (latReturn.equalsIgnoreCase("null")) {
+                            btnPickup.setVisibility(View.GONE);
+                        }
+
+                        if (specialNote.equalsIgnoreCase("null")){
+                            specialNote = "N/A";
+                        }
 
                         if (serviceType.equals("Chauffeur")){
                             frameDriverFullName.setVisibility(View.VISIBLE);
@@ -202,7 +296,7 @@ public class ViewAcceptedBooking extends Fragment {
                         tvServiceType.setText(serviceType);
                         tvSpecialNote.setText(specialNote);
 
-                        Toast.makeText(getActivity().getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity().getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getActivity().getApplicationContext(), response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
 

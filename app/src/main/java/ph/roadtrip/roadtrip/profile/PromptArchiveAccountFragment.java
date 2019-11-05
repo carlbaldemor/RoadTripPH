@@ -1,5 +1,6 @@
 package ph.roadtrip.roadtrip.profile;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,23 +66,30 @@ public class PromptArchiveAccountFragment extends Fragment {
     private static final String KEY_RENTER_USER_ID = "renter_userID";
     private static final String KEY_USER_ID = "userID";
     private static final String KEY_RECORD_ID = "recordID";
+    private static final String KEY_EMPTY = "";
+    private static final String KEY_PASSWORD = "password";
 
     private String fetch_booking_data;
     private String archive_record;
     private String cancel;
+    private EditText etPassword;
+    private String password;
+    private Button btnAccept2, btnCancel2;
+    private String urlCheckPassword;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_prompt_delete_record, container, false);
+        View view = inflater.inflate(R.layout.fragment_prompt_archive_account, container, false);
         setHasOptionsMenu(true);
         session = new SessionHandler(getActivity().getApplicationContext());
 
-        User user = session.getUserDetails();
+        final User user = session.getUserDetails();
         userID = user.getUserID();
 
         UrlBean urlBean = new UrlBean();
         archive_record = urlBean.getArchive_account(); // change this
+        urlCheckPassword = urlBean.getCheck_password();
 
         btnArchived = view.findViewById(R.id.btnArchive);
         btnCancel = view.findViewById(R.id.btnCancel);
@@ -89,23 +98,126 @@ public class PromptArchiveAccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Deactivate Account
-                archive();
+                callLoginDialog();
             }
         });
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Decline Booking Offer
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new EditProfileFragment());
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+
+                if(user.getUserTypeID() == "1"){
+                    //Decline Booking Offer
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_container, new EditProfileFragment());
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                } else if (user.getUserTypeID() == "2"){
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_container, new EditProfileOwnerFragment());
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                }
+
+
             }
         });
 
         return view;
+    }
+
+    private void callLoginDialog()
+    {
+        final Dialog myDialog = new Dialog(getActivity());
+        myDialog.setContentView(R.layout.prompt_password);
+        myDialog.setCancelable(false);
+
+        etPassword = (EditText) myDialog.findViewById(R.id.etPassword);
+        btnAccept2 =  (Button) myDialog.findViewById(R.id.btnAccept2);
+        btnCancel2 =  (Button) myDialog.findViewById(R.id.btnCancel2);
+        myDialog.show();
+
+        btnAccept2.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                password = etPassword.getText().toString();
+
+                if (!validateInputs()) {
+
+                } else {
+                    checkPassword();
+                    myDialog.hide();
+                }
+            }
+        });
+        btnCancel2.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                myDialog.hide();
+            }
+        });
+
+    }
+
+    private boolean validateInputs() {
+
+        if (KEY_EMPTY.equals(password)) {
+            etPassword.setError("Password cannot be empty");
+            etPassword.requestFocus();
+            return false;
+        }
+
+        return true;
+    }
+
+    public void checkPassword(){
+        final JSONObject request = new JSONObject();
+        try {
+            //Populate the request parameters
+            if (userID == 0){
+
+            } else {
+                request.put(KEY_USER_ID, userID);
+                request.put(KEY_PASSWORD, password);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsArrayRequest = new JsonObjectRequest(Request.Method.POST, urlCheckPassword, request, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    //Check if user got logged in successfully
+
+                    if (response.getInt(KEY_STATUS) == 0) {
+                        //Go to Success page
+                        archive();
+                    } else{
+                        Toast.makeText(getActivity().getApplicationContext(), response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                //Display error message whenever an error occurs
+                Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        // Access the RequestQueue through your singleton class.
+        MySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(jsArrayRequest);
     }
 
     public void archive(){

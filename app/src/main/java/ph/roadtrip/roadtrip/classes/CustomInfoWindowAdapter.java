@@ -1,6 +1,7 @@
 package ph.roadtrip.roadtrip.classes;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -11,7 +12,9 @@ import com.google.android.gms.maps.model.Marker;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import ph.roadtrip.roadtrip.MapsActivity;
 import ph.roadtrip.roadtrip.R;
+import ph.roadtrip.roadtrip.bookingmodule.ViewBookingOfferActivity;
 
 public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter{
 
@@ -55,6 +58,7 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter{
         tvBrandName.setText(brandName);
         tvModelName.setText(modelName);
         tvAddress.setText(marker.getSnippet());
+
 
         return view;
     }

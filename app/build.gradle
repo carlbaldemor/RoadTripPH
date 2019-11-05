@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 28
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
         multiDexEnabled true
         applicationId "ph.roadtrip.roadtrip"
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -39,6 +39,7 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.android.volley:volley:1.1.0'
     implementation 'com.google.android.gms:play-services-maps:11.8.0'
+    implementation 'com.google.android.gms:play-services-places:1.0.0'
     implementation 'com.google.android.gms:play-services-location:11.8.0'
     implementation 'com.google.android.gms:play-services-auth:11.8.0'
     testImplementation 'junit:junit:4.12'

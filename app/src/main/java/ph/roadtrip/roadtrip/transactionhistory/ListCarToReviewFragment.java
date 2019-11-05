@@ -101,8 +101,10 @@ public class ListCarToReviewFragment extends Fragment {
                         movie.setRecordID(obj.getInt("recordID"));
                         movie.setPlateNumber(obj.getString("plateNumber"));
                         movie.setColor(obj.getString("color"));
-                        movie.setOwnerID(obj.getInt("ownerID"));
                         movie.setCarID(obj.getInt("carID"));
+                        movie.setDateAdded(obj.getString("dateAdded"));
+                        movie.setFirstName(obj.getString("firstName"));
+                        movie.setLastName(obj.getString("lastName"));
                         // adding movie to movies array
                         toReviewList.add(movie);
 

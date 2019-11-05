@@ -16,6 +16,7 @@ public class CarRecord {
     private String carType;
     private String status;
     private String imageUrl;
+    private String dateAdded;
     private int recordID;
     private int carID;
     private int modelID;
@@ -73,7 +74,13 @@ public class CarRecord {
         this.modelPos = modelPos;
     }
 
+    public String getDateAdded() {
+        return dateAdded;
+    }
 
+    public void setDateAdded(String dateAdded) {
+        this.dateAdded = dateAdded;
+    }
     public int getBrandPos() {
         return brandPos;
     }

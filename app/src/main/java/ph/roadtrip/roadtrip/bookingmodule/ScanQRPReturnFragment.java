@@ -139,8 +139,6 @@ public class ScanQRPReturnFragment extends Fragment {
         String mail2 = getUrl.getMail_receipt_owner() + bookingID;
         new updateData().execute(mail2);
 
-
-
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, new SuccessQRFragment());

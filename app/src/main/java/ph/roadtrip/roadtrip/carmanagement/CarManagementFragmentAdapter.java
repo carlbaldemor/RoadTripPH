@@ -18,8 +18,9 @@ public class CarManagementFragmentAdapter extends android.support.v4.app.Fragmen
         if (position == 0) {
             return new ListCarsFragment();
         } else {
-            return new AddCarFragment();
+            //return new AddCarFragment();
         }
+        return null;
     }
 
     // This determines the number of tabs

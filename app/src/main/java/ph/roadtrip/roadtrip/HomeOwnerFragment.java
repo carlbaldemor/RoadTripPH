@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -175,6 +177,14 @@ public class HomeOwnerFragment extends Fragment {
 
 
         return view;
+    }
+
+    //hide info button actionbar
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        MenuItem item=menu.findItem(R.id.action_add_car);
+        if(item!=null)
+            item.setVisible(false);
     }
 
     @Override

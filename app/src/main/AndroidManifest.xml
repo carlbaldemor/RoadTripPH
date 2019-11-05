@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ph.roadtrip.roadtrip">
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality.
-    -->
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -15,8 +20,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".classes.SliderBookServiceActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".classes.SliderBookServiceActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".classes.SliderCarManActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".BaseOwnerActivity" />
         <activity android:name=".BaseActivity" />
         <activity
@@ -83,7 +92,6 @@
             android:name=".MapsActivity"
             android:configChanges="keyboardHidden|orientation"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".SplashActivity"
             android:configChanges="keyboardHidden|orientation"
@@ -118,18 +126,10 @@
             android:name=".bookingmodule.BookServiceActivity"
             android:configChanges="keyboardHidden|orientation"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
     </application>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>

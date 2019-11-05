@@ -80,7 +80,7 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
         setHasOptionsMenu(true);
 
         //Update User Data
-        swipeRefreshLayout = view.findViewById(R.id.swiperefresh);
+        //swipeRefreshLayout = view.findViewById(R.id.swiperefresh);
         onBackground();
         String profPicUrl = url.getProfilePicUrl();
 
@@ -111,8 +111,6 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
                     .load(image)
                     .into(profPic);
         }
-
-
 
         TextView tvName = (TextView) view.findViewById(R.id.tvName);
         TextView tvEmail = (TextView) view.findViewById(R.id.tvEmail);
@@ -174,14 +172,14 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
             }
         });
 
-        swipeRefreshLayout.setOnRefreshListener(
+        /*swipeRefreshLayout.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
                         onBackground();
                     }
                 }
-        );
+        );*/
 
                 return view;
 
@@ -195,7 +193,7 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
         session = new SessionHandler(getActivity());
         User user = session.getUserDetails();
         int userID = user.getUserID();
-        swipeRefreshLayout.setRefreshing(false);
+        //swipeRefreshLayout.setRefreshing(false);
         JSONObject request = new JSONObject();
         try {
             request.put(KEY_USER_ID, userID);

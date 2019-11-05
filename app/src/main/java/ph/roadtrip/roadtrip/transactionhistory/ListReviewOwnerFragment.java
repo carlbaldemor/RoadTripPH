@@ -84,6 +84,7 @@ public class ListReviewOwnerFragment extends Fragment {
         //Get Picture
         UrlBean picUrl = new UrlBean();
         final String getPicUrl = picUrl.getGetPicUrl();
+        final String getProfPic = picUrl.getProfilePicUrl();
 
         pDialog = new ProgressDialog(getActivity());
         // Showing progress dialog before making http request
@@ -113,8 +114,10 @@ public class ListReviewOwnerFragment extends Fragment {
                         movie.setPlateNumber(obj.getString("plateNumber"));
                         movie.setColor(obj.getString("color"));
                         movie.setOwnerID(obj.getInt("ownerID"));
-                        movie.setCarowner_userID(obj.getInt("carowner_userID"));
-                        movie.setRenter_userID(obj.getInt("renter_userID"));
+                        movie.setProfilePicture(getProfPic + obj.getString("profilePicture"));
+                        movie.setDateAdded(obj.getString("dateAdded"));
+                        movie.setFirstName(obj.getString("firstName"));
+                        movie.setLastName(obj.getString("lastName"));
                         // adding movie to movies array
                         toReviewList.add(movie);
 

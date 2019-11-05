@@ -76,8 +76,8 @@ public class CustomListCarReviewAdapter extends BaseAdapter {
         thumbNail.setImageUrl(m.getImageUrl(), imageLoader);
 
         // title
-        firstName.setText(m.getReviewerFirstName());
-        lastName.setText(m.getReviewerLastName());
+        firstName.setText(m.getFirstName());
+        lastName.setText(m.getLastName());
         dateAdded.setText(m.getDateAdded());
         tvRating.setText(String.valueOf(m.getRating()));
         ratingBar.setRating(m.getRating());

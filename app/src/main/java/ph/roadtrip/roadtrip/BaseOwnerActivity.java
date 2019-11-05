@@ -10,6 +10,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -118,6 +120,7 @@ public class BaseOwnerActivity extends AppCompatActivity implements NavigationVi
 
         menu_name = headerView.findViewById(R.id.menu_name);
         menu_email = headerView.findViewById(R.id.menu_email);
+        menu_role = headerView.findViewById(R.id.menu_role);
         menu_prof_pic = headerView.findViewById(R.id.menu_prof_pic);
 
         session = new SessionHandler(getApplicationContext());
@@ -136,6 +139,7 @@ public class BaseOwnerActivity extends AppCompatActivity implements NavigationVi
         //Get and Set User details
         menu_name.setText(user.getFullName());
         menu_email.setText(user.getEmailAddress());
+        menu_role.setText("Car Owner");
 
         drawer.setDrawerListener(toggle);
         toggle.syncState();
@@ -150,6 +154,19 @@ public class BaseOwnerActivity extends AppCompatActivity implements NavigationVi
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new HomeFragment()).commit();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.activity_main_actions, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.action_add_car).setVisible(false);
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override

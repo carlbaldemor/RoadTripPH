@@ -326,7 +326,32 @@
                             android:layout_toEndOf="@+id/textView22"
                             android:layout_toRightOf="@+id/textView22"
                             android:text="Special Note" />
-
+                    </RelativeLayout>
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="30dp">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:clickable="true"
+                            android:id="@+id/call"
+                            android:background="@drawable/ic_phone"
+                            />
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:clickable="true"
+                            android:id="@+id/sms"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@id/call"
+                            android:background="@drawable/ic_message"
+                            />
                     </RelativeLayout>
                 </FrameLayout>
 
@@ -391,6 +416,8 @@
                             android:layout_toRightOf="@+id/textView24"
                             android:text="Driver Number" />
 
+
+
                     </RelativeLayout>
                 </FrameLayout>
 
@@ -421,6 +448,16 @@
                     android:background="@drawable/login_button"
                     android:text="Scan QR for Return"
                     android:textColor="@android:color/white" />
+                <Button
+                    android:id="@+id/btnComplete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/login_button"
+                    android:text="Complete Booking"
+                    android:textColor="@android:color/white"
+                    android:visibility="gone"/>
                 <Button
                     android:id="@+id/btnCancel"
                     android:layout_width="wrap_content"

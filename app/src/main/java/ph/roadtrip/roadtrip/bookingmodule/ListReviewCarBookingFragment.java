@@ -51,12 +51,16 @@ public class ListReviewCarBookingFragment extends Fragment {
     private static final String KEY_MESSAGE = "message";
     private static final String KEY_CAR_ID = "carID";
     private static final String KEY_TOTAL_RATING = "totalAverage";
+    private static final String KEY_COLOR = "color";
+    private static final String KEY_MODEL_NAME = "modelName";
+    private static final String KEY_MODEL_YEAR = "modelYear";
+    private static final String KEY_BRAND_NAME = "brandName";
 
     // Log tag
     private static final String TAG = ListReviewCarBookingFragment.class.getSimpleName();
 
     // Movies json url
-    private String url;
+    private String url, color, modelName, modelYear, brandName, carHeader;
     private ProgressDialog pDialog;
     private List<Reviews> reviewlist = new ArrayList<>();
     private ListView listView;
@@ -69,7 +73,7 @@ public class ListReviewCarBookingFragment extends Fragment {
     private int userID;
     private String firstName;
     private String lastName;
-    private TextView fullname, rating;
+    private TextView fullname, rating, tvBrand;
     private String propPic = "";
     private int carID;
 
@@ -89,6 +93,7 @@ public class ListReviewCarBookingFragment extends Fragment {
         fullname = view.findViewById(R.id.fullname);
         profile_image = view.findViewById(R.id.profile_image);
         rating = view.findViewById(R.id.rating);
+        tvBrand = view.findViewById(R.id.tvBrand);
 
         //Get UserID
         session = new SessionHandler(getActivity().getApplicationContext());
@@ -130,11 +135,11 @@ public class ListReviewCarBookingFragment extends Fragment {
                     try {
                         JSONObject obj = response.getJSONObject(i);
                         Reviews movie = new Reviews();
-                        movie.setReviewID(obj.getInt("reviewID"));
+                        movie.setReviewID(obj.getInt("carReviewID"));
                         movie.setBookingID(obj.getInt("bookingID"));
                         movie.setReviewer(obj.getInt("reviewer"));
-                        movie.setReviewerFirstName(obj.getString("firstName"));
-                        movie.setReviewerLastName(obj.getString("lastName"));
+                        movie.setFirstName(obj.getString("firstName"));
+                        movie.setLastName(obj.getString("lastName"));
                         movie.setMessage(obj.getString("message"));
                         movie.setRating(obj.getInt("rating"));
                         movie.setDateAdded(obj.getString("dateAdded"));
@@ -209,11 +214,18 @@ public class ListReviewCarBookingFragment extends Fragment {
                             //Check if user got registered successfully
                             if (response.getInt(KEY_STATUS) == 0) {
                                 Double rate = response.getDouble(KEY_TOTAL_RATING);
+                                modelName = response.getString(KEY_MODEL_NAME);
+                                brandName = response.getString(KEY_BRAND_NAME);
+                                color = response.getString(KEY_COLOR);
+                                modelYear = response.getString(KEY_MODEL_YEAR);
+
+                                carHeader = color + " " + brandName + " " + modelName + " " + modelYear;
 
                                 DecimalFormat df = new DecimalFormat("#.#");
                                 df.format(rate);
 
                                 rating.setText(String.valueOf(rate));
+                                tvBrand.setText(carHeader);
 
                             } else{
                                 Toast.makeText(getActivity(),

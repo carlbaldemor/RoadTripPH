@@ -76,10 +76,10 @@ public class EditInfoOwnerFragment extends android.support.v4.app.Fragment {
     private String status;
     private Spinner SpinnerGender;
     private EditText etFirstName, etMiddleName, etLastName;
-    private Button btnDeactivate;
+    private Button btnDeactivate, btnArchive;
 
     public EditInfoOwnerFragment(){
-        //Requiredd
+        //Required
     }
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -101,6 +101,7 @@ public class EditInfoOwnerFragment extends android.support.v4.app.Fragment {
         Button save = view.findViewById(R.id.btnSave);
         Button changeProfilePicture = view.findViewById(R.id.btnChangeProfilePicture);
         btnDeactivate = view.findViewById(R.id.btnDeactivate);
+        btnArchive = view.findViewById(R.id.btnArchive);
         checkmark = view.findViewById(R.id.iv_checkmark);
         SpinnerGender = view.findViewById(R.id.SpinnerGender);
 
@@ -186,6 +187,17 @@ public class EditInfoOwnerFragment extends android.support.v4.app.Fragment {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, new PromptDeactivateAccountOwnerFragment());
+                //fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+        btnArchive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Deactivate Account Prompt
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, new PromptArchiveAccountFragment());
                 //fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }

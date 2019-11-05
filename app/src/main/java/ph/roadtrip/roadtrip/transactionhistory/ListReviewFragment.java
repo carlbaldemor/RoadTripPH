@@ -49,6 +49,8 @@ public class ListReviewFragment extends Fragment {
     private String getPicUrl;
     private String carPicture;
     private int userID;
+    private String dateAdded;
+    private String status;
 
     private SessionHandler session;
     //public static ParseUser mUserClicked;
@@ -75,6 +77,7 @@ public class ListReviewFragment extends Fragment {
         //Get Picture
         UrlBean picUrl = new UrlBean();
         final String getPicUrl = picUrl.getGetPicUrl();
+        final String getProfPic = picUrl.getProfilePicUrl();
 
         pDialog = new ProgressDialog(getActivity());
         // Showing progress dialog before making http request
@@ -105,6 +108,10 @@ public class ListReviewFragment extends Fragment {
                         movie.setColor(obj.getString("color"));
                         movie.setOwnerID(obj.getInt("ownerID"));
                         movie.setCarowner_userID(obj.getInt("carowner_userID"));
+                        movie.setDateAdded(obj.getString("dateAdded"));
+                        movie.setFirstName(obj.getString("firstName"));
+                        movie.setLastName(obj.getString("lastName"));
+                        movie.setProfilePicture(getProfPic+obj.getString("profilePicture"));
                         // adding movie to movies array
                         toReviewList.add(movie);
 

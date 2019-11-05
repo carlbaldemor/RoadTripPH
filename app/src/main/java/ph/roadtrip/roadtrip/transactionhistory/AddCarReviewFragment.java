@@ -22,6 +22,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+
 import ph.roadtrip.roadtrip.classes.MySingleton;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
 import ph.roadtrip.roadtrip.classes.UrlBean;
@@ -39,8 +41,9 @@ public class AddCarReviewFragment extends Fragment {
     private static final String KEY_RATING = "rating";
     private static final String KEY_USER_ID = "userID";
     private static final String KEY_CAR_ID = "carID";
+    private static final String KEY_EMPTY = "";
 
-    private RatingBar ratingBar;
+    private RatingBar ratingBar, rbQuality, rbSafety, rbCleanliness;
     private TextView txtRatingValue;
     private EditText etMessage;
     private Button btnSubmit;
@@ -50,13 +53,14 @@ public class AddCarReviewFragment extends Fragment {
     private int userID;
     private int carID;
     private String message;
-    private int rating;
+    private int rating1, rating2, rating3;
     private String addReviewUrl;
+    private Double totalRating;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.add_car_review, container, false);
+        View view = inflater.inflate(R.layout.add_review_car, container, false);
 
         //Get UserID
         session = new SessionHandler(getActivity().getApplicationContext());
@@ -65,12 +69,12 @@ public class AddCarReviewFragment extends Fragment {
         Booking booking = session.getCarReview();
         bookingID = booking.getBookingID();
         carID = booking.getCarID();
-        Toast.makeText(getActivity(), String.valueOf(carID), Toast.LENGTH_SHORT).show();
 
-        ratingBar = (RatingBar) view.findViewById(R.id.ratingBar);
-        txtRatingValue = (TextView) view.findViewById(R.id.textView6);
-        btnSubmit = (Button) view.findViewById(R.id.button2);
-        etMessage = (EditText) view.findViewById(R.id.etMessage);
+        rbQuality = (RatingBar) view.findViewById(R.id.rbQuality);
+        rbSafety = (RatingBar) view.findViewById(R.id.rbSafety);
+        rbCleanliness = (RatingBar) view.findViewById(R.id.rbCleanliness);
+        btnSubmit = (Button) view.findViewById(R.id.btnSubmit);
+        etMessage = (EditText) view.findViewById(R.id.etComment);
 
         UrlBean url = new UrlBean();
         addReviewUrl = url.getCarAddReview();
@@ -79,10 +83,15 @@ public class AddCarReviewFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                message = etMessage.getText().toString();
-                rating = (int)Math.round(ratingBar.getRating());
 
-                addReview();
+                if (validateInputs()) {
+                    message = etMessage.getText().toString();
+                    rating1 = Math.round(rbQuality.getRating());
+                    rating2 = Math.round(rbSafety.getRating());
+                    rating3 = Math.round(rbCleanliness.getRating());
+                    totalRating = (((double) rating1 + (double) rating2 + (double) rating3 ) / 3);
+                    addReview();
+                }
 
             }
 
@@ -91,14 +100,24 @@ public class AddCarReviewFragment extends Fragment {
         return view;
     }
 
+    public boolean validateInputs(){
+        if (etMessage.getText().toString().equalsIgnoreCase(KEY_EMPTY)){
+            etMessage.setError("Comment cannot be empty!");
+            etMessage.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
     public void addReview(){
         JSONObject request = new JSONObject();
         try {
+            DecimalFormat df = new DecimalFormat("#.00");
             //Populate the request parameters
             request.put(KEY_BOOKING_ID, bookingID);
             request.put(KEY_CAR_ID, carID);
             request.put(KEY_REVIEW_MESSAGE, message);
-            request.put(KEY_RATING, rating);
+            request.put(KEY_RATING, String.valueOf(df.format((totalRating))));
 
         } catch (JSONException e) {
             e.printStackTrace();

@@ -92,7 +92,7 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback, Go
     String edate;
     int recordID;
     private Button viewBooking;
-    private String startDate, endDate, getCarType, serviceType;
+    private String startDate, endDate, getCarType, serviceType, lblStart, lblEnd;
 
     private static final String KEY_RECORD_ID = "recordID";
     // Log tag
@@ -118,6 +118,8 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback, Go
         serviceType = getIntent().getExtras().getString("KEY_SERVICE_TYPE");
         sdate = getIntent().getExtras().getString("KEY_START");
         edate = getIntent().getExtras().getString("KEY_END");
+        lblStart = getIntent().getExtras().getString("KEY_LBL_START");
+        lblEnd = getIntent().getExtras().getString("KEY_LBL_END");
 
         UrlBean getUrl = new UrlBean();
         url = getUrl.getListCarsMaps()+startDate+"&endDate="+endDate+"&serviceType="+serviceType+"&carType="+getCarType;
@@ -223,19 +225,19 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback, Go
                         mo.title(brandName + " " + modelName + " " + amount);
 
                         address = addresses.get(0).getAddressLine(0);
-
+                        Marker marker = null;
                         if (carType.equals("Sedan")){
-                            mMap.addMarker(new MarkerOptions()
+                            marker = mMap.addMarker(new MarkerOptions()
                                     .position(latLng).title(brandName + " " + modelName + " (P" +  amount  + ")")
                                     .snippet("Car Type: " + carType+"\n"+"\n"+"Pickup: " + address +"\n"+ "Return: " + address2)
                                     .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_sedan))));
-
+                            marker.setTag(recordID);
                         } else if (carType.equals("Hatchback")){
-                            mMap.addMarker(new MarkerOptions()
-                                    .position(latLng).title(brandName + " " + modelName + " (P" + amount + ")")
+                            marker = mMap.addMarker(new MarkerOptions()
+                                    .position(latLng).title(String.valueOf(recordID) +  " " + brandName + " " + modelName + " (P" + amount + ")")
                                     .snippet("Car Type: " + carType+"\n"+"\n"+"Pickup: " + address +"\n"+ "Return: " + address2)
                                     .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_hatchback))));
-
+                            marker.setTag(recordID);
                         } else if (carType.equals("MPV")){
                             mMap.addMarker(new MarkerOptions()
                                     .position(latLng).title(brandName + " " + modelName + " (P" + amount + ")")
@@ -244,7 +246,7 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback, Go
 
                         } else if (carType.equals("SUV")){
                             mMap.addMarker(new MarkerOptions()
-                                    .position(latLng).title(brandName + " " + modelName + " (P" + amount + ")")
+                                    .position(latLng).title(String.valueOf(recordID ) +  " " + brandName + " " + modelName + " (P" + amount + ")")
                                     .snippet("Car Type: " + carType+"\n"+"\n"+"Pickup: " + address +"\n"+ "Return: " + address2)
                                     .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_suv))));
 
@@ -256,6 +258,25 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback, Go
                         }
 
                         mMap.setInfoWindowAdapter(adapter);
+                        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                            @Override
+                            public void onInfoWindowClick(Marker marker) {
+                                Intent i = new Intent(MapsActivity.this, ViewBookingOfferActivity.class);
+                                //String record = marker.getTitle();
+                                String record = String.valueOf(marker.getTag());
+                                i.putExtra("record", record);
+                                i.putExtra("KEY_START", sdate);
+                                i.putExtra("KEY_END", edate);
+                                i.putExtra("KEY_RECORD_ID", recordID);
+                                i.putExtra("KEY_START_DATE", startDate);
+                                i.putExtra("KEY_END_DATE", endDate);
+                                i.putExtra("KEY_SERVICE_TYPE", serviceType);
+                                i.putExtra("KEY_ADDRESS", address);
+                                i.putExtra("KEY_LBL_START", lblStart);
+                                i.putExtra("KEY_LBL_END", lblEnd);
+                                startActivity(i);
+                            }
+                        });
 
                         mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
 
@@ -283,7 +304,7 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback, Go
                                 info.addView(title);
                                 info.addView(snippet);
 
-                                mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                                /*mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
                                     @Override
                                     public void onInfoWindowClick(Marker marker) {
                                         Intent i = new Intent(MapsActivity.this, ViewBookingOfferActivity.class);
@@ -296,7 +317,7 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback, Go
                                         i.putExtra("KEY_ADDRESS", address);
                                         startActivity(i);
                                     }
-                                });
+                                });*/
 
                                 return info;
                             }

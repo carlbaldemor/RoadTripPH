@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -66,6 +67,7 @@ import java.util.List;
 import java.util.Map;
 
 import ph.roadtrip.roadtrip.R;
+import ph.roadtrip.roadtrip.classes.CarPictures;
 import ph.roadtrip.roadtrip.classes.EndPoints;
 import ph.roadtrip.roadtrip.classes.MySingleton;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
@@ -130,6 +132,7 @@ public class AddCarThreeFragment extends Fragment {
     private Bitmap img1, img2, img3, img4, img5, img6;
     private boolean validPic1, validPic2, validPic3, validPic4, validPic5, validPic6;
     private String user_status;
+    private long imageSize;
 
     @Nullable
     @Override
@@ -173,6 +176,8 @@ public class AddCarThreeFragment extends Fragment {
         pic6 = view.findViewById(R.id.pic6);
         etAmount = view.findViewById(R.id.etAmount);
         serviceSpinner = (Spinner) view.findViewById(R.id.serviceSpinner);
+
+        final CarPictures carPictures = new CarPictures();
 
 
         //Open Gallery
@@ -230,11 +235,7 @@ public class AddCarThreeFragment extends Fragment {
             public void onClick(View view) {
                 serviceType = serviceSpinner.getSelectedItem().toString();
                 amount = etAmount.getText().toString();
-                List<Bitmap> imageList = new ArrayList<>();
-
-
-                CachePot.getInstance().push(imageList);
-
+                
                 //Put the value
                 AddCarFourFragment ldf = new AddCarFourFragment ();
                 Bundle args = new Bundle();
@@ -250,22 +251,22 @@ public class AddCarThreeFragment extends Fragment {
                 args.putString("serviceType", serviceType);
                 args.putString("amount", amount);
                 if (img1 != null){
-                    args.putString("testImage1", BitMapToString(img1));
+                    session.setCarPic1(BitMapToString(img1));
                 }
                 if (img2 != null) {
-                    args.putString("testImage2", BitMapToString(img2));
+                    session.setCarPic2(BitMapToString(img2));
                 }
                 if (img3 != null) {
-                    args.putString("testImage3", BitMapToString(img3));
+                    session.setCarPic3(BitMapToString(img3));
                 }
                 if (img4 != null) {
-                    args.putString("testImage4", BitMapToString(img4));
+                    session.setCarPic4(BitMapToString(img4));
                 }
                 if (img5 != null) {
-                    args.putString("testImage5", BitMapToString(img5));
+                    session.setCarPic5(BitMapToString(img5));
                 }
                 if (img6 != null){
-                    args.putString("testImage6", BitMapToString(img6));
+                    session.setCarPic6(BitMapToString(img6));
                 }
                 ldf.setArguments(args);
 
@@ -283,7 +284,7 @@ public class AddCarThreeFragment extends Fragment {
 
     public String BitMapToString(Bitmap bitmap){
         ByteArrayOutputStream baos=new  ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
+        bitmap.compress(Bitmap.CompressFormat.JPEG,60, baos);
         byte [] b=baos.toByteArray();
         String temp=Base64.encodeToString(b, Base64.DEFAULT);
         return temp;
@@ -300,15 +301,18 @@ public class AddCarThreeFragment extends Fragment {
                 //getting bitmap object from uri
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getActivity().getApplicationContext().getContentResolver(), imageUri);
 
-                //displaying selected image to imageview
-                pic1.setImageBitmap(bitmap);
+                imageSize = getFileDataFromDrawable(bitmap).length / 1024;
 
-                //Check this if user placed a picture
-                validPic1 = true;
-                img1 = bitmap;
+                if (imageSize > 2000) {
+                    Toast.makeText(getActivity(), String.valueOf(imageSize) + "KB " + "File too large!", Toast.LENGTH_LONG).show();
+                } else {
+                    //displaying selected image to imageview
+                    pic1.setImageBitmap(bitmap);
+                    //Check this if user placed a picture
+                    validPic1 = true;
+                    img1 = bitmap;
+                }
 
-                //calling the method uploadBitmap to upload image
-                //uploadBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -320,14 +324,17 @@ public class AddCarThreeFragment extends Fragment {
                 //getting bitmap object from uri
                 Bitmap bitmap2 = MediaStore.Images.Media.getBitmap(this.getActivity().getApplicationContext().getContentResolver(), imageUri);
 
-                //displaying selected image to imageview
-                pic2.setImageBitmap(bitmap2);
-                //Check this if user placed a picture
-                validPic2 = true;
-                img2 = bitmap2;
+                imageSize = getFileDataFromDrawable(bitmap2).length / 1024;
 
-                //calling the method uploadBitmap to upload image
-                //uploadBitmap(bitmap);
+                if (imageSize > 2000) {
+                    Toast.makeText(getActivity(), String.valueOf(imageSize) + "KB " + "File too large!", Toast.LENGTH_LONG).show();
+                } else {
+                    //displaying selected image to imageview
+                    pic2.setImageBitmap(bitmap2);
+                    //Check this if user placed a picture
+                    validPic2 = true;
+                    img2 = bitmap2;
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -339,14 +346,17 @@ public class AddCarThreeFragment extends Fragment {
                 //getting bitmap object from uri
                 Bitmap bitmap3 = MediaStore.Images.Media.getBitmap(this.getActivity().getApplicationContext().getContentResolver(), imageUri);
 
-                //displaying selected image to imageview
-                pic3.setImageBitmap(bitmap3);
-                //Check this if user placed a picture
-                validPic3 = true;
-                img3 = bitmap3;
+                imageSize = getFileDataFromDrawable(bitmap3).length / 1024;
 
-                //calling the method uploadBitmap to upload image
-                //uploadBitmap(bitmap);
+                if (imageSize > 2000) {
+                    Toast.makeText(getActivity(), String.valueOf(imageSize) + "KB " + "File too large!", Toast.LENGTH_LONG).show();
+                } else {
+                    //displaying selected image to imageview
+                    pic3.setImageBitmap(bitmap3);
+                    //Check this if user placed a picture
+                    validPic3 = true;
+                    img3 = bitmap3;
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -358,14 +368,17 @@ public class AddCarThreeFragment extends Fragment {
                 //getting bitmap object from uri
                 Bitmap bitmap4 = MediaStore.Images.Media.getBitmap(this.getActivity().getApplicationContext().getContentResolver(), imageUri);
 
-                //displaying selected image to imageview
-                pic4.setImageBitmap(bitmap4);
-                //Check this if user placed a picture
-                validPic4 = true;
-                img4 = bitmap4;
+                imageSize = getFileDataFromDrawable(bitmap4).length / 1024;
 
-                //calling the method uploadBitmap to upload image
-                //uploadBitmap(bitmap);
+                if (imageSize > 2000) {
+                    Toast.makeText(getActivity(), String.valueOf(imageSize) + "KB " + "File too large!", Toast.LENGTH_LONG).show();
+                } else {
+                    //displaying selected image to imageview
+                    pic4.setImageBitmap(bitmap4);
+                    //Check this if user placed a picture
+                    validPic4 = true;
+                    img4 = bitmap4;
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -377,14 +390,17 @@ public class AddCarThreeFragment extends Fragment {
                 //getting bitmap object from uri
                 Bitmap bitmap5 = MediaStore.Images.Media.getBitmap(this.getActivity().getApplicationContext().getContentResolver(), imageUri);
 
-                //displaying selected image to imageview
-                pic5.setImageBitmap(bitmap5);
-                //Check this if user placed a picture
-                validPic5 = true;
-                img5 = bitmap5;
+                imageSize = getFileDataFromDrawable(bitmap5).length / 1024;
 
-                //calling the method uploadBitmap to upload image
-                //uploadBitmap(bitmap);
+                if (imageSize > 2000) {
+                    Toast.makeText(getActivity(), String.valueOf(imageSize) + "KB " + "File too large!", Toast.LENGTH_LONG).show();
+                } else {
+                    //displaying selected image to imageview
+                    pic5.setImageBitmap(bitmap5);
+                    //Check this if user placed a picture
+                    validPic5 = true;
+                    img5 = bitmap5;
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -396,14 +412,17 @@ public class AddCarThreeFragment extends Fragment {
                 //getting bitmap object from uri
                 Bitmap bitmap6 = MediaStore.Images.Media.getBitmap(this.getActivity().getApplicationContext().getContentResolver(), imageUri);
 
-                //displaying selected image to imageview
-                pic6.setImageBitmap(bitmap6);
-                //Check this if user placed a picture
-                validPic6 = true;
-                img6 = bitmap6;
+                imageSize = getFileDataFromDrawable(bitmap6).length / 1024;
 
-                //calling the method uploadBitmap to upload image
-                //uploadBitmap(bitmap);
+                if (imageSize > 2000) {
+                    Toast.makeText(getActivity(), String.valueOf(imageSize) + "KB " + "File too large!", Toast.LENGTH_LONG).show();
+                } else {
+                    //displaying selected image to imageview
+                    pic6.setImageBitmap(bitmap6);
+                    //Check this if user placed a picture
+                    validPic6 = true;
+                    img6 = bitmap6;
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -412,7 +431,7 @@ public class AddCarThreeFragment extends Fragment {
 
     public byte[] getFileDataFromDrawable(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 60, byteArrayOutputStream);
         return byteArrayOutputStream.toByteArray();
     }
 

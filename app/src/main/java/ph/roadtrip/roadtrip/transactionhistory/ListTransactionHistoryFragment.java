@@ -107,6 +107,7 @@ public class ListTransactionHistoryFragment extends Fragment {
                         movie.setPlateNumber(obj.getString("plateNumber"));
                         movie.setColor(obj.getString("color"));
                         movie.setOwnerID(obj.getInt("ownerID"));
+                        movie.setDateAdded(obj.getString("dateAdded"));
 
                         if (obj.getString("favorite") == "null"){
                             movie.setFavorite(false);

@@ -3,6 +3,8 @@ package ph.roadtrip.roadtrip.bookingmodule;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
@@ -24,17 +26,21 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.maps.model.LatLng;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
@@ -104,7 +110,7 @@ public class ViewBookingOfferActivity extends BaseActivity {
     private int carID;
 
     private TextView tvBrand, tvPickup, tvStartDate, tvEndDate, tvService, tvName, tvRating;
-    private TextView lblTotalDays, lblAmount, lblStart, lblEnd, lblTotalAmount, lblTotalAmount2;
+    private TextView lblTotalDays, lblAmount, lblStart, lblEnd, lblTotalAmount, lblTotalAmount2, lblPickup, lblReturn;
     private EditText etSpecialNote;
     private ImageView profilePicture;
     private LinearLayout btmSheet;
@@ -116,8 +122,9 @@ public class ViewBookingOfferActivity extends BaseActivity {
     private static int NUM_PAGES = 0;
     private ArrayList<ImageModel> imageModelArrayList;
     private int recordID;
-    private String startDate, endDate, address, serviceType, specialNote;
+    private String startDate, endDate, address, address2, serviceType, specialNote, lStart, lEnd;
     private String fetch_booking_data, request_booking;
+    private String first;
     private SessionHandler session;
     private String user_status;
     private int isVerified;
@@ -169,6 +176,8 @@ public class ViewBookingOfferActivity extends BaseActivity {
         lblStart = findViewById(R.id.lblStart);
         lblEnd = findViewById(R.id.lblEnd);
         lblTotalAmount = findViewById(R.id.lblTotalAmount);
+        lblPickup = findViewById(R.id.lblPickup);
+        lblReturn = findViewById(R.id.lblReturn);
         btnConfirm = findViewById(R.id.btnConfirm);
         tvService = findViewById(R.id.tvServiceType);
         tvRating = findViewById(R.id.tvRating);
@@ -181,14 +190,22 @@ public class ViewBookingOfferActivity extends BaseActivity {
 
         // Get the transferred data from source activity.
         Intent intent = getIntent();
-        recordID = intent.getExtras().getInt("KEY_RECORD_ID", 0);
+        String record = intent.getExtras().getString("record", "");
+        //recordID = intent.getExtras().getInt("KEY_RECORD_ID", 0);
         startDate = getIntent().getExtras().getString("KEY_START_DATE");
         endDate = getIntent().getExtras().getString("KEY_END_DATE");
         serviceType = getIntent().getExtras().getString("KEY_SERVICE_TYPE");
-        address = getIntent().getExtras().getString("KEY_ADDRESS");
+        //address = getIntent().getExtras().getString("KEY_ADDRESS");
         sdate = getIntent().getExtras().getString("KEY_START");
         edate = getIntent().getExtras().getString("KEY_END");
+        lStart = getIntent().getExtras().getString("KEY_LBL_START");
+        lEnd = getIntent().getExtras().getString("KEY_LBL_END");
 
+        String arr[] = record.split(" ", 2);
+        String first = arr[0];
+        recordID = Integer.parseInt(first);
+
+        Toast.makeText(getApplicationContext(), record, Toast.LENGTH_SHORT).show();
         //Array for slide
         imageModelArrayList = new ArrayList<>();
         imageModelArrayList = populateList();
@@ -325,24 +342,42 @@ public class ViewBookingOfferActivity extends BaseActivity {
                             e.printStackTrace();
                         }
 
+                        // Set up address
+                        Geocoder geocoder;
+                        geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+                        List<Address> addresses = null;
+                        try {
+                            addresses = geocoder.getFromLocation(Double.parseDouble(latIssue), Double.parseDouble(longIssue), 1);
+                            address = addresses.get(0).getAddressLine(0);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
 
+                        List<Address> addresses2 = null;
+                        try {
+                            addresses2 = geocoder.getFromLocation(Double.parseDouble(latReturn), Double.parseDouble(longReturn), 1);
+                            address2 = addresses2.get(0).getAddressLine(0);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        DecimalFormat df = new DecimalFormat("#.00");
                         //Set Text
                         tvBrand.setText(color + " " + brandName + " " + modelName + " " + modelYear);
                         tvPickup.setText(address);
-                        tvStartDate.setText(startDate);
-                        tvEndDate.setText(endDate);
+                        tvStartDate.setText(lStart);
+                        tvEndDate.setText(lEnd);
                         tvService.setText(serviceType);
                         tvName.setText(fullName);
 
-
                         //Set Text Bot Sheet
-                        lblStart.setText(sdate);
-                        lblEnd.setText(edate);
+                        lblStart.setText(lStart);
+                        lblEnd.setText(lEnd);
                         lblTotalDays.setText(String.valueOf(total2));
-                        lblAmount.setText(String.valueOf("₱" + amount));
-                        //Get Total Amount
+                        lblAmount.setText(String.valueOf("₱" + df.format(amount)));
                         totalAmount = total2*amount;
-                        lblTotalAmount.setText(String.valueOf("₱" + totalAmount));
+                        lblTotalAmount.setText(String.valueOf("₱" + df.format(totalAmount)));
+                        lblPickup.setText(address);
+                        lblReturn.setText(address2);
 
                         //Set Profile Picutre
                         UrlBean url = new UrlBean();
@@ -355,7 +390,7 @@ public class ViewBookingOfferActivity extends BaseActivity {
                         getAverageRating();
 
 
-                        Toast.makeText(getApplicationContext(), String.valueOf(owner_userID), Toast.LENGTH_SHORT).show();
+
                     } else {
                         Toast.makeText(getApplicationContext(), response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
 

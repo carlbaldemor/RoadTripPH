@@ -21,6 +21,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -67,6 +70,8 @@ import ph.roadtrip.roadtrip.R;
 import ph.roadtrip.roadtrip.classes.EndPoints;
 import ph.roadtrip.roadtrip.classes.MySingleton;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
+import ph.roadtrip.roadtrip.classes.SliderBookServiceActivity;
+import ph.roadtrip.roadtrip.classes.SliderCarManActivity;
 import ph.roadtrip.roadtrip.classes.UrlBean;
 import ph.roadtrip.roadtrip.classes.User;
 import ph.roadtrip.roadtrip.profile.EditProfileFragment;
@@ -105,7 +110,7 @@ public class AddCarOneFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_car_page_one, container, false);
-
+        setHasOptionsMenu(true);
         //Add Car Link
         UrlBean url = new UrlBean();
 
@@ -286,7 +291,7 @@ public class AddCarOneFragment extends Fragment {
                 }
 
 
-                if (!validateInputs()) {
+                if (validateInputs()) {
                     //Put the value
                     AddCarTwoFragment ldf = new AddCarTwoFragment();
                     Bundle args = new Bundle();
@@ -316,14 +321,50 @@ public class AddCarOneFragment extends Fragment {
             etPlateNumber.requestFocus();
             return false;
         }
-        if(plateNumber.length() > 8 && plateNumber.length() < 5){
-            
+        if(!(plateNumber.trim().length() == 7)){
+            etPlateNumber.setError("Plate Number is invalid!");
+            etPlateNumber.requestFocus();
+            return false;
+        }
+        if(chassisNumber.equalsIgnoreCase(KEY_EMPTY)){
+            etChassisNumber.setError("Chassis Number cannot be empty");
+            etChassisNumber.requestFocus();
+            return false;
+        }
+        if(!(chassisNumber.trim().length() == 17)){
+            etChassisNumber.setError("Chassis Number is invalid!");
+            etChassisNumber.requestFocus();
+            return false;
         }
 
-        return false;
+        return true;
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+    }
 
+    //hide info button actionbar
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        MenuItem item=menu.findItem(R.id.action_add_car);
+        if(item!=null)
+            item.setVisible(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Take appropriate action for each action item click
+        switch (item.getItemId()) {
+            case R.id.action_add_car:
+                Intent load = new Intent(getActivity().getApplicationContext(), SliderCarManActivity.class);
+                startActivity(load);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 
 

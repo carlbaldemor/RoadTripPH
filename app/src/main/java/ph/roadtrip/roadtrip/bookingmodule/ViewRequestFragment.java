@@ -83,7 +83,7 @@ public class ViewRequestFragment extends Fragment {
     private String renterProfilePic;
     private String specialNote;
     private EditText driverName, mobileNumber;
-    private String driverFullName, driverMobileNumber;
+    private String driverFullName = "", driverMobileNumber = "";
     private Button btnAccept2, btnCancel2;
 
     @Nullable
@@ -124,11 +124,9 @@ public class ViewRequestFragment extends Fragment {
             public void onClick(View v) {
                 if (serviceType.equals("Chauffeur")) {
                     callLoginDialog();
-                } else if (serviceType.equals("Chauffeur")){
+                } else if (serviceType.equals("Self-drive")){
                     //Accept Booking Offer
                     acceptBooking();
-                } else {
-
                 }
 
             }
@@ -180,6 +178,9 @@ public class ViewRequestFragment extends Fragment {
                         Toast.makeText(getActivity(), String.valueOf(renter_userID), Toast.LENGTH_SHORT).show();
 
 
+                        if (specialNote.equalsIgnoreCase("null")){
+                            specialNote = "N/A";
+                        }
 
                         tvStartDate.setText(startDate);
                         tvEndDate.setText(endDate);
@@ -224,7 +225,7 @@ public class ViewRequestFragment extends Fragment {
     }
 
     public void acceptBooking(){
-        if (driverFullName.equals(KEY_EMPTY) && driverMobileNumber.equals(KEY_EMPTY)){
+        if (driverFullName.equals(KEY_EMPTY)){
             driverFullName = NULL;
             driverMobileNumber = NULL;
         }

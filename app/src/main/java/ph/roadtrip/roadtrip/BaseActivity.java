@@ -1,5 +1,6 @@
 package ph.roadtrip.roadtrip;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
@@ -72,6 +73,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     private int userID;
 
     Fragment fragment ;
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,6 +134,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
         menu_name = headerView.findViewById(R.id.menu_name);
         menu_email = headerView.findViewById(R.id.menu_email);
+        menu_role = headerView.findViewById(R.id.menu_role);
         menu_prof_pic = headerView.findViewById(R.id.menu_prof_pic);
 
         session = new SessionHandler(getApplicationContext());
@@ -148,6 +151,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         //Get and Set User details
         menu_name.setText(user.getFullName());
         menu_email.setText(user.getEmailAddress());
+        menu_role.setText("Car Renter");
 
         drawer.setDrawerListener(toggle);
         toggle.syncState();
@@ -292,8 +296,6 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
                             if (response.getInt(KEY_STATUS) == 0) {
                                 session.updateUserData(response.getString(KEY_EMAIL), response.getString(KEY_MOBILE_NUMBER), response.getString(KEY_PHONE_NUMBER), response.getString(KEY_STATUS_USER), response.getString(KEY_PROF_PIC), response.getInt(KEY_IS_VERIFIED), response.getString(KEY_FIRST_NAME), response.getString(KEY_MIDDLE_NAME), response.getString(KEY_LAST_NAME), response.getString(KEY_GENDER));
 
-                                Toast.makeText(getApplicationContext(),
-                                        response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
                             } else{
                                 Toast.makeText(getApplicationContext(),
                                         response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();

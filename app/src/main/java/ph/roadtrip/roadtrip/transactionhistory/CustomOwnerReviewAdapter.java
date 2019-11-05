@@ -56,7 +56,7 @@ public class CustomOwnerReviewAdapter extends BaseAdapter {
             inflater = (LayoutInflater) activity
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (convertView == null)
-            convertView = inflater.inflate(R.layout.list_history, null);
+            convertView = inflater.inflate(R.layout.list_review, null);
 
         if (imageLoader == null)
             imageLoader = AppController.getInstance().getImageLoader();
@@ -68,21 +68,28 @@ public class CustomOwnerReviewAdapter extends BaseAdapter {
         TextView plateNumber = (TextView) convertView.findViewById(R.id.plateNumber);
         TextView status = (TextView) convertView.findViewById(R.id.status);
         TextView totalAmount = (TextView) convertView.findViewById(R.id.totalAmount);
+        TextView dateAdded = (TextView) convertView.findViewById(R.id.tvDateAdded);
+        TextView firstName = (TextView) convertView.findViewById(R.id.tvFirstName);
+        TextView lastName = (TextView) convertView.findViewById(R.id.tvLastName);
         Button btnView = (Button) convertView.findViewById(R.id.btnView);
 
         // getting movie data for the row
         Booking m = toReviewItems.get(position);
 
-        // thumbnail imageS
-        thumbNail.setImageUrl(m.getRecordPicture(), imageLoader);
+        // thumbnail images
+        thumbNail.setImageUrl(m.getProfilePicture(), imageLoader);
 
         // title
         brandName.setText(m.getBrandName());
         modelName.setText(m.getModelName());
         modelYear.setText(m.getModelYear());
-        plateNumber.setText(m.getModelYear());
+        plateNumber.setText(m.getPlateNumber());
         status.setText(m.getStatus());
         totalAmount.setText(m.getTotalAmount());
+        dateAdded.setText(m.getDateAdded());
+        firstName.setText(m.getFirstName());
+        lastName.setText(m.getLastName());
+
 
         final Booking items = toReviewItems.get(position);
 

@@ -73,6 +73,7 @@ public class CustomHistoryAdapter extends BaseAdapter {
         TextView plateNumber = (TextView) convertView.findViewById(R.id.plateNumber);
         TextView status = (TextView) convertView.findViewById(R.id.status);
         TextView totalAmount = (TextView) convertView.findViewById(R.id.totalAmount);
+        TextView dateAdded = (TextView) convertView.findViewById(R.id.dateAdded);
         Button btnView = (Button) convertView.findViewById(R.id.btnView);
         ImageView favorite = (ImageView) convertView.findViewById(R.id.yellow_star);
         ImageView notFavorite = (ImageView) convertView.findViewById(R.id.white_star);
@@ -83,15 +84,14 @@ public class CustomHistoryAdapter extends BaseAdapter {
         // thumbnail imageS
         thumbNail.setImageUrl(m.getRecordPicture(), imageLoader);
 
-        Toast.makeText(activity, String.valueOf(m.getFavorite()), Toast.LENGTH_LONG).show();
-
         // title
         brandName.setText(m.getBrandName());
         modelName.setText(m.getModelName());
         modelYear.setText(m.getModelYear());
-        plateNumber.setText(m.getModelYear());
+        plateNumber.setText(m.getPlateNumber());
         status.setText(m.getStatus());
         totalAmount.setText(m.getTotalAmount());
+        dateAdded.setText(m.getDateAdded());
 
         final Booking items = transactionItems.get(position);
 
@@ -108,10 +108,8 @@ public class CustomHistoryAdapter extends BaseAdapter {
             public void onClick(View v) {
                 ViewHistoryRecord fragment = new ViewHistoryRecord();
                 session = new SessionHandler(activity);
-                //session.setItBaby(items.getRecordID(), brandPos, modelPos);
 
                 Booking booking = session.getBookingIDHistory();
-                //Toast.makeText(activity, "Record ID: "  + items.getBrandName() + carRecord.getBrandPos()  + carRecord.getModelPos(),Toast.LENGTH_LONG).show();
                 session.setBookingIDHistory(items.getBookingID(), items.getOwnerID());
 
                 ((AppCompatActivity)activity).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();

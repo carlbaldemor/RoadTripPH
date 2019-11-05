@@ -107,6 +107,7 @@ public class ListTransactionHistoryOwnerFragment extends Fragment {
                         movie.setRecordID(obj.getInt("recordID"));
                         movie.setPlateNumber(obj.getString("plateNumber"));
                         movie.setColor(obj.getString("color"));
+                        movie.setDateAdded(obj.getString("dateAdded"));
                         // adding movie to movies array
                         transactionList.add(movie);
 

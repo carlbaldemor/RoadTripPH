@@ -6,6 +6,8 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -30,6 +32,14 @@ public class TransactionHistoryOwnerFragment extends Fragment {
         tabLayout.setupWithViewPager(viewPager);
 
         return view;
+    }
+
+    //hide info button actionbar
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        MenuItem item=menu.findItem(R.id.action_add_car);
+        if(item!=null)
+            item.setVisible(false);
     }
 
     }

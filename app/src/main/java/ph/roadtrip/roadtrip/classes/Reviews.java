@@ -14,8 +14,8 @@ public class Reviews {
     private int reviewee;
     private int rating;
     private String dateAdded;
-    private String reviewerFirstName;
-    private String reviewerLastName;
+    private String firstName;
+    private String lastName;
     private String message;
     private String profPic;
     private String imageUrl;
@@ -46,6 +46,21 @@ public class Reviews {
         return reviews;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
     public String getImageUrl() {
         return imageUrl;
     }
@@ -119,19 +134,4 @@ public class Reviews {
         this.dateAdded = dateAdded;
     }
 
-    public String getReviewerFirstName() {
-        return reviewerFirstName;
-    }
-
-    public void setReviewerFirstName(String reviewerFirstName) {
-        this.reviewerFirstName = reviewerFirstName;
-    }
-
-    public String getReviewerLastName() {
-        return reviewerLastName;
-    }
-
-    public void setReviewerLastName(String reviewerLastName) {
-        this.reviewerLastName = reviewerLastName;
-    }
 }

@@ -22,6 +22,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+
 import ph.roadtrip.roadtrip.classes.MySingleton;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
 import ph.roadtrip.roadtrip.classes.UrlBean;
@@ -38,8 +40,9 @@ public class AddReviewFragment extends Fragment {
     private static final String KEY_RATING = "rating";
     private static final String KEY_USER_ID = "userID";
     private static final String KEY_OWNER_USER_ID = "carowner_userID";
+    private static final String KEY_EMPTY = "";
 
-    private RatingBar ratingBar;
+    private RatingBar ratingBar, rbService, rbCommunication, rbPersonality, rbValue;
     private TextView txtRatingValue;
     private EditText etMessage;
     private Button btnSubmit;
@@ -48,13 +51,14 @@ public class AddReviewFragment extends Fragment {
     private int userID;
     private int carowner_userID;
     private String message;
-    private int rating;
+    private int rating, rating1, rating2, rating3, rating4;
+    private Double totalRating;
     private String addReviewUrl;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.add_review, container, false);
+        View view = inflater.inflate(R.layout.add_review_service, container, false);
 
         //Get UserID
         session = new SessionHandler(getActivity().getApplicationContext());
@@ -64,12 +68,14 @@ public class AddReviewFragment extends Fragment {
         bookingID = booking.getBookingID();
         carowner_userID = booking.getCarowner_userID();
 
-        Toast.makeText(getActivity(), String.valueOf(carowner_userID), Toast.LENGTH_LONG).show();
+        //Toast.makeText(getActivity(), String.valueOf(carowner_userID), Toast.LENGTH_LONG).show();
 
-        ratingBar = (RatingBar) view.findViewById(R.id.ratingBar);
-        txtRatingValue = (TextView) view.findViewById(R.id.textView6);
-        btnSubmit = (Button) view.findViewById(R.id.button2);
-        etMessage = (EditText) view.findViewById(R.id.etMessage);
+        rbService = view.findViewById(R.id.rbService);
+        rbCommunication = view.findViewById(R.id.rbCommunication);
+        rbPersonality = view.findViewById(R.id.rbPersonality);
+        rbValue = view.findViewById(R.id.rbValue);
+        btnSubmit = (Button) view.findViewById(R.id.btnSubmit);
+        etMessage = (EditText) view.findViewById(R.id.etComment);
 
         UrlBean url = new UrlBean();
         addReviewUrl = url.getAddReview();
@@ -78,10 +84,19 @@ public class AddReviewFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                message = etMessage.getText().toString();
-                rating = (int)Math.round(ratingBar.getRating());
 
-                addReview();
+                if (validateInputs()) {
+
+                    message = etMessage.getText().toString();
+                    rating1 = Math.round(rbService.getRating());
+                    rating2 = Math.round(rbCommunication.getRating());
+                    rating3 = Math.round(rbPersonality.getRating());
+                    rating4 = Math.round(rbValue.getRating());
+                    totalRating = (((double) rating1 + (double) rating2 + (double) rating3 + (double) rating4) / 4);
+
+                    addReview();
+                }
+
 
             }
 
@@ -90,15 +105,25 @@ public class AddReviewFragment extends Fragment {
         return view;
     }
 
+    public boolean validateInputs(){
+        if (etMessage.getText().toString().equalsIgnoreCase(KEY_EMPTY)){
+            etMessage.setError("Comment cannot be empty!");
+            etMessage.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
     public void addReview(){
         JSONObject request = new JSONObject();
         try {
+            DecimalFormat df = new DecimalFormat("#.00");
             //Populate the request parameters
             request.put(KEY_OWNER_USER_ID, carowner_userID);
             request.put(KEY_BOOKING_ID, bookingID);
             request.put(KEY_REVIEW_MESSAGE, message);
             request.put(KEY_USER_ID, userID);
-            request.put(KEY_RATING, rating);
+            request.put(KEY_RATING, String.valueOf(df.format((totalRating))));
 
         } catch (JSONException e) {
             e.printStackTrace();

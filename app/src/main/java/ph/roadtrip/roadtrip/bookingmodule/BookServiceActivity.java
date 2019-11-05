@@ -54,6 +54,7 @@ public class BookServiceActivity extends BaseActivity {
     private TextView startDate, endDate;
     private int year, month, day;
     private String sdate, edate;
+    private String myDate, myDate2, myDate3;
 
     Button AccessTime, ReturnTime;
     TextView DisplayTime, DisplayReturnTime;
@@ -102,7 +103,7 @@ public class BookServiceActivity extends BaseActivity {
         ServiceSpinner = findViewById(R.id.ServiceSpinner);
 
         //Convert DateTime
-        final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-ddhh:mm aa");
+        final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm aa");
         Date current = new Date();
         final String currentDateFinal = formatter.format(current);
 
@@ -119,11 +120,11 @@ public class BookServiceActivity extends BaseActivity {
                 sdate = startDate.getText().toString();
                 edate = endDate.getText().toString();
 
-                DateFormat inFormat = new SimpleDateFormat("yyyy-MM-ddhh:mm aa");
+                DateFormat inFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm aa");
                 DateFormat outFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                String startDateTime = dateStart + startTime;
-                String endDateTime = dateEnd + returnTime;
-
+                String startDateTime = dateStart + " " + startTime;
+                String endDateTime = dateEnd + " " + returnTime;
+                Toast.makeText(getApplicationContext(), startDateTime, Toast.LENGTH_LONG).show();
 
                 Date date = null;
                 Date date2 = null;
@@ -147,6 +148,8 @@ public class BookServiceActivity extends BaseActivity {
                             Intent i = new Intent(BookServiceActivity.this, MapsActivity.class);
                             i.putExtra("KEY_START", sdate);
                             i.putExtra("KEY_END", edate);
+                            i.putExtra("KEY_LBL_START", startDateTime);
+                            i.putExtra("KEY_LBL_END", endDateTime);
                             i.putExtra("KEY_START_DATE", myDate);
                             i.putExtra("KEY_END_DATE", myDate2);
                             i.putExtra("KEY_SERVICE_TYPE", serviceType);
@@ -176,12 +179,11 @@ public class BookServiceActivity extends BaseActivity {
                 sdate = startDate.getText().toString();
                 edate = endDate.getText().toString();
 
-
                 //Convert DateTime
-                DateFormat inFormat = new SimpleDateFormat( "yyyy-MM-ddhh:mm aa");
+                DateFormat inFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm aa");
                 DateFormat outFormat = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
-                String startDateTime = dateStart+startTime;
-                String endDateTime = dateEnd+returnTime;
+                String startDateTime = dateStart + " " + startTime;
+                String endDateTime = dateEnd + " " + returnTime;
 
                 Date date = null;
                 Date date2 = null;
@@ -193,17 +195,19 @@ public class BookServiceActivity extends BaseActivity {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                String myDate, myDate2;
 
                 if (date != null && date2 != null) {
                     myDate = outFormat.format(date);
                     myDate2 = outFormat.format(date2);
+                    myDate3 = outFormat.format(date3);
 
                     if (date.after(date3)) {
-                    if (!date2.before(date)){
+                    if (date2.after(date)){
                         Intent i = new Intent(BookServiceActivity.this, MapsActivity.class);
                         i.putExtra("KEY_START", sdate);
                         i.putExtra("KEY_END", edate);
+                        i.putExtra("KEY_LBL_START", startDateTime);
+                        i.putExtra("KEY_LBL_END", endDateTime);
                         i.putExtra("KEY_START_DATE", myDate);
                         i.putExtra("KEY_END_DATE", myDate2);
                         i.putExtra("KEY_SERVICE_TYPE", serviceType);
@@ -236,11 +240,11 @@ public class BookServiceActivity extends BaseActivity {
 
 
                 //Convert DateTime
-                DateFormat inFormat = new SimpleDateFormat( "yyyy-MM-ddhh:mm aa");
+                DateFormat inFormat = new SimpleDateFormat( "yyyy-MM-dd hh:mm aa");
                 DateFormat outFormat = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
-                String startDateTime = dateStart+startTime;
-                String endDateTime = dateEnd+returnTime;
-
+                String startDateTime = dateStart + " " + startTime;
+                String endDateTime = dateEnd + " " + returnTime;
+                //Convert DateTime
                 Date date = null;
                 Date date2 = null;
                 Date date3 = null;
@@ -251,17 +255,20 @@ public class BookServiceActivity extends BaseActivity {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                String myDate, myDate2;
+
 
                 if (date != null && date2 != null) {
                     myDate = outFormat.format(date);
                     myDate2 = outFormat.format(date2);
+                    myDate3 = outFormat.format(date3);
 
                     if (date.after(date3)) {
-                        if (!date2.before(date)) {
+                        if (date2.after(date)) {
                             Intent i = new Intent(BookServiceActivity.this, MapsActivity.class);
                             i.putExtra("KEY_START", sdate);
                             i.putExtra("KEY_END", edate);
+                            i.putExtra("KEY_LBL_START", startDateTime);
+                            i.putExtra("KEY_LBL_END", endDateTime);
                             i.putExtra("KEY_START_DATE", myDate);
                             i.putExtra("KEY_END_DATE", myDate2);
                             i.putExtra("KEY_SERVICE_TYPE", serviceType);
@@ -290,12 +297,11 @@ public class BookServiceActivity extends BaseActivity {
                 sdate = startDate.getText().toString();
                 edate = endDate.getText().toString();
 
-
                 //Convert DateTime
-                DateFormat inFormat = new SimpleDateFormat( "yyyy-MM-ddhh:mm aa");
+                DateFormat inFormat = new SimpleDateFormat( "yyyy-MM-dd hh:mm aa");
                 DateFormat outFormat = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
-                String startDateTime = dateStart+startTime;
-                String endDateTime = dateEnd+returnTime;
+                String startDateTime = dateStart + " " + startTime;
+                String endDateTime = dateEnd + " " + returnTime;
 
                 Date date = null;
                 Date date2 = null;
@@ -307,17 +313,20 @@ public class BookServiceActivity extends BaseActivity {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                String myDate, myDate2;
+
 
                 if (date != null && date2 != null) {
                     myDate = outFormat.format(date);
                     myDate2 = outFormat.format(date2);
+                    myDate3 = outFormat.format(date3);
 
                     if (date.after(date3)) {
-                        if (!date2.before(date)) {
+                        if (date2.after(date)) {
                             Intent i = new Intent(BookServiceActivity.this, MapsActivity.class);
                             i.putExtra("KEY_START", sdate);
                             i.putExtra("KEY_END", edate);
+                            i.putExtra("KEY_LBL_START", startDateTime);
+                            i.putExtra("KEY_LBL_END", endDateTime);
                             i.putExtra("KEY_START_DATE", myDate);
                             i.putExtra("KEY_END_DATE", myDate2);
                             i.putExtra("KEY_SERVICE_TYPE", serviceType);
@@ -347,10 +356,10 @@ public class BookServiceActivity extends BaseActivity {
 
 
                 //Convert DateTime
-                DateFormat inFormat = new SimpleDateFormat( "yyyy-MM-ddhh:mm aa");
+                DateFormat inFormat = new SimpleDateFormat( "yyyy-MM-dd hh:mm aa");
                 DateFormat outFormat = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
-                String startDateTime = dateStart+startTime;
-                String endDateTime = dateEnd+returnTime;
+                String startDateTime = dateStart + " " + startTime;
+                String endDateTime = dateEnd + " " + returnTime;
 
                 Date date = null;
                 Date date2 = null;
@@ -362,17 +371,20 @@ public class BookServiceActivity extends BaseActivity {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                String myDate, myDate2;
+
 
                 if (date != null && date2 != null) {
                     myDate = outFormat.format(date);
                     myDate2 = outFormat.format(date2);
+                    myDate3 = outFormat.format(date3);
 
                     if (date.after(date3)) {
-                        if (!date2.before(date)) {
+                        if (date2.after(date)) {
                             Intent i = new Intent(BookServiceActivity.this, MapsActivity.class);
                             i.putExtra("KEY_START", sdate);
                             i.putExtra("KEY_END", edate);
+                            i.putExtra("KEY_LBL_START", startDateTime);
+                            i.putExtra("KEY_LBL_END", endDateTime);
                             i.putExtra("KEY_START_DATE", myDate);
                             i.putExtra("KEY_END_DATE", myDate2);
                             i.putExtra("KEY_SERVICE_TYPE", serviceType);
@@ -415,7 +427,7 @@ public class BookServiceActivity extends BaseActivity {
                                 }
                                 int hour = hourOfDay % 12;
                                 DisplayTime.setText(String.format("%02d:%02d %s", hour == 0 ? 12 : hour,
-                                        minute, hourOfDay < 12 ? "AM" : "PM"));
+                                        minute, format));
                             }
                         }, CalendarHour, CalendarMinute, false);
                 timepickerdialog.show();
@@ -448,7 +460,7 @@ public class BookServiceActivity extends BaseActivity {
                                 }
                                 int hour = hourOfDay % 12;
                                 DisplayReturnTime.setText(String.format("%02d:%02d %s", hour == 0 ? 12 : hour,
-                                        minute, hourOfDay < 12 ? "AM" : "PM"));
+                                        minute, format));
                             }
                         }, CalendarHour, CalendarMinute, false);
                 timepickerdialog.show();
@@ -544,6 +556,20 @@ public class BookServiceActivity extends BaseActivity {
     private void showEndDate(int year, int month, int day) {
         endDate.setText(new StringBuilder().append(year).append("-")
                 .append(month).append("-").append(day));
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            super.onBackPressed();
+            //additional code
+        } else {
+            getSupportFragmentManager().popBackStack();
+        }
+
     }
 
 }
