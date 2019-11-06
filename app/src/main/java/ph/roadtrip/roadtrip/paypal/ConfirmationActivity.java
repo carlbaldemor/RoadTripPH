@@ -19,6 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import ph.roadtrip.roadtrip.BaseActivity;
+import ph.roadtrip.roadtrip.DashboardActivity;
 import ph.roadtrip.roadtrip.bookingmodule.BookingFragment;
 import ph.roadtrip.roadtrip.bookingmodule.CurrentBookingFragment;
 import ph.roadtrip.roadtrip.classes.MySingleton;
@@ -56,16 +57,13 @@ public class ConfirmationActivity extends BaseActivity {
         //Getting Intent
         Intent intent = getIntent();
         bookingID = getIntent().getExtras().getInt("KEY_BOOKING_ID");
-        Toast.makeText(this, String.valueOf(bookingID), Toast.LENGTH_LONG).show();
 
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new BookingFragment());
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                Intent load = new Intent(getApplicationContext(), DashboardActivity.class);
+                startActivity(load);
+                finish();
             }
         });
 
@@ -85,7 +83,7 @@ public class ConfirmationActivity extends BaseActivity {
 
         //Views
         TextView textViewId = (TextView) findViewById(R.id.paymentId);
-        TextView textViewStatus= (TextView) findViewById(R.id.paymentStatus);
+        TextView textViewStatus = (TextView) findViewById(R.id.paymentStatus);
         TextView textViewAmount = (TextView) findViewById(R.id.paymentAmount);
 
         //Showing the details from json object
@@ -95,7 +93,7 @@ public class ConfirmationActivity extends BaseActivity {
 
         //Put Data inside DB
         reference = textViewId.getText().toString();
-        amount = textViewAmount.getText().toString();
+        amount = paymentAmount;
         userID = user.getUserID();
 
         insert();
@@ -110,7 +108,6 @@ public class ConfirmationActivity extends BaseActivity {
             request.put(KEY_AMOUNT, amount);
             request.put(KEY_REFERENCE, reference);
             request.put(KEY_BOOKING_ID, bookingID);
-
 
         } catch (JSONException e) {
             e.printStackTrace();

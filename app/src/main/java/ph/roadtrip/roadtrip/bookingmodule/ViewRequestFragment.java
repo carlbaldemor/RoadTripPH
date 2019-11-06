@@ -225,10 +225,11 @@ public class ViewRequestFragment extends Fragment {
     }
 
     public void acceptBooking(){
-        if (driverFullName.equals(KEY_EMPTY)){
-            driverFullName = NULL;
-            driverMobileNumber = NULL;
+        if (driverFullName.equals("")){
+            driverFullName = "";
+            driverMobileNumber = "";
         }
+        Toast.makeText(getActivity().getApplicationContext(), driverFullName + " " + driverMobileNumber, Toast.LENGTH_SHORT).show();
 
            final JSONObject request = new JSONObject();
            try {

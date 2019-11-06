@@ -188,8 +188,6 @@ public class AddCarTwoFragment extends Fragment implements OnMapReadyCallback, G
                                 //Assign the location to a variable
                                 latIssue = Double.toString(myAddress.getLatitude());
                                 longIssue = Double.toString(myAddress.getLongitude());
-
-                                Toast.makeText(getActivity().getApplicationContext(), "Latitude: " + myAddress.getLatitude() + " Longitude: " + myAddress.getLongitude(), Toast.LENGTH_LONG).show();
                             }
                         }catch (IOException e){
                             e.printStackTrace();
@@ -226,8 +224,6 @@ public class AddCarTwoFragment extends Fragment implements OnMapReadyCallback, G
                                 //Assign the location to a variable
                                 latReturn = Double.toString(myAddress.getLatitude());
                                 longReturn = Double.toString(myAddress.getLongitude());
-
-                                Toast.makeText(getActivity().getApplicationContext(), "Latitude: " + myAddress.getLatitude() + " Longitude: " + myAddress.getLongitude(), Toast.LENGTH_LONG).show();
                             }
                         }catch (IOException e){
                             e.printStackTrace();

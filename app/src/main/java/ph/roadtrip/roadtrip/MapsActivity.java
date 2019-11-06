@@ -47,6 +47,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -176,6 +177,19 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback, Go
         final CustomInfoWindowAdapter adapter = new CustomInfoWindowAdapter(MapsActivity.this,brandName,modelName,address);
         mMap.setInfoWindowAdapter(adapter);
 
+        mMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
+            @Override
+            public void onMapLoaded() {
+                LatLngBounds PHILIPPINES = new LatLngBounds(
+                        new LatLng(14.599512, 120.984222), new LatLng(14.599512, 120.984222));
+
+                // Set the camera to the greatest possible zoom level that includes the
+                // bounds
+                mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(PHILIPPINES, 0));
+            }
+        });
+
+
         // Creating volley request obj
         final JsonArrayRequest movieReq = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
@@ -208,6 +222,7 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback, Go
                         List<Address> addresses = null;
                         try {
                             addresses = geocoder.getFromLocation(Double.parseDouble(recLat), Double.parseDouble(recLong), 1);
+                            address = addresses.get(0).getAddressLine(0);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -215,16 +230,14 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback, Go
                         List<Address> addresses2 = null;
                         try {
                             addresses2 = geocoder.getFromLocation(Double.parseDouble(recLat), Double.parseDouble(recLong), 1);
+                            address2 = addresses2.get(0).getAddressLine(0);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
 
-                        address2 = addresses2.get(0).getAddressLine(0);
+                        //mo.position(latLng);
+                        //mo.title(brandName + " " + modelName + " " + amount);
 
-                        mo.position(latLng);
-                        mo.title(brandName + " " + modelName + " " + amount);
-
-                        address = addresses.get(0).getAddressLine(0);
                         Marker marker = null;
                         if (carType.equals("Sedan")){
                             marker = mMap.addMarker(new MarkerOptions()
@@ -394,8 +407,6 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback, Go
                     Address myAddress = addressList.get(i);
                     LatLng latLng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
                     mo.position(latLng);
-                    mo.title("Searched Location");
-                    mMap.addMarker(mo);
                     mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
                 }
             }
@@ -418,18 +429,6 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback, Go
         if (currentLocationMarker != null){
             currentLocationMarker.remove();
         }
-
-        LatLng latlng = new LatLng(location.getLatitude(), location.getLongitude());
-
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(latlng);
-        markerOptions.title("Current Location");
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-
-        currentLocationMarker = mMap.addMarker(markerOptions);
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));
-        mMap.animateCamera(CameraUpdateFactory.zoomBy(10));
 
         if(client != null){
             LocationServices.FusedLocationApi.removeLocationUpdates(client, this);

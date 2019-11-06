@@ -129,7 +129,6 @@ public class AddCarFiveFragment extends Fragment {
         if (car1 != null){
             str1 = car1.getCarPic1();
             str11 = true;
-            Toast.makeText(getActivity(), str1, Toast.LENGTH_SHORT).show();
         }
         CarPictures car2 = session.getCarPic2();
         if (car2 != null){

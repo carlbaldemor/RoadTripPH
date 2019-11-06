@@ -151,14 +151,6 @@ public class AddCarThreeFragment extends Fragment {
         latReturn = getArguments().getString("latReturn");
         longReturn = getArguments().getString("longReturn");
 
-        Toast.makeText(getActivity().getApplicationContext(),
-                "color: " + color + " year: " + year + " modelID: " +
-                        String.valueOf(modelID) + " PlateNumber: " + plateNumber +
-                        " chassis: " + chassisNumber + " latIssue: " + latIssue +
-                        " longIssue: " + longIssue + " latReturn: " + longReturn,
-                Toast.LENGTH_LONG).show();
-
-
         //Get Username of user
         session = new SessionHandler(getActivity().getApplicationContext());
         User user = session.getUserDetails();

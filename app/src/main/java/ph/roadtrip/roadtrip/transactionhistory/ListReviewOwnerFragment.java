@@ -74,9 +74,6 @@ public class ListReviewOwnerFragment extends Fragment {
         CarRecord carRecord = session.getOwnerID();
         ownerID = carRecord.getOwnerID();
 
-        Toast.makeText(getActivity(), "User ID: " + String.valueOf(userID), Toast.LENGTH_SHORT).show();
-
-
         //Url for getting JSON files
         UrlBean getUrl = new UrlBean();
         url = getUrl.getToReviewListOwner()+ownerID+"&userID="+userID;

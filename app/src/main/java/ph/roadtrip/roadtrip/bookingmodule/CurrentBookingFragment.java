@@ -107,6 +107,8 @@ public class CurrentBookingFragment extends Fragment {
     private String specialNote;
     private String driverFullName;
     private String driverMobileNumber;
+    private String address;
+    private String address2;
 
     private TextView tvService, tvPaid, tvSpecialNote, tvDriverMobileNumber, tvDriverFullName;
     private TextView tvBrand, tvRating, tvName, tvPickup, tvReturn, tvAmount, tvTotalAmount, tvCarType, tvStartDate, tvEndDate;
@@ -330,29 +332,24 @@ public class CurrentBookingFragment extends Fragment {
 
                         session.setOwnerUserID(userID, firstName, lastName, profilePicture);
 
-                        Toast.makeText(getActivity(), String.valueOf(userID), Toast.LENGTH_LONG).show();
-
                         Geocoder geocoder;
                         geocoder = new Geocoder(getActivity(), Locale.getDefault());
                         List<Address> addresses = null;
                         try {
                             addresses = geocoder.getFromLocation(Double.parseDouble(latIssue), Double.parseDouble(longIssue), 1);
+                            address = addresses.get(0).getAddressLine(0);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                         List<Address> addresses2 = null;
                         try {
                             addresses2 = geocoder.getFromLocation(Double.parseDouble(latReturn), Double.parseDouble(longReturn), 1);
+                            address2 = addresses2.get(0).getAddressLine(0);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
 
-                        String address = addresses.get(0).getAddressLine(0);
-                        String address2 = addresses2.get(0).getAddressLine(0);
-
                         setView();
-
-
 
                         tvBrand.setText(brandName + " " + modelName + " " + modelYear + " " + color);
                         tvName.setText(firstName + " " + lastName);

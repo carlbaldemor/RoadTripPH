@@ -124,7 +124,6 @@ public class BookServiceActivity extends BaseActivity {
                 DateFormat outFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String startDateTime = dateStart + " " + startTime;
                 String endDateTime = dateEnd + " " + returnTime;
-                Toast.makeText(getApplicationContext(), startDateTime, Toast.LENGTH_LONG).show();
 
                 Date date = null;
                 Date date2 = null;
