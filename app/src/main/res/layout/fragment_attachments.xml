@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:gravity="center"
         android:layout_gravity="center_vertical"
         android:background="@drawable/whiteradius"
         android:layout_margin="20dp"
@@ -53,6 +54,16 @@
                     android:id="@+id/iv_checkmark"/>
             </LinearLayout>
 
+            <Button
+                android:id="@+id/btnView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_button"
+                android:text="View uploaded IDs"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -66,7 +77,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="110dp"
                 android:layout_marginTop="10dp"
                 android:text="Wait for 2-3 days"
                 android:layout_gravity="center_horizontal"
@@ -76,8 +86,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="110dp"
                 android:text="Get Verified"
+                android:layout_gravity="center"
                 android:textSize="18dp" />
 
             <TextView

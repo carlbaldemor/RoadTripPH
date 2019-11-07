@@ -35,6 +35,7 @@ import java.util.Map;
 
 import ph.roadtrip.roadtrip.classes.EndPoints;
 import ph.roadtrip.roadtrip.classes.MySingleton;
+import ph.roadtrip.roadtrip.classes.UrlBean;
 import ph.roadtrip.roadtrip.profile.ValidIdFragment;
 import ph.roadtrip.roadtrip.R;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
@@ -49,7 +50,7 @@ public class AttachmentsFragment extends android.support.v4.app.Fragment {
     private TextView tvList;
     private TextView tvStatus;
     private ImageView checkmark;
-    private Button buttonUploadImage;
+    private Button buttonUploadImage, btnView;
 
     private static final String KEY_USER_ID = "userID";
     private static final String KEY_STATUS = "status1";
@@ -76,6 +77,7 @@ public class AttachmentsFragment extends android.support.v4.app.Fragment {
         checkmark = view.findViewById(R.id.iv_checkmark);
         tvStatus = view.findViewById(R.id.tvStatus);
         buttonUploadImage = view.findViewById(R.id.btnUpload);
+        btnView = view.findViewById(R.id.btnView);
 
         session = new SessionHandler(getActivity());
         User user = session.getUserDetails();
@@ -109,6 +111,18 @@ public class AttachmentsFragment extends android.support.v4.app.Fragment {
             }
         });
 
+        view.findViewById(R.id.btnView).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Open Gallery
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, new ViewAttachmentsFragment());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+
         return view;
     }
 
@@ -125,6 +139,7 @@ public class AttachmentsFragment extends android.support.v4.app.Fragment {
 
                 //calling the method uploadBitmap to upload image
                 uploadBitmap(bitmap);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -142,7 +157,7 @@ public class AttachmentsFragment extends android.support.v4.app.Fragment {
      * */
     public byte[] getFileDataFromDrawable(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 20, byteArrayOutputStream);
         return byteArrayOutputStream.toByteArray();
     }
 
@@ -150,7 +165,7 @@ public class AttachmentsFragment extends android.support.v4.app.Fragment {
 
         //getting the tag from the edittext
         final String tags = username;
-
+        Toast.makeText(getActivity().getApplicationContext(), "Username : " + tags, Toast.LENGTH_SHORT).show();
         //our custom volley request
         VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, EndPoints.UPLOAD_ATTACHMENTS_URL,
                 new Response.Listener<NetworkResponse>() {
@@ -203,7 +218,8 @@ public class AttachmentsFragment extends android.support.v4.app.Fragment {
     }
 
     public void onBackground(){
-        String url = "http://192.168.1.4/api/roadtrip/getuserdata.php";
+        UrlBean urlBean = new UrlBean();
+        String url = urlBean.getGetUserDataUrl();
         session = new SessionHandler(getActivity());
         User user = session.getUserDetails();
         int userID = user.getUserID();

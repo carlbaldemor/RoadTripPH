@@ -19,15 +19,17 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="#20639B"
-            android:gravity="center"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
-
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title=" ">
             <ImageView
-                android:layout_width="100dp"
+                android:layout_width="70dp"
                 android:layout_height="35dp"
                 android:src="@drawable/roadtrip_white"/>
+
+
         </android.support.v7.widget.Toolbar>
+
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"

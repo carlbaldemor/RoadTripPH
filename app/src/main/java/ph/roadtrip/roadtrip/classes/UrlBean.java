@@ -2,7 +2,7 @@ package ph.roadtrip.roadtrip.classes;
 
 public class UrlBean {
     private static final String ROOT_IP = "https://isproj2b.benilde.edu.ph/RoadTrip_Mobile/roadtrip/";
-
+    //private static final String ROOT_IP = "http://192.168.100.5/api/roadtrip/";
     //Total Expenses
     private String totalExpenses = ROOT_IP + "totalexpenses.php";
 
@@ -44,6 +44,9 @@ public class UrlBean {
 
     //Get Profile Picture
     private String profilePicUrl = ROOT_IP +"uploads/";
+
+    //Get Profile Picture
+    private String userAttachmentPicUrl = ROOT_IP +"attachments/";
 
     //get image list view car man
     private String getPicUrl = ROOT_IP +"carpics/";
@@ -240,6 +243,9 @@ public class UrlBean {
     //complete button booking (owner)
     private String completebooking = ROOT_IP + "completebooking.php?bookingID=";
 
+    //complete button booking (owner)
+    private String viewuserattachments = ROOT_IP + "viewuserdocuments.php?userID=";
+
     //check current booking renter
     private String checkcurrentbooking = ROOT_IP + "checkcurrentbooking.php";
 
@@ -251,6 +257,22 @@ public class UrlBean {
      *
      * GETTERS AND SETTERS
      */
+
+    public String getUserAttachmentPicUrl() {
+        return userAttachmentPicUrl;
+    }
+
+    public void setUserAttachmentPicUrl(String userAttachmentPicUrl) {
+        this.userAttachmentPicUrl = userAttachmentPicUrl;
+    }
+
+    public String getViewuserattachments() {
+        return viewuserattachments;
+    }
+
+    public void setViewuserattachments(String viewuserattachments) {
+        this.viewuserattachments = viewuserattachments;
+    }
 
     public String getCheckcurrentbooking() {
         return checkcurrentbooking;

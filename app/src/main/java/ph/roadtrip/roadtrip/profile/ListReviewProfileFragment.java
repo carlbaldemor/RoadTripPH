@@ -14,20 +14,25 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import ph.roadtrip.roadtrip.classes.MySingleton;
 import ph.roadtrip.roadtrip.classes.Reviews;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
 import ph.roadtrip.roadtrip.classes.UrlBean;
@@ -41,6 +46,11 @@ public class ListReviewProfileFragment extends Fragment {
 
     // Log tag
     private static final String TAG = ListReviewProfileFragment.class.getSimpleName();
+
+    private static final String KEY_USER_ID = "userID";
+    private static final String KEY_STATUS = "status1";
+    private static final String KEY_TOTAL_RATING = "totalRating";
+    private static final String KEY_MESSAGE ="message";
 
     // Movies json url
     private String url;
@@ -57,8 +67,9 @@ public class ListReviewProfileFragment extends Fragment {
     private int userID;
     private String firstName;
     private String lastName;
-    private TextView fullname;
+    private TextView fullname, tvRating;
     private String profilePicture;
+    private double rate;
 
 
     private SessionHandler session;
@@ -79,6 +90,7 @@ public class ListReviewProfileFragment extends Fragment {
 
         fullname = view.findViewById(R.id.fullname);
         profile_image = view.findViewById(R.id.profile_image);
+        tvRating = view.findViewById(R.id.rating);
 
         //Get UserID
         session = new SessionHandler(getActivity().getApplicationContext());
@@ -116,6 +128,8 @@ public class ListReviewProfileFragment extends Fragment {
         // Showing progress dialog before making http request
         pDialog.setMessage("Loading...");
         pDialog.show();
+
+        getAverageRating();
 
         // Creating volley request obj
         final JsonArrayRequest movieReq = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
@@ -165,6 +179,59 @@ public class ListReviewProfileFragment extends Fragment {
 
         return view;
     }
+
+    public void getAverageRating(){
+        UrlBean url = new UrlBean();
+        String getUserData3 = url.getGetAverageRatingProfile();
+        session = new SessionHandler(getActivity());
+        User user = session.getUserDetails();
+        int userID = user.getUserID();
+
+        JSONObject request = new JSONObject();
+        try {
+            request.put(KEY_USER_ID, userID);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsArrayRequest = new JsonObjectRequest
+                (Request.Method.POST, getUserData3, request, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            //Check if user got registered successfully
+                            if (response.getInt(KEY_STATUS) == 0) {
+                                rate = response.getDouble(KEY_TOTAL_RATING);
+
+                                DecimalFormat df = new DecimalFormat("#.#");
+                                df.format(rate);
+
+                                tvRating.setText(String.valueOf(rate));
+
+                            } else{
+                                Toast.makeText(getActivity(),
+                                        response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //Display error message whenever an error occurs
+                        Toast.makeText(getActivity(),
+                                error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+        // Access the RequestQueue through your singleton class.
+        MySingleton.getInstance(getActivity()).addToRequestQueue(jsArrayRequest);
+
+    }
+
 
     //hide info button actionbar
     @Override

@@ -270,8 +270,6 @@ public class ViewAcceptedBooking extends Fragment {
                             btnComplete.setVisibility(View.VISIBLE);
                         }
 
-                        Toast.makeText(getActivity().getApplicationContext(), String.valueOf(overEndDate), Toast.LENGTH_SHORT).show();
-
                         if (latIssue.equalsIgnoreCase("null")) {
                             btnReturn.setVisibility(View.GONE);
                         } else if (latReturn.equalsIgnoreCase("null")) {
@@ -292,19 +290,16 @@ public class ViewAcceptedBooking extends Fragment {
                             tvDriverMobileNumber.setText("+63 " + driverMobileNumber);
                         }
 
-
-
                         tvStartDate.setText(startDate);
                         tvEndDate.setText(endDate);
                         tvBrandName.setText(brandName);
                         tvModelName.setText(modelName);
                         tvFullname.setText(firstName + " " + lastName);
-                        tvTotalAmount.setText(totalAmount);
+                        tvTotalAmount.setText("P"+totalAmount);
                         tvCarType.setText(carType);
                         tvServiceType.setText(serviceType);
                         tvSpecialNote.setText(specialNote);
 
-                        //Toast.makeText(getActivity().getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getActivity().getApplicationContext(), response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
 

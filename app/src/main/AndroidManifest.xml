@@ -26,8 +26,10 @@
         <activity
             android:name=".classes.SliderCarManActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".BaseOwnerActivity" />
-        <activity android:name=".BaseActivity" />
+        <activity android:name=".BaseOwnerActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".BaseActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".chatbot.ChatBotActivityFinal"
             android:configChanges="keyboardHidden|orientation" />
