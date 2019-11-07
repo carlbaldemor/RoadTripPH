@@ -142,7 +142,6 @@ public class ViewBookingOfferActivity extends BaseActivity {
         View contentView = inflater.inflate(R.layout.activity_view_booking_offer, null, false);
         drawer.addView(contentView, 0);
 
-
         session = new SessionHandler(getApplicationContext());
         User user = session.getUserDetails();
         userID = user.getUserID();
@@ -334,10 +333,18 @@ public class ViewBookingOfferActivity extends BaseActivity {
                         try {
                             Date date1 = myFormat.parse(inputString1);
                             Date date2 = myFormat.parse(inputString2);
-                            long diff = date2.getTime() - date1.getTime();
-                            total = Double.valueOf(diff);
-                            total2 = new Double(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+                            diff = date2.getTime() - date1.getTime();
 
+                            if (diff < 2){
+                                diff = 1;
+                            }
+                            total = Double.valueOf(diff);
+
+                            total2 = new Double (TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+                            if (total2 < 1){
+                                total2 = 1;
+                            }
+                            totalAmount = total2*amount;
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
@@ -374,7 +381,6 @@ public class ViewBookingOfferActivity extends BaseActivity {
                         lblEnd.setText(lEnd);
                         lblTotalDays.setText(String.valueOf(total2));
                         lblAmount.setText(String.valueOf("₱" + df.format(amount)));
-                        totalAmount = total2*amount;
                         lblTotalAmount.setText(String.valueOf("₱" + df.format(totalAmount)));
                         lblPickup.setText(address);
                         lblReturn.setText(address2);

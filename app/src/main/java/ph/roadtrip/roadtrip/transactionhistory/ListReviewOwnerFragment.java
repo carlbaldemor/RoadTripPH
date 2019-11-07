@@ -115,6 +115,7 @@ public class ListReviewOwnerFragment extends Fragment {
                         movie.setDateAdded(obj.getString("dateAdded"));
                         movie.setFirstName(obj.getString("firstName"));
                         movie.setLastName(obj.getString("lastName"));
+                        movie.setRenter_userID(obj.getInt("renter_userID"));
                         // adding movie to movies array
                         toReviewList.add(movie);
 

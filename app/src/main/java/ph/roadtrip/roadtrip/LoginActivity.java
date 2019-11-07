@@ -2,6 +2,8 @@ package ph.roadtrip.roadtrip;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -54,6 +57,9 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressDialog pDialog;
     private SessionHandler session;
     private Intent load;
+    private VideoView videoBG;
+    MediaPlayer mMediaPlayer;
+    int mCurrentVideoPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +70,31 @@ public class LoginActivity extends AppCompatActivity {
             loadDashboard();
         }
         setContentView(R.layout.activity_login);
+
+
+        // Hook up the VideoView to our UI
+        videoBG = (VideoView) findViewById(R.id.videoView);
+
+        //build your video URI
+        Uri uri = Uri.parse("android.resource://" //first start with this,
+                + getPackageName() //then retrieve your package name,
+                + "/" //add a slash,
+                + R.raw.bgvideo1);
+
+        //set the new URI to our videoView
+        videoBG.setVideoURI(uri);
+        //start the videoview
+        videoBG.start();
+
+        //set an On preparelistener for our video view.
+        videoBG.setOnPreparedListener((mediaPlayer) -> {
+            mMediaPlayer = mediaPlayer;
+            mMediaPlayer.setLooping(true);
+            if (mCurrentVideoPosition != 0) {
+                mMediaPlayer.seekTo(mCurrentVideoPosition);
+                mMediaPlayer.start();
+            }
+        });
 
         etUsername = findViewById(R.id.etLoginUsername);
         etPassword = findViewById(R.id.etLoginPassword);

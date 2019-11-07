@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:background="@drawable/profile_full_bg">
 
     <LinearLayout
@@ -13,32 +14,33 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="300dp"
-            android:layout_height="335dp"
-            android:src="@drawable/delete_record"/>
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-        <Button
-            android:id="@+id/btnDeactivate"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/red_button"
-            android:text="Deactivate"
-            android:textColor="@android:color/white" />
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="284dp"
+                android:src="@drawable/deactivate_account_sure"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btnDeactivate"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/red_button"
+                    android:text="Deactivate"
+                    android:textColor="@android:color/white" />
 
-        <Button
-            android:id="@+id/btnCancel"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/login_button"
-            android:text="Cancel"
-            android:textColor="@android:color/white" />
+                <Button
+                    android:id="@+id/btnCancel"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/login_button"
+                    android:text="Cancel"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-    </LinearLayout>
-    </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

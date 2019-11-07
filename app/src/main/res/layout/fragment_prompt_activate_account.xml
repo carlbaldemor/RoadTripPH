@@ -4,48 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:background="@drawable/profile_full_bg">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center">
-    <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-        <ImageView
             android:layout_width="300dp"
-            android:layout_height="335dp"
-            android:src="@drawable/delete_record"/>
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-        <Button
-            android:id="@+id/btnActivate"
-            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/login_button"
-            android:text="Activate"
-            android:textColor="@android:color/white" />
+            android:elevation="3dp"
+            android:gravity="center"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="300dp"
+                    android:layout_height="280dp"
+                    android:src="@drawable/reactivate_account_sure"/>
 
-        <Button
-            android:id="@+id/btnCancel"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
-            android:text="Cancel"
-            android:textColor="@android:color/white" />
-    </LinearLayout>
-    </LinearLayout>
-    </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnActivate"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/login_button"
+                        android:text="Reactivate"
+                        android:textColor="@android:color/white" />
+
+                    <Button
+                        android:id="@+id/btnCancel"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorAccent"
+                        android:text="Cancel"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

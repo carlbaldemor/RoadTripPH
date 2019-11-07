@@ -22,6 +22,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+
 import ph.roadtrip.roadtrip.classes.MySingleton;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
 import ph.roadtrip.roadtrip.classes.UrlBean;
@@ -39,8 +41,9 @@ public class AddReviewOwnerFragment extends Fragment {
     private static final String KEY_USER_ID = "userID";
     private static final String KEY_OWNER_USER_ID = "carowner_userID";
     private static final String KEY_RENTER_USER_ID = "renter_userID";
+    private static final String KEY_EMPTY = "";
 
-    private RatingBar ratingBar;
+    private RatingBar rbCommunication, rbPersonality;
     private TextView txtRatingValue;
     private EditText etMessage;
     private Button btnSubmit;
@@ -50,13 +53,14 @@ public class AddReviewOwnerFragment extends Fragment {
     private int carowner_userID;
     private int renter_userID;
     private String message;
-    private int rating;
+    private int rating, rating1, rating2;
     private String addReviewUrl;
+    private Double totalRating;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.add_review, container, false);
+        View view = inflater.inflate(R.layout.add_review_owner, container, false);
 
         //Get UserID
         session = new SessionHandler(getActivity().getApplicationContext());
@@ -66,12 +70,10 @@ public class AddReviewOwnerFragment extends Fragment {
         bookingID = booking.getBookingID();
         renter_userID = booking.getRenter_userID();
 
-        Toast.makeText(getActivity(), String.valueOf(renter_userID), Toast.LENGTH_LONG).show();
-
-        ratingBar = (RatingBar) view.findViewById(R.id.ratingBar);
-        txtRatingValue = (TextView) view.findViewById(R.id.textView6);
-        btnSubmit = (Button) view.findViewById(R.id.button2);
-        etMessage = (EditText) view.findViewById(R.id.etMessage);
+        rbCommunication = view.findViewById(R.id.rbCommunication);
+        rbPersonality = view.findViewById(R.id.rbPersonality);
+        btnSubmit = (Button) view.findViewById(R.id.btnSubmit);
+        etMessage = (EditText) view.findViewById(R.id.etComment);
 
         UrlBean url = new UrlBean();
         addReviewUrl = url.getAddReviewOwner();
@@ -80,10 +82,15 @@ public class AddReviewOwnerFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                message = etMessage.getText().toString();
-                rating = (int)Math.round(ratingBar.getRating());
 
-                addReview();
+                if (validateInputs()) {
+                    message = etMessage.getText().toString();
+                    rating1 = (int) Math.round(rbCommunication.getRating());
+                    rating2 = (int) Math.round(rbPersonality.getRating());
+                    totalRating = (((double) rating1 + (double) rating2) / 2);
+
+                    addReview();
+                }
 
             }
 
@@ -92,15 +99,28 @@ public class AddReviewOwnerFragment extends Fragment {
         return view;
     }
 
+    public boolean validateInputs(){
+        if (etMessage.getText().toString().equalsIgnoreCase(KEY_EMPTY)){
+            etMessage.setError("Comment cannot be empty!");
+            etMessage.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
     public void addReview(){
         JSONObject request = new JSONObject();
         try {
+            DecimalFormat df = new DecimalFormat("#.00");
             //Populate the request parameters
             request.put(KEY_RENTER_USER_ID, renter_userID);
             request.put(KEY_BOOKING_ID, bookingID);
             request.put(KEY_REVIEW_MESSAGE, message);
             request.put(KEY_USER_ID, userID);
-            request.put(KEY_RATING, rating);
+            request.put(KEY_RATING, String.valueOf(df.format((totalRating))));
+
+            Toast.makeText(getActivity(),
+                    "Renter: " + renter_userID + " bookingID: " + bookingID + " message: " + message + " rating: " + String.valueOf(df.format((totalRating))), Toast.LENGTH_SHORT).show();
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -131,8 +151,6 @@ public class AddReviewOwnerFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         //Display error message whenever an error occurs
-                        Toast.makeText(getActivity(),
-                                error.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
                 });

@@ -1,5 +1,6 @@
 package ph.roadtrip.roadtrip.profile;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -55,6 +56,7 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
     private static final String KEY_LAST_NAME = "lastName";
     private static final String KEY_GENDER = "gender";
 
+    private ProgressDialog pDialog;
     private TextView tvFeedbacks, tvRating, tvTrips;
     private String totalFeedbacks;
     private String totalTrips;
@@ -83,6 +85,11 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
         //swipeRefreshLayout = view.findViewById(R.id.swiperefresh);
         onBackground();
         String profPicUrl = url.getProfilePicUrl();
+
+        pDialog = new ProgressDialog(getActivity());
+        // Showing progress dialog before making http request
+        pDialog.setMessage("Loading...");
+        pDialog.show();
 
         tvFeedbacks = view.findViewById(R.id.tvFeedbacks);
         tvRating = view.findViewById(R.id.tvRating);
@@ -369,7 +376,7 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
                                 totalTrips = response.getString(KEY_TOTAL_TRIPS);
 
                                 tvTrips.setText(totalTrips);
-
+                                hidePDialog();
                             } else{
                                 Toast.makeText(getActivity(),
                                         response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
@@ -400,6 +407,20 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
         String stringCapitalized = s1 + word.substring(1);
 
         return stringCapitalized;
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        hidePDialog();
+    }
+
+    private void hidePDialog() {
+        if (pDialog != null) {
+            pDialog.dismiss();
+            pDialog = null;
+        }
     }
 
 

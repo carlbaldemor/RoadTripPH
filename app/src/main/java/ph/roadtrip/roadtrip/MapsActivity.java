@@ -58,6 +58,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -392,7 +393,7 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback, Go
         if(v.getId() == R.id.B_search){
             EditText tf_location = (EditText)findViewById(R.id.TF_LOCATION);
             String location = tf_location.getText().toString();
-            List<Address> addressList = null;
+            List<Address> addressList = new ArrayList<>();
             MarkerOptions mo =  new MarkerOptions();
 
             if(!location.equals("")){

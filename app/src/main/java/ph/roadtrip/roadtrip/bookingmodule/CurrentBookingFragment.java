@@ -1,5 +1,6 @@
 package ph.roadtrip.roadtrip.bookingmodule;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
@@ -117,6 +118,7 @@ public class CurrentBookingFragment extends Fragment {
     private ImageView proppic, call, sms, call2, sms2;
     private String rating;
     private LinearLayout frameDriverName, frameDriverMobileNumber;
+    private ProgressDialog pDialog;
 
     @Nullable
     @Override
@@ -156,6 +158,11 @@ public class CurrentBookingFragment extends Fragment {
         frameDriverMobileNumber = view.findViewById(R.id.frameDriverMobile);
         sms2 = view.findViewById(R.id.sms2);
         call2 = view.findViewById(R.id.call2);
+
+        pDialog = new ProgressDialog(getActivity());
+        // Showing progress dialog before making http request
+        pDialog.setMessage("Loading...");
+        pDialog.show();
 
         onBackground();
 
@@ -278,6 +285,7 @@ public class CurrentBookingFragment extends Fragment {
         JsonObjectRequest jsArrayRequest = new JsonObjectRequest(Request.Method.POST, url, request, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+
                 try {
                     //Check if user got logged in successfully
                     if (response.getInt(KEY_STATUS) == 0) {
@@ -418,6 +426,7 @@ public class CurrentBookingFragment extends Fragment {
                         df.format(rate);
 
                         tvRating.setText(String.valueOf(rate));
+                        hidePDialog();
                     } else {
 
                         Toast.makeText(getActivity().getApplicationContext(), response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
@@ -454,6 +463,19 @@ public class CurrentBookingFragment extends Fragment {
                 tvPaid.setText("Payment: Not Paid");
             }
 
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        hidePDialog();
+    }
+
+    private void hidePDialog() {
+        if (pDialog != null) {
+            pDialog.dismiss();
+            pDialog = null;
         }
     }
 
