@@ -1,5 +1,6 @@
 package ph.roadtrip.roadtrip.transactionhistory;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -71,6 +72,7 @@ public class ViewHistoryRecord extends Fragment {
     private String scanPickup;
     private String scanReturn;
     private Button btnPickup, btnReturn;
+    private ProgressDialog pDialog;
 
     @Nullable
     @Override
@@ -81,6 +83,11 @@ public class ViewHistoryRecord extends Fragment {
 
         BookingRequests bookingRequests = session.getBookingID();
         bookingID = bookingRequests.getBookingID();
+
+        pDialog = new ProgressDialog(getActivity());
+        // Showing progress dialog before making http request
+        pDialog.setMessage("Loading...");
+        pDialog.show();
 
         UrlBean urlBean = new UrlBean();
         fetch_booking_data = urlBean.getView_booking_request_history();
@@ -118,6 +125,7 @@ public class ViewHistoryRecord extends Fragment {
         JsonObjectRequest jsArrayRequest = new JsonObjectRequest(Request.Method.POST, fetch_booking_data, request, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                hidePDialog();
                 try {
                     //Check if user got logged in successfully
 
@@ -224,5 +232,18 @@ public class ViewHistoryRecord extends Fragment {
         // Access the RequestQueue through your singleton class.
         MySingleton.getInstance(getActivity()).addToRequestQueue(jsArrayRequest);
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        hidePDialog();
+    }
+
+    private void hidePDialog() {
+        if (pDialog != null) {
+            pDialog.dismiss();
+            pDialog = null;
+        }
     }
 }

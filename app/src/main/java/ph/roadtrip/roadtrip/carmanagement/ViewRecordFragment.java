@@ -1,5 +1,6 @@
 package ph.roadtrip.roadtrip.carmanagement;
 
+import android.app.ProgressDialog;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -66,6 +67,7 @@ public class ViewRecordFragment extends android.support.v4.app.Fragment {
 
     private TextView tvBrand, tvModel, tvColor, tvModelYear, tvCarType, tvServiceType, tvAmount, tvPickup, tvReturn;
     private Button btnEditRecord;
+    private ProgressDialog pDialog;
 
     public ViewRecordFragment() {
         // Required empty public constructor
@@ -89,7 +91,10 @@ public class ViewRecordFragment extends android.support.v4.app.Fragment {
 
         UrlBean getUrl = new UrlBean();
         url = getUrl.getFetch_booking_data();
-
+        pDialog = new ProgressDialog(getActivity());
+        // Showing progress dialog before making http request
+        pDialog.setMessage("Loading...");
+        pDialog.show();
 
         getData();
 
@@ -191,5 +196,19 @@ public class ViewRecordFragment extends android.support.v4.app.Fragment {
 
         // Access the RequestQueue through your singleton class.
         MySingleton.getInstance(getActivity()).addToRequestQueue(jsArrayRequest);
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        hidePDialog();
+    }
+
+    private void hidePDialog() {
+        if (pDialog != null) {
+            pDialog.dismiss();
+            pDialog = null;
+        }
     }
 }

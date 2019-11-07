@@ -1,5 +1,6 @@
 package ph.roadtrip.roadtrip.profile;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -64,7 +65,7 @@ public class OwnerProfileFragment extends android.support.v4.app.Fragment {
     private String getUserData4, getUserData3, getUserData2;
     private int ownerID;
     private LinearLayout linear1, linear2, linear3;
-
+    private ProgressDialog pDialog;
 
     public OwnerProfileFragment() {
         // Required empty public constructor
@@ -76,6 +77,11 @@ public class OwnerProfileFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         UrlBean url = new UrlBean();
         setHasOptionsMenu(true);
+        pDialog = new ProgressDialog(getActivity());
+        // Showing progress dialog before making http request
+        pDialog.setMessage("Loading...");
+        pDialog.show();
+
         //Update User Data
         onBackground();
         String profPicUrl = url.getProfilePicUrl();
@@ -356,6 +362,7 @@ public class OwnerProfileFragment extends android.support.v4.app.Fragment {
                 (Request.Method.POST, getUserData4, request, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        hidePDialog();
                         try {
                             //Check if user got registered successfully
                             if (response.getInt(KEY_STATUS) == 0) {
@@ -386,4 +393,16 @@ public class OwnerProfileFragment extends android.support.v4.app.Fragment {
         MySingleton.getInstance(getActivity()).addToRequestQueue(jsArrayRequest);
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        hidePDialog();
+    }
+
+    private void hidePDialog() {
+        if (pDialog != null) {
+            pDialog.dismiss();
+            pDialog = null;
+        }
+    }
 }

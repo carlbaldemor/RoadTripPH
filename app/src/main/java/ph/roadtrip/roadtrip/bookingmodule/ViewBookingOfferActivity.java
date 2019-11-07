@@ -1,6 +1,7 @@
 package ph.roadtrip.roadtrip.bookingmodule;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
@@ -126,8 +127,9 @@ public class ViewBookingOfferActivity extends BaseActivity {
     private String fetch_booking_data, request_booking;
     private String first;
     private SessionHandler session;
-    private String user_status;
+    private String user_status, check_booking;
     private int isVerified;
+    private ProgressDialog pDialog;
 
     private int[] myImageList = new int[]{R.drawable.harley2, R.drawable.benz2,
             R.drawable.vecto,R.drawable.webshots
@@ -161,6 +163,9 @@ public class ViewBookingOfferActivity extends BaseActivity {
         UrlBean url = new UrlBean();
         fetch_booking_data = url.getFetch_booking_data();
         request_booking = url.getRequest_booking();
+        check_booking = url.getCheckcurrentbooking();
+
+        checkcurrentbooking();
 
         //Initialize Text Views
         tvBrand = findViewById(R.id.tvBrand);
@@ -204,11 +209,15 @@ public class ViewBookingOfferActivity extends BaseActivity {
         String first = arr[0];
         recordID = Integer.parseInt(first);
 
-        Toast.makeText(getApplicationContext(), record, Toast.LENGTH_SHORT).show();
         //Array for slide
         imageModelArrayList = new ArrayList<>();
         imageModelArrayList = populateList();
 
+
+        pDialog = new ProgressDialog(ViewBookingOfferActivity.this);
+        // Showing progress dialog before making http request
+        pDialog.setMessage("Loading...");
+        pDialog.show();
 
         init();
         getData();
@@ -284,6 +293,50 @@ public class ViewBookingOfferActivity extends BaseActivity {
 
     }
 
+    public void checkcurrentbooking(){
+        JSONObject request = new JSONObject();
+        try {
+            //Populate the request parameters
+            if (userID == 0){
+
+            } else {
+                request.put(KEY_USER_ID, userID);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsArrayRequest = new JsonObjectRequest(Request.Method.POST, check_booking, request, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    //Check if user got logged in successfully
+
+                    if (response.getInt(KEY_STATUS) == 0) {
+                        //Do nothing
+                        Toast.makeText(getApplicationContext(), response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
+                        btnConfirm.setVisibility(GONE);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                //Display error message whenever an error occurs
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        // Access the RequestQueue through your singleton class.
+        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
+    }
+
 
 
     public void getData(){
@@ -301,6 +354,7 @@ public class ViewBookingOfferActivity extends BaseActivity {
         JsonObjectRequest jsArrayRequest = new JsonObjectRequest(Request.Method.POST, fetch_booking_data, request, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                hidePDialog();
                 try {
                     //Check if user got logged in successfully
 
@@ -394,8 +448,6 @@ public class ViewBookingOfferActivity extends BaseActivity {
                                 .into(profilePicture);
 
                         getAverageRating();
-
-
 
                     } else {
                         Toast.makeText(getApplicationContext(), response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
@@ -609,6 +661,19 @@ public class ViewBookingOfferActivity extends BaseActivity {
             getSupportFragmentManager().popBackStack();
         }
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        hidePDialog();
+    }
+
+    private void hidePDialog() {
+        if (pDialog != null) {
+            pDialog.dismiss();
+            pDialog = null;
+        }
     }
 
 

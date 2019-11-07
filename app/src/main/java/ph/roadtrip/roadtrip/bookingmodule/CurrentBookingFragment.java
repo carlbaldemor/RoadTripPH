@@ -285,7 +285,7 @@ public class CurrentBookingFragment extends Fragment {
         JsonObjectRequest jsArrayRequest = new JsonObjectRequest(Request.Method.POST, url, request, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-
+                hidePDialog();
                 try {
                     //Check if user got logged in successfully
                     if (response.getInt(KEY_STATUS) == 0) {
@@ -426,7 +426,6 @@ public class CurrentBookingFragment extends Fragment {
                         df.format(rate);
 
                         tvRating.setText(String.valueOf(rate));
-                        hidePDialog();
                     } else {
 
                         Toast.makeText(getActivity().getApplicationContext(), response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();

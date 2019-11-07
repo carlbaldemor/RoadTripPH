@@ -240,6 +240,9 @@ public class UrlBean {
     //complete button booking (owner)
     private String completebooking = ROOT_IP + "completebooking.php?bookingID=";
 
+    //check current booking renter
+    private String checkcurrentbooking = ROOT_IP + "checkcurrentbooking.php";
+
 
 
 
@@ -248,6 +251,14 @@ public class UrlBean {
      *
      * GETTERS AND SETTERS
      */
+
+    public String getCheckcurrentbooking() {
+        return checkcurrentbooking;
+    }
+
+    public void setCheckcurrentbooking(String checkcurrentbooking) {
+        this.checkcurrentbooking = checkcurrentbooking;
+    }
 
     public String getCheck_password() {
         return check_password;

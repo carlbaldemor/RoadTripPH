@@ -144,6 +144,11 @@ public class EditDetailsFragment extends Fragment implements OnMapReadyCallback,
         fetch_booking_data = url.getFetch_booking_data();
         edit_car = url.getEdit_car();
 
+        pDialog = new ProgressDialog(getActivity());
+        // Showing progress dialog before making http request
+        pDialog.setMessage("Loading...");
+        pDialog.show();
+
         //Get Username of user
         session = new SessionHandler(getActivity().getApplicationContext());
         CarRecord id = session.getRecordID();
@@ -330,6 +335,7 @@ public class EditDetailsFragment extends Fragment implements OnMapReadyCallback,
                 (Request.Method.POST, fetch_booking_data, request, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        hidePDialog();
                         try {
                             //Check if user got registered successfully
                             if (response.getInt(KEY_STATUS) == 0) {
@@ -520,6 +526,19 @@ public class EditDetailsFragment extends Fragment implements OnMapReadyCallback,
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        hidePDialog();
+    }
+
+    private void hidePDialog() {
+        if (pDialog != null) {
+            pDialog.dismiss();
+            pDialog = null;
+        }
     }
 }
 

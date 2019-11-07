@@ -2,6 +2,7 @@ package ph.roadtrip.roadtrip.bookingmodule;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -85,6 +86,7 @@ public class ViewRequestFragment extends Fragment {
     private EditText driverName, mobileNumber;
     private String driverFullName = "", driverMobileNumber = "";
     private Button btnAccept2, btnCancel2;
+    private ProgressDialog pDialog;
 
     @Nullable
     @Override
@@ -98,6 +100,11 @@ public class ViewRequestFragment extends Fragment {
 
         User user = session.getUserDetails();
         userID = user.getUserID();
+
+        pDialog = new ProgressDialog(getActivity());
+        // Showing progress dialog before making http request
+        pDialog.setMessage("Loading...");
+        pDialog.show();
 
         UrlBean urlBean = new UrlBean();
         fetch_booking_data = urlBean.getFetch_bdata();
@@ -158,6 +165,7 @@ public class ViewRequestFragment extends Fragment {
         JsonObjectRequest jsArrayRequest = new JsonObjectRequest(Request.Method.POST, fetch_booking_data, request, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                hidePDialog();
                 try {
                     //Check if user got logged in successfully
 
@@ -385,5 +393,18 @@ public class ViewRequestFragment extends Fragment {
         }
 
         return true;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        hidePDialog();
+    }
+
+    private void hidePDialog() {
+        if (pDialog != null) {
+            pDialog.dismiss();
+            pDialog = null;
+        }
     }
 }

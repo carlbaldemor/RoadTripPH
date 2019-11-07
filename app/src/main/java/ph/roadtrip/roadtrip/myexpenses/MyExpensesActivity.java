@@ -3,6 +3,7 @@ package ph.roadtrip.roadtrip.myexpenses;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -63,6 +64,7 @@ public class MyExpensesActivity extends BaseActivity {
     private TextView startDate, endDate;
     private int year, month, day;
     private String sdate, edate;
+    private ProgressDialog pDialog;
     private String dateStart, dateEnd, startTime, returnTime, serviceType, myDate, myDate2;
 
 
@@ -99,6 +101,11 @@ public class MyExpensesActivity extends BaseActivity {
         day = calendar.get(Calendar.DAY_OF_MONTH);
         showDate(year, month + 1, day);
 
+        pDialog = new ProgressDialog(MyExpensesActivity.this);
+        // Showing progress dialog before making http request
+        pDialog.setMessage("Loading...");
+        pDialog.show();
+
         onLoad();
         btnFilter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +131,7 @@ public class MyExpensesActivity extends BaseActivity {
 
 
                 if (date != null && date2 != null) {
-
+                    pDialog.show();
                     myDate = outFormat.format(date);
                     myDate2 = outFormat.format(date2);
 
@@ -158,6 +165,7 @@ public class MyExpensesActivity extends BaseActivity {
         JsonObjectRequest jsArrayRequest = new JsonObjectRequest(Request.Method.POST, getFilterExpenses, request, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                hidePDialog();
                 try {
                     //Check if user got registered successfully
                     if (response.getInt(KEY_STATUS) == 0) {
@@ -203,6 +211,7 @@ public class MyExpensesActivity extends BaseActivity {
                 (Request.Method.POST, getTotalExpenses, request, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        hidePDialog();
                         try {
                             //Check if user got registered successfully
                             if (response.getInt(KEY_STATUS) == 0) {
@@ -314,5 +323,18 @@ public class MyExpensesActivity extends BaseActivity {
             getSupportFragmentManager().popBackStack();
         }
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        hidePDialog();
+    }
+
+    private void hidePDialog() {
+        if (pDialog != null) {
+            pDialog.dismiss();
+            pDialog = null;
+        }
     }
 }

@@ -80,16 +80,16 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
         UrlBean url = new UrlBean();
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         setHasOptionsMenu(true);
-
+        pDialog = new ProgressDialog(getActivity());
+        // Showing progress dialog before making http request
+        pDialog.setMessage("Loading...");
+        pDialog.show();
         //Update User Data
         //swipeRefreshLayout = view.findViewById(R.id.swiperefresh);
         onBackground();
         String profPicUrl = url.getProfilePicUrl();
 
-        pDialog = new ProgressDialog(getActivity());
-        // Showing progress dialog before making http request
-        pDialog.setMessage("Loading...");
-        pDialog.show();
+
 
         tvFeedbacks = view.findViewById(R.id.tvFeedbacks);
         tvRating = view.findViewById(R.id.tvRating);
@@ -368,15 +368,17 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
         }
         JsonObjectRequest jsArrayRequest = new JsonObjectRequest
                 (Request.Method.POST, getUserData4, request, new Response.Listener<JSONObject>() {
+
                     @Override
                     public void onResponse(JSONObject response) {
+                        hidePDialog();
                         try {
                             //Check if user got registered successfully
                             if (response.getInt(KEY_STATUS) == 0) {
                                 totalTrips = response.getString(KEY_TOTAL_TRIPS);
 
                                 tvTrips.setText(totalTrips);
-                                hidePDialog();
+
                             } else{
                                 Toast.makeText(getActivity(),
                                         response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();

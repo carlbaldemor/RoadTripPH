@@ -70,12 +70,17 @@ public class PendingBookingFragment extends Fragment {
         UrlBean picUrl = new UrlBean();
         final String getPicUrl = picUrl.getGetPicUrl();
 
+        pDialog = new ProgressDialog(getActivity());
+        // Showing progress dialog before making http request
+        pDialog.setMessage("Loading...");
+        pDialog.show();
+
         // Creating volley request obj
         final JsonArrayRequest movieReq = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 Log.d(TAG, response.toString());
-
+                hidePDialog();
                 // Parsing json
                 for (int i = 0; i < response.length(); i++) {
                     try {

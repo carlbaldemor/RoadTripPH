@@ -1,5 +1,6 @@
 package ph.roadtrip.roadtrip.carmanagement;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -92,6 +93,7 @@ public class AddCarFiveFragment extends Fragment {
     private int model_pos;
 
     public static final int REQUEST_LOCATION_CODE = 99;
+    private ProgressDialog pDialog;
     private Button btnConfirm;
     private SessionHandler session;
     private String username;
@@ -194,6 +196,11 @@ public class AddCarFiveFragment extends Fragment {
         tvServiceType = view.findViewById(R.id.tvServiceType);
         tvPrice = view.findViewById(R.id.tvPrice);
 
+        pDialog = new ProgressDialog(getActivity());
+        // Showing progress dialog before making http request
+        pDialog.setMessage("Loading...");
+        pDialog.show();
+
         getBrandName();
 
         Geocoder geocoder;
@@ -222,7 +229,7 @@ public class AddCarFiveFragment extends Fragment {
         tvPickup.setText(pickupAdd);
         tvServiceType.setText(serviceType);
         tvPrice.setText(amount);
-
+        hidePDialog();
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -616,5 +623,17 @@ public class AddCarFiveFragment extends Fragment {
         Volley.newRequestQueue(getActivity().getApplicationContext()).add(volleyMultipartRequestCarMan);
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        hidePDialog();
+    }
+
+    private void hidePDialog() {
+        if (pDialog != null) {
+            pDialog.dismiss();
+            pDialog = null;
+        }
+    }
 }
 
