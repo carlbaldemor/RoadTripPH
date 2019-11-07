@@ -62,7 +62,6 @@ public class ViewAttachmentsFragment extends android.support.v4.app.Fragment {
     private ImageView bpic1, delete2;
     private int userID;
 
-
     // Movies json url
     private String url;
     private ProgressDialog pDialog;
@@ -70,7 +69,6 @@ public class ViewAttachmentsFragment extends android.support.v4.app.Fragment {
     private ListView listView;
     private CustomListUserAttachmentAdapter adapter;
     private SessionHandler session;
-
 
     public ViewAttachmentsFragment() {
         // Required empty public constructor

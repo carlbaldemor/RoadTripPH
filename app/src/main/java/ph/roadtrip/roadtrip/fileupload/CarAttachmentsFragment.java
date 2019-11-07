@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +47,7 @@ public class CarAttachmentsFragment extends android.support.v4.app.Fragment {
     private static final String KEY_USER_ID = "userID";
     private ImageView iv_check;
     private TextView tvStatus;
-    private Button btnUpload, btnUploadCR, btnUploadSIR;
+    private Button btnUpload, btnUploadCR, btnUploadSIR, btnView;
     private String record_status;
     private String username;
     private int carID = 0;
@@ -65,6 +67,7 @@ public class CarAttachmentsFragment extends android.support.v4.app.Fragment {
         btnUpload = view.findViewById(R.id.btnUpload);
         btnUploadCR = view.findViewById(R.id.btnUploadCR);
         btnUploadSIR = view.findViewById(R.id.btnUploadSIR);
+        btnView = view.findViewById(R.id.btnView);
 
         session = new SessionHandler(getActivity().getApplicationContext());
         User user = session.getUserDetails();
@@ -105,6 +108,18 @@ public class CarAttachmentsFragment extends android.support.v4.app.Fragment {
                 //Open Gallery
                 Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(i, 300);
+            }
+        });
+
+        btnView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Open Gallery
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, new ViewCarAttachmentsFragment());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             }
         });
 

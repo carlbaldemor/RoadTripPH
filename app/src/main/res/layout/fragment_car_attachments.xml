@@ -6,141 +6,154 @@
     android:background="@drawable/profile_full_bg"
     android:layout_gravity="center_horizontal|center_vertical"
     android:orientation="horizontal">
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:elevation="3dp"
-        android:layout_margin="30dp"
-        android:background="@drawable/whiteradius"
-        android:layout_centerVertical="true"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_marginTop="20dp"
-            android:paddingLeft="10dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:text="Status: "
-                android:textStyle="bold"
-                android:textSize="20dp"
-                />
-            <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:text="Verified"
-                android:textStyle="bold"
-                android:id="@+id/tvStatus"
-                android:textSize="20dp"
-                />
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_check"
-                android:id="@+id/iv_checkmark"/>
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Upload"
-            android:id="@+id/tvChoose"
-            android:layout_marginTop="20dp"
-            android:textColor="@color/endblue"
-            android:layout_marginLeft="30dp"
-            android:textStyle="bold"
-            android:textSize="22dp"
-            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_gravity="center"
+            android:elevation="3dp"
+            android:layout_margin="30dp"
+            android:background="@drawable/whiteradius"
+            android:layout_centerVertical="true"
             android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1. Official Receipt (OR)"
-            android:id="@+id/tvCR"
-            android:textSize="18dp"
-            android:layout_marginTop="10dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2. Certificate of Registration (CR)"
-            android:id="@+id/tvOR"
-            android:textSize="18dp"/>
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:paddingLeft="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:text="Status: "
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    />
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:text="Verified"
+                    android:textStyle="bold"
+                    android:id="@+id/tvStatus"
+                    android:textSize="20dp"
+                    />
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/ic_check"
+                    android:id="@+id/iv_checkmark"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_button"
+                android:text="View uploaded IDs"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3. Mechanical and Safety Inspection Report"
-                android:id="@+id/tvSIR"
-                android:textSize="18dp"/>
+                android:text="Upload"
+                android:id="@+id/tvChoose"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/endblue"
+                android:layout_marginLeft="30dp"
+                android:textStyle="bold"
+                android:textSize="22dp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1. Official Receipt (OR)"
+                    android:id="@+id/tvCR"
+                    android:textSize="18dp"
+                    android:layout_marginTop="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2. Certificate of Registration (CR)"
+                    android:id="@+id/tvOR"
+                    android:textSize="18dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3. Mechanical and Safety Inspection Report"
+                    android:id="@+id/tvSIR"
+                    android:textSize="18dp"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wait for 2-3 days"
+                android:layout_gravity="center_horizontal"
+                android:textSize="18dp"
+                android:layout_marginTop="20dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Get Verified"
+                android:layout_marginBottom="30dp"
+                android:layout_gravity="center_horizontal"
+                android:textSize="18dp" />
+
+
+            <Button
+                android:id="@+id/btnUpload"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/login_button"
+                android:layout_gravity="center"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:text="Upload Official Receipt" />
+            <Button
+                android:id="@+id/btnUploadCR"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/login_button"
+                android:layout_gravity="center"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:text="Upload Certificate of Registration" />
+            <Button
+                android:id="@+id/btnUploadSIR"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/login_button"
+                android:layout_gravity="center"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp"
+                android:text="Upload Mechanical and Safety Inspection Report" />
+
+
+
         </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Wait for 2-3 days"
-            android:layout_gravity="center_horizontal"
-            android:textSize="18dp"
-            android:layout_marginTop="20dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Get Verified"
-            android:layout_marginBottom="30dp"
-            android:layout_gravity="center_horizontal"
-            android:textSize="18dp" />
 
-
-        <Button
-            android:id="@+id/btnUpload"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/login_button"
-            android:layout_gravity="center"
-            android:textColor="@android:color/white"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:text="Upload Official Receipt" />
-        <Button
-            android:id="@+id/btnUploadCR"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/login_button"
-            android:layout_gravity="center"
-            android:textColor="@android:color/white"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:text="Upload Certificate of Registration" />
-        <Button
-            android:id="@+id/btnUploadSIR"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/login_button"
-            android:layout_gravity="center"
-            android:textColor="@android:color/white"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="30dp"
-            android:text="Upload Mechanical and Safety Inspection Report" />
-
-
-
-    </LinearLayout>
-
-
+    </ScrollView>
 </LinearLayout>

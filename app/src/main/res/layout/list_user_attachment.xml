@@ -11,9 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp">
+        android:layout_margin="10dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,34 +33,28 @@
             android:textStyle="bold"
             />
 
-        <HorizontalScrollView
-            android:id="@+id/horScrollView1"
-            android:layout_marginTop="5dp"
-            android:layout_width="match_parent"
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:layout_gravity="center"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <com.android.volley.toolbox.NetworkImageView
+                android:id="@+id/apic1"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
                 android:layout_gravity="center"
-                android:orientation="horizontal">
+                android:src="@drawable/add_pic"
+                android:clickable="true"/>
+            <ImageView
+                android:id="@+id/delete1"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/eks"/>
 
-                <com.android.volley.toolbox.NetworkImageView
-                    android:id="@+id/apic1"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    android:src="@drawable/add_pic"
-                    android:clickable="true"/>
-                <ImageView
-                    android:id="@+id/delete1"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/eks"/>
-
-            </LinearLayout>
-
-        </HorizontalScrollView>
+        </LinearLayout>
 
     </LinearLayout>
 

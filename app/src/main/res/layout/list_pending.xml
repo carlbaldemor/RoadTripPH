@@ -68,24 +68,26 @@
                     android:textSize="1sp"
                     android:layout_toRightOf="@id/color"/>
             </LinearLayout>
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="#5d5d5d"
+                android:text="Request by: "
+                android:textStyle="bold"
+                android:textSize="15sp"
+                />
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/tv1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="#5d5d5d"
-                    android:text="Request by: "
-                    android:textStyle="bold"
-                    android:textSize="15sp"
-                    />
+                android:layout_height="wrap_content"
+
+                android:layout_marginLeft="10dp">
+
                 <TextView
                     android:id="@+id/firstName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
                     android:textColor="#5d5d5d"
                     android:text="First"
                     android:textSize="15sp"/>

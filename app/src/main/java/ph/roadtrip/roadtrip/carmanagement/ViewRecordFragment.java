@@ -4,36 +4,73 @@ import android.app.ProgressDialog;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import com.google.gson.Gson;
+import com.viewpagerindicator.CirclePageIndicator;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import ph.roadtrip.roadtrip.MyApplication;
+import ph.roadtrip.roadtrip.bookingmodule.ImageModel;
+import ph.roadtrip.roadtrip.bookingmodule.SlidingImage_Adapter;
+import ph.roadtrip.roadtrip.bookingmodule.ViewBookingOfferActivity;
 import ph.roadtrip.roadtrip.classes.MySingleton;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
 import ph.roadtrip.roadtrip.classes.UrlBean;
 import ph.roadtrip.roadtrip.R;
+import ph.roadtrip.roadtrip.faqs.JSONParser;
+import ph.roadtrip.roadtrip.fileupload.CarAttachments;
+import ph.roadtrip.roadtrip.fileupload.CarPictures;
+import ph.roadtrip.roadtrip.fileupload.CustomCarPicturesAdapter;
+import ph.roadtrip.roadtrip.fileupload.CustomListUserAttachmentAdapter;
+import ph.roadtrip.roadtrip.fileupload.UserAttachments;
+import ph.roadtrip.roadtrip.fileupload.VolleyMultipartRequest;
+
+import static com.android.volley.VolleyLog.TAG;
 
 public class ViewRecordFragment extends android.support.v4.app.Fragment {
     private SessionHandler session;
-    private static final String KEY_STATUS ="status1";
-    private static final String KEY_MESSAGE ="message";
+    private static final String KEY_STATUS = "status1";
+    private static final String KEY_MESSAGE = "message";
     private static final String KEY_RECORD_ID = "recordID";
     private static final String KEY_LONG_ISSUE = "longIssue";
     private static final String KEY_LAT_ISSUE = "latIssue";
@@ -47,6 +84,11 @@ public class ViewRecordFragment extends android.support.v4.app.Fragment {
     private static final String KEY_COLOR = "color";
     private static final String KEY_SERVICE_TYPE = "serviceType";
     private static final String KEY_PROF_PIC = "profilePicture";
+
+    private static ViewPager mPager;
+    private static int currentPage = 0;
+    private static int NUM_PAGES = 0;
+    private ArrayList<ImageModel> imageModelArrayList;
 
     private int ownerID;
     private int recordID;
@@ -69,6 +111,11 @@ public class ViewRecordFragment extends android.support.v4.app.Fragment {
     private Button btnEditRecord;
     private ProgressDialog pDialog;
 
+    private int[] myImageList = new int[]{R.drawable.harley2, R.drawable.benz2,
+            R.drawable.vecto,R.drawable.webshots
+            ,R.drawable.bikess,R.drawable.img1};
+
+
     public ViewRecordFragment() {
         // Required empty public constructor
     }
@@ -77,10 +124,11 @@ public class ViewRecordFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_view_carman, container, false);
 
+
         //Set Views
         tvBrand = view.findViewById(R.id.tvBrand);
         tvModel = view.findViewById(R.id.tvModel);
-        tvColor  = view.findViewById(R.id.tvColor);
+        tvColor = view.findViewById(R.id.tvColor);
         tvModelYear = view.findViewById(R.id.tvModelYear);
         tvCarType = view.findViewById(R.id.tvCarType);
         tvServiceType = view.findViewById(R.id.tvServiceType);
@@ -88,6 +136,10 @@ public class ViewRecordFragment extends android.support.v4.app.Fragment {
         btnEditRecord = view.findViewById(R.id.btnEditRecord);
         tvPickup = view.findViewById(R.id.tvPickup);
         tvReturn = view.findViewById(R.id.tvReturn);
+
+        //Array for slide
+        imageModelArrayList = new ArrayList<>();
+        imageModelArrayList = populateList();
 
         UrlBean getUrl = new UrlBean();
         url = getUrl.getFetch_booking_data();
@@ -109,9 +161,66 @@ public class ViewRecordFragment extends android.support.v4.app.Fragment {
             }
         });
 
+
+        mPager = (ViewPager) view.findViewById(R.id.pager);
+        mPager.setAdapter(new SlidingImage_Adapter(getActivity(),imageModelArrayList));
+
+        CirclePageIndicator indicator = (CirclePageIndicator)
+                view.findViewById(R.id.indicator);
+
+        indicator.setViewPager(mPager);
+
+        final float density = getResources().getDisplayMetrics().density;
+
+        //Set circle indicator radius
+        indicator.setRadius(5 * density);
+
+        NUM_PAGES =imageModelArrayList.size();
+
+        // Auto start of viewpager
+        final Handler handler = new Handler();
+        final Runnable Update = new Runnable() {
+            public void run() {
+                if (currentPage == NUM_PAGES) {
+                    currentPage = 0;
+                }
+                mPager.setCurrentItem(currentPage++, true);
+            }
+        };
+        Timer swipeTimer = new Timer();
+        swipeTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(Update);
+            }
+        }, 3000, 3000);
+
+        // Pager listener over indicator
+        indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageSelected(int position) {
+                currentPage = position;
+
+            }
+
+            @Override
+            public void onPageScrolled(int pos, float arg1, int arg2) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int pos) {
+
+            }
+        });
+
+
         return view;
 
     }
+
+
 
     public void getData(){
         session = new SessionHandler(getActivity().getApplicationContext());
@@ -130,6 +239,7 @@ public class ViewRecordFragment extends android.support.v4.app.Fragment {
                 (Request.Method.POST, url, request, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        hidePDialog();
                         try {
                             //Check if user got registered successfully
                             if (response.getInt(KEY_STATUS) == 0) {
@@ -196,6 +306,19 @@ public class ViewRecordFragment extends android.support.v4.app.Fragment {
 
         // Access the RequestQueue through your singleton class.
         MySingleton.getInstance(getActivity()).addToRequestQueue(jsArrayRequest);
+    }
+
+    private ArrayList<ImageModel> populateList(){
+
+        ArrayList<ImageModel> list = new ArrayList<>();
+
+        for(int i = 0; i < 6; i++){
+            ImageModel imageModel = new ImageModel();
+            imageModel.setImage_drawable(myImageList[i]);
+            list.add(imageModel);
+        }
+
+        return list;
     }
 
 

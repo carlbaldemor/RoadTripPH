@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
         Uri uri = Uri.parse("android.resource://" //first start with this,
                 + getPackageName() //then retrieve your package name,
                 + "/" //add a slash,
-                + R.raw.bgvideo1);
+                + R.raw.bgvideo2);
 
         //set the new URI to our videoView
         videoBG.setVideoURI(uri);
@@ -253,5 +253,24 @@ public class LoginActivity extends AppCompatActivity {
             getSupportFragmentManager().popBackStack();
         }
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mCurrentVideoPosition = mMediaPlayer.getCurrentPosition();
+        videoBG.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        videoBG.start();
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mMediaPlayer.release();
+        mMediaPlayer = null;
     }
 }

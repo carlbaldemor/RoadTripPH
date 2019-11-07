@@ -48,6 +48,9 @@ public class UrlBean {
     //Get Profile Picture
     private String userAttachmentPicUrl = ROOT_IP +"attachments/";
 
+    //Get Profile Picture
+    private String carAttachmentPicUrl = ROOT_IP +"carattachments/";
+
     //get image list view car man
     private String getPicUrl = ROOT_IP +"carpics/";
 
@@ -246,6 +249,12 @@ public class UrlBean {
     //complete button booking (owner)
     private String viewuserattachments = ROOT_IP + "viewuserdocuments.php?userID=";
 
+    //complete button booking (owner)
+    private String viewcardocuments = ROOT_IP + "viewcardocuments.php?recordID=";
+
+    //complete button booking (owner)
+    private String viewcarpictures = ROOT_IP + "viewcarpics.php?recordID=";
+
     //check current booking renter
     private String checkcurrentbooking = ROOT_IP + "checkcurrentbooking.php";
 
@@ -257,6 +266,30 @@ public class UrlBean {
      *
      * GETTERS AND SETTERS
      */
+
+    public String getViewcarpictures() {
+        return viewcarpictures;
+    }
+
+    public void setViewcarpictures(String viewcarpictures) {
+        this.viewcarpictures = viewcarpictures;
+    }
+
+    public String getCarAttachmentPicUrl() {
+        return carAttachmentPicUrl;
+    }
+
+    public void setCarAttachmentPicUrl(String carAttachmentPicUrl) {
+        this.carAttachmentPicUrl = carAttachmentPicUrl;
+    }
+
+    public String getViewcardocuments() {
+        return viewcardocuments;
+    }
+
+    public void setViewcardocuments(String viewcardocuments) {
+        this.viewcardocuments = viewcardocuments;
+    }
 
     public String getUserAttachmentPicUrl() {
         return userAttachmentPicUrl;

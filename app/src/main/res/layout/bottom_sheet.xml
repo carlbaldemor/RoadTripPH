@@ -143,12 +143,14 @@
         android:textSize="16dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:text="Flat No 404, Skyline Apartments, Vizag - 500576" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_height="wrap_content"
         android:textSize="18dp"
         android:text="Return Address"

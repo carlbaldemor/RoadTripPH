@@ -57,6 +57,7 @@ import ph.roadtrip.roadtrip.classes.MySingleton;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
 import ph.roadtrip.roadtrip.classes.UrlBean;
 import ph.roadtrip.roadtrip.R;
+import ph.roadtrip.roadtrip.fileupload.ViewCarPicturesFragment;
 
 public class EditDetailsFragment extends Fragment implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
@@ -107,7 +108,7 @@ public class EditDetailsFragment extends Fragment implements OnMapReadyCallback,
     private Location lastLocation;
     private Marker currentLocationMarker;
     public static final int REQUEST_LOCATION_CODE = 99;
-    private Button search, editCar, search2, deleteCar;
+    private Button search, editCar, search2, deleteCar, btnView;
     private EditText tf_location, etPlateNumber, etChassisNumber, etAmount, tf_location2;
     private ProgressDialog pDialog;
     private String editCarLink, fetch_booking_data;
@@ -169,6 +170,7 @@ public class EditDetailsFragment extends Fragment implements OnMapReadyCallback,
         etChassisNumber = view.findViewById(R.id.etChassisNumber);
         etAmount = view.findViewById(R.id.etAmount);
         serviceSpinner = view.findViewById(R.id.serviceSpinner);
+        btnView = view.findViewById(R.id.btnView);
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -258,6 +260,17 @@ public class EditDetailsFragment extends Fragment implements OnMapReadyCallback,
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, new PromptDeleteRecordFragment());
+                fragmentTransaction.commit();
+            }
+        });
+
+        view.findViewById(R.id.btnView).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, new ViewCarPicturesFragment());
                 fragmentTransaction.commit();
             }
         });
