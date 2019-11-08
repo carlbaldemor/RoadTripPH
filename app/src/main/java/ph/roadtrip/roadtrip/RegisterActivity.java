@@ -68,6 +68,7 @@ public class RegisterActivity extends AppCompatActivity implements TextWatcher {
     private static final String KEY_BIRTH_DATE = "birthDate";
     private static final String KEY_GENDER = "gender";
     private static final String KEY_EMPTY = "";
+    private static final String KEY_OWNER_ID = "ownerID";
     private EditText etUsername;
     private EditText etPassword;
     private EditText etConfirmPassword;
@@ -185,7 +186,7 @@ public class RegisterActivity extends AppCompatActivity implements TextWatcher {
                 } else if (gend_pos.equalsIgnoreCase("Female")) {
                     gender = "F";
                 } else {
-                    gender = "UD";
+                    gender = "U";
                 }
 
                 //Retrieve the data entered in the edit texts
@@ -333,6 +334,11 @@ public class RegisterActivity extends AppCompatActivity implements TextWatcher {
                             if (response.getInt(KEY_STATUS) == 0) {
                                 //Set the user session
                                 userID = response.getInt(KEY_USER_ID);
+
+                                if (userTypeID == 2){
+                                    session.loginOwner(response.getInt(KEY_OWNER_ID));
+                                }
+
                                 session.loginUser(userID,username,firstName,middleName,lastName,emailAddress,mobileNumber,phoneNumber,status,isVerified,profilePicture, String.valueOf(userTypeID), gender);
                                 loadDashboard();
                                 Toast.makeText(getApplicationContext(),

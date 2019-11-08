@@ -119,9 +119,6 @@ public class AddReviewOwnerFragment extends Fragment {
             request.put(KEY_USER_ID, userID);
             request.put(KEY_RATING, String.valueOf(df.format((totalRating))));
 
-            Toast.makeText(getActivity(),
-                    "Renter: " + renter_userID + " bookingID: " + bookingID + " message: " + message + " rating: " + String.valueOf(df.format((totalRating))), Toast.LENGTH_SHORT).show();
-
         } catch (JSONException e) {
             e.printStackTrace();
         }

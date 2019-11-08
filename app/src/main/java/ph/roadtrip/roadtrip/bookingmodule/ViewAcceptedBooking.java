@@ -234,7 +234,7 @@ public class ViewAcceptedBooking extends Fragment {
         try {
             //Populate the request parameters
             if (bookingID == 0){
-                Toast.makeText(getActivity().getApplicationContext(), "Record ID is 0", Toast.LENGTH_SHORT).show();
+
             } else {
                 request.put(KEY_BOOKING_ID, bookingID);
             }

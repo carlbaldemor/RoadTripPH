@@ -161,7 +161,6 @@ public class AddCarFiveFragment extends Fragment {
         if (carOR != null){
             imgOR = carOR.getCarOR();
             imgORR = true;
-            Toast.makeText(getActivity(), imgOR, Toast.LENGTH_SHORT).show();
         }
         CarPictures carCR = session.getCarCR();
         if (carCR != null){

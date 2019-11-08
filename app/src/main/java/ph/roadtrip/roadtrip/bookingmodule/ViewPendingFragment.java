@@ -142,7 +142,7 @@ public class ViewPendingFragment extends Fragment {
         try {
             //Populate the request parameters
             if (bookingID == 0){
-                Toast.makeText(getActivity().getApplicationContext(), "Record ID is 0", Toast.LENGTH_SHORT).show();
+
             } else {
                 request.put(KEY_BOOKING_ID, bookingID);
             }
@@ -168,8 +168,6 @@ public class ViewPendingFragment extends Fragment {
                         serviceType = response.getString(KEY_SERVICE_TYPE);
                         renter_userID = response.getInt(KEY_RENTER_USER_ID);
 
-
-
                         tvStartDate.setText(startDate);
                         tvEndDate.setText(endDate);
                         tvBrandName.setText(brandName);
@@ -178,7 +176,6 @@ public class ViewPendingFragment extends Fragment {
                         tvTotalAmount.setText(totalAmount);
                         tvCarType.setText(carType);
                         tvServiceType.setText(serviceType);
-
 
                     } else {
                         Toast.makeText(getActivity().getApplicationContext(), response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();

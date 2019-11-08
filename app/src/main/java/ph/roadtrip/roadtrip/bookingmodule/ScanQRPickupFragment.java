@@ -120,7 +120,7 @@ public class ScanQRPickupFragment extends Fragment {
         String longitude = temp[2];
         String bookingID = temp[3];
 
-        Toast.makeText(getActivity(), userID + " " + latitude + " " + longitude + " " + bookingID, Toast.LENGTH_SHORT).show();
+
         UrlBean getUrl = new UrlBean();
         String url = getUrl.getScan_qr() + userID + "&currentLat=" + latitude + "&currentLong=" + longitude + "&bookingID=" + bookingID;
         new updateData().execute(url);

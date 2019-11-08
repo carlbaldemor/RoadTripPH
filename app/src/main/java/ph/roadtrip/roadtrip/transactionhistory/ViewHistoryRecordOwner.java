@@ -114,7 +114,7 @@ public class ViewHistoryRecordOwner extends Fragment {
         try {
             //Populate the request parameters
             if (bookingID == 0){
-                Toast.makeText(getActivity().getApplicationContext(), "Record ID is 0", Toast.LENGTH_SHORT).show();
+
             } else {
                 request.put(KEY_BOOKING_ID, bookingID);
             }
@@ -162,8 +162,7 @@ public class ViewHistoryRecordOwner extends Fragment {
                         Glide.with(getActivity())
                                 .load(image)
                                 .into(imgPicture);
-
-                        Toast.makeText(getActivity().getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                        
                     } else {
                         Toast.makeText(getActivity().getApplicationContext(), response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
 

@@ -155,7 +155,7 @@ public class ViewRequestFragment extends Fragment {
         try {
             //Populate the request parameters
             if (bookingID == 0){
-                Toast.makeText(getActivity().getApplicationContext(), "Record ID is 0", Toast.LENGTH_SHORT).show();
+
             } else {
                 request.put(KEY_BOOKING_ID, bookingID);
             }
@@ -183,7 +183,6 @@ public class ViewRequestFragment extends Fragment {
                         renterProfilePic = response.getString(KEY_RENTER_PROF_PIC);
                         specialNote = response.getString(KEY_SPECIAL_NOTE);
 
-                        Toast.makeText(getActivity(), String.valueOf(renter_userID), Toast.LENGTH_SHORT).show();
 
 
                         if (specialNote.equalsIgnoreCase("null")){
@@ -243,7 +242,7 @@ public class ViewRequestFragment extends Fragment {
            try {
                //Populate the request parameters
                if (bookingID == 0){
-                   Toast.makeText(getActivity().getApplicationContext(), "Record ID is 0", Toast.LENGTH_SHORT).show();
+
                } else {
                    request.put(KEY_BOOKING_ID, bookingID);
                    request.put(KEY_USER_ID, userID);
@@ -335,7 +334,7 @@ public class ViewRequestFragment extends Fragment {
         try {
             //Populate the request parameters
             if (bookingID == 0){
-                Toast.makeText(getActivity().getApplicationContext(), "Record ID is 0", Toast.LENGTH_SHORT).show();
+
             } else {
                 request.put(KEY_BOOKING_ID, bookingID);
             }
