@@ -168,12 +168,14 @@ public class ViewPendingFragment extends Fragment {
                         serviceType = response.getString(KEY_SERVICE_TYPE);
                         renter_userID = response.getInt(KEY_RENTER_USER_ID);
 
+                        DecimalFormat df = new DecimalFormat("#,###.00");
+                        Double totals = Double.parseDouble(totalAmount);
                         tvStartDate.setText(startDate);
                         tvEndDate.setText(endDate);
                         tvBrandName.setText(brandName);
                         tvModelName.setText(modelName);
                         tvFullname.setText(firstName + " " + lastName);
-                        tvTotalAmount.setText(totalAmount);
+                        tvTotalAmount.setText(String.valueOf("P" + df.format(totals)));
                         tvCarType.setText(carType);
                         tvServiceType.setText(serviceType);
 

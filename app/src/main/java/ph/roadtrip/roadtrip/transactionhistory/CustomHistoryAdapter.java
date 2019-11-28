@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import ph.roadtrip.roadtrip.carmanagement.AppController;
@@ -84,13 +85,16 @@ public class CustomHistoryAdapter extends BaseAdapter {
         // thumbnail imageS
         thumbNail.setImageUrl(m.getRecordPicture(), imageLoader);
 
+        DecimalFormat df = new DecimalFormat("#,###.00");
+
+        Double total = Double.parseDouble(m.getTotalAmount());
         // title
         brandName.setText(m.getBrandName());
         modelName.setText(m.getModelName());
         modelYear.setText(m.getModelYear());
         plateNumber.setText(m.getPlateNumber());
         status.setText(m.getStatus());
-        totalAmount.setText(m.getTotalAmount());
+        totalAmount.setText((String.valueOf("₱" + df.format((total)))));
         dateAdded.setText(m.getDateAdded());
 
         final Booking items = transactionItems.get(position);

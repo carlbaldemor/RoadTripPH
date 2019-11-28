@@ -143,13 +143,15 @@ public class ViewHistoryRecord extends Fragment {
                         status = response.getString(KEY_STATUS_RECORD);
                         userID = response.getString(KEY_USER_ID);
 
+                        DecimalFormat df = new DecimalFormat("#,###.00");
+                        Double totals = Double.parseDouble(totalAmount);
                         getAverageRating();
                         tvStartDate.setText(startDate);
                         tvEndDate.setText(endDate);
                         tvBrandName.setText(brandName);
                         tvModelName.setText(modelName);
                         tvFullname.setText(firstName + " " + lastName);
-                        tvTotalAmount.setText(totalAmount);
+                        tvTotalAmount.setText(String.valueOf("₱" + df.format(totals)));
                         tvCarType.setText(carType);
                         tvServiceType.setText(serviceType);
                         tvStatus.setText(status);

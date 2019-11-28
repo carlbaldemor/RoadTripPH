@@ -77,7 +77,8 @@ public class CustomPendingListAdapter extends BaseAdapter {
         // thumbnail imageS
         thumbNail.setImageUrl(m.getImageUrl(), imageLoader);
 
-
+        DecimalFormat df = new DecimalFormat("#,###.00");
+        Double totals = Double.parseDouble(m.getTotalAmount());
         // title
         brandName.setText(m.getBrandName());
         modelName.setText(m.getModelName());
@@ -85,7 +86,7 @@ public class CustomPendingListAdapter extends BaseAdapter {
         firstName.setText(m.getFirstName());
         lastName.setText(m.getLastName());
         color.setText(m.getColor());
-        totalAmount.setText("P" + m.getTotalAmount());
+        totalAmount.setText(String.valueOf("₱" + df.format(totals)));
 
         final BookingRequests items = movieItems.get(position);
 

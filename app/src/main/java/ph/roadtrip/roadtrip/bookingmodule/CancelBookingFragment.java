@@ -84,13 +84,26 @@ public class CancelBookingFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                cancelBooking();
+
+                if(validateInputs()){
+                    cancelBooking();
+                }
+
 
             }
 
         });
 
         return view;
+    }
+
+    private boolean validateInputs(){
+        if(etMessage.getText().toString().trim().length() == 0){
+            etMessage.setError("Message cannot be empty");
+            etMessage.requestFocus();
+            return false;
+        }
+        return true;
     }
 
     public void cancelBooking(){

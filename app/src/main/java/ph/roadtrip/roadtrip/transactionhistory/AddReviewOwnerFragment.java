@@ -100,6 +100,11 @@ public class AddReviewOwnerFragment extends Fragment {
     }
 
     public boolean validateInputs(){
+        if(etMessage.getText().toString().trim().length() == 0){
+            etMessage.setError("Comment cannot be empty!");
+            etMessage.requestFocus();
+            return false;
+        }
         if (etMessage.getText().toString().equalsIgnoreCase(KEY_EMPTY)){
             etMessage.setError("Comment cannot be empty!");
             etMessage.requestFocus();

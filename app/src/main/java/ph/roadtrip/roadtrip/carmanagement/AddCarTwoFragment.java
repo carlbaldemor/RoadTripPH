@@ -237,32 +237,50 @@ public class AddCarTwoFragment extends Fragment implements OnMapReadyCallback, G
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Put the value
-                AddCarThreeFragment ldf = new AddCarThreeFragment ();
-                Bundle args = new Bundle();
-                args.putString("color", color);
-                args.putString("year", year);
-                args.putInt("modelID", modelID);
-                args.putString("plateNumber", plateNumber);
-                args.putString("chassisNumber", chassisNumber);
-                args.putString("latIssue", latIssue);
-                args.putString("longIssue", longIssue);
-                args.putString("latReturn", latReturn);
-                args.putString("longReturn", longReturn);
-                ldf.setArguments(args);
 
-                //Inflate the fragment
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, ldf);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                if(validateInputs()) {
+                    //Put the value
+                    AddCarThreeFragment ldf = new AddCarThreeFragment();
+                    Bundle args = new Bundle();
+                    args.putString("color", color);
+                    args.putString("year", year);
+                    args.putInt("modelID", modelID);
+                    args.putString("plateNumber", plateNumber);
+                    args.putString("chassisNumber", chassisNumber);
+                    args.putString("latIssue", latIssue);
+                    args.putString("longIssue", longIssue);
+                    args.putString("latReturn", latReturn);
+                    args.putString("longReturn", longReturn);
+                    ldf.setArguments(args);
+
+                    //Inflate the fragment
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_container, ldf);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                }
 
             }
         });
 
 
         return view;
+    }
+
+    private boolean validateInputs(){
+        //tf_location, tf_location2;
+        if(tf_location.getText().toString().trim().length() == 0){
+            tf_location.setError("This field cannot be empty!");
+            tf_location.requestFocus();
+            return false;
+        }
+        if(tf_location2.getText().toString().trim().length() == 0){
+            tf_location2.setError("This field cannot be empty!");
+            tf_location2.requestFocus();
+            return false;
+        }
+        return true;
     }
 
     @Override

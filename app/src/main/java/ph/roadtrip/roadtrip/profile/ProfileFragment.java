@@ -323,7 +323,7 @@ public class ProfileFragment extends android.support.v4.app.Fragment {
                             if (response.getInt(KEY_STATUS) == 0) {
                                 rate = response.getDouble(KEY_TOTAL_RATING);
 
-                                DecimalFormat df = new DecimalFormat("#.#");
+                                DecimalFormat df = new DecimalFormat("#.##");
                                 df.format(rate);
 
                                 tvRating.setText(String.valueOf(rate));

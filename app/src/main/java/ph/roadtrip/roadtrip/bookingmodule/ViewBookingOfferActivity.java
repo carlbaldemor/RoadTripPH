@@ -421,7 +421,7 @@ public class ViewBookingOfferActivity extends BaseActivity {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        DecimalFormat df = new DecimalFormat("#.00");
+                        DecimalFormat df = new DecimalFormat("#,###.00");
                         //Set Text
                         tvBrand.setText(color + " " + brandName + " " + modelName + " " + modelYear);
                         tvPickup.setText(address);

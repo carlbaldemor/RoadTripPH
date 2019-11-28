@@ -55,6 +55,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Locale;
 
@@ -222,34 +223,35 @@ public class MapsFavoritesActivity extends BaseActivity implements OnMapReadyCal
                                 .title(brandName + " " + modelName + " (" + amount + ")")
                                 .snippet(address)
                                 .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_sedan)))).setTag(obj);*/
-
+                        DecimalFormat df = new DecimalFormat("#,###.00");
+                        Double amt = Double.parseDouble(amount);
                         if (carType.equals("Sedan")){
                             mMap.addMarker(new MarkerOptions()
-                                    .position(latLng).title(recordID + brandName + " " + modelName + " (" + amount + ")")
+                                    .position(latLng).title(recordID + brandName + " " + modelName + " (" + String.valueOf("₱" + df.format(amt)) + "")
                                     .snippet(carType+"\n"+status+"\n"+"2nd Line Text"+"\n"+address)
                                     .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_sedan))));
 
                         } else if (carType.equals("Hatchback")){
                             mMap.addMarker(new MarkerOptions()
-                                    .position(latLng).title(recordID + brandName + " " + modelName + " (" + amount + ")")
+                                    .position(latLng).title(recordID + brandName + " " + modelName + " (" + String.valueOf("₱" + df.format(amt)) + "")
                                     .snippet(carType+"\n"+status+"\n"+"2nd Line Text"+"\n"+address)
                                     .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_hatchback))));
 
                         } else if (carType.equals("MPV")){
                             mMap.addMarker(new MarkerOptions()
-                                    .position(latLng).title(recordID + brandName + " " + modelName + " (" + amount + ")")
+                                    .position(latLng).title(recordID + brandName + " " + modelName + " (" + String.valueOf("₱" + df.format(amt)) + "")
                                     .snippet(carType+"\n"+status+"\n"+"2nd Line Text"+"\n"+address)
                                     .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_mpv))));
 
                         } else if (carType.equals("SUV")){
                             mMap.addMarker(new MarkerOptions()
-                                    .position(latLng).title(recordID + brandName + " " + modelName + " (" + amount + ")")
+                                    .position(latLng).title(recordID + brandName + " " + modelName + " (" + String.valueOf("₱" + df.format(amt)) + "")
                                     .snippet(carType+"\n"+status+"\n"+"2nd Line Text"+"\n"+address)
                                     .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_suv))));
 
                         } else if (carType.equals("Pickup")){
                             mMap.addMarker(new MarkerOptions()
-                                    .position(latLng).title(recordID + brandName + " " + modelName + " (" + amount + ")")
+                                    .position(latLng).title(recordID + brandName + " " + modelName + " (" + String.valueOf("₱" + df.format(amt)) + "")
                                     .snippet(carType+"\n"+status+"\n"+"2nd Line Text"+"\n"+address)
                                     .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_pickup))));
                         }

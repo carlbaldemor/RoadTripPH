@@ -131,6 +131,11 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     //Validations
     private boolean validateInputs() {
 
+        if(etEmailAddress.getText().toString().trim().length() == 0){
+            etEmailAddress.setError("Email Address cannot be empty");
+            etEmailAddress.requestFocus();
+            return false;
+        }
         if (KEY_EMPTY.equals(emailAddress)) {
             etEmailAddress.setError("Email Address cannot be empty");
             etEmailAddress.requestFocus();

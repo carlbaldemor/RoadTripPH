@@ -143,7 +143,13 @@ public class ViewRequestFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Decline Booking Offer
-                declineBooking();
+                //declineBooking();
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, new DeclineBookingFragment());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             }
         });
 
@@ -189,12 +195,14 @@ public class ViewRequestFragment extends Fragment {
                             specialNote = "N/A";
                         }
 
+                        DecimalFormat df = new DecimalFormat("#,###.00");
+                        Double totals = Double.parseDouble(totalAmount);
                         tvStartDate.setText(startDate);
                         tvEndDate.setText(endDate);
                         tvBrandName.setText(brandName);
                         tvModelName.setText(modelName);
                         tvFullname.setText(firstName + " " + lastName);
-                        tvTotalAmount.setText(totalAmount);
+                        tvTotalAmount.setText(String.valueOf("₱" + df.format(totals)));
                         tvCarType.setText(carType);
                         tvServiceType.setText(serviceType);
                         tvSpecialNote.setText(specialNote);

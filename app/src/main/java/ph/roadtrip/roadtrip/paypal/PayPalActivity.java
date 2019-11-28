@@ -27,6 +27,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 import ph.roadtrip.roadtrip.BaseActivity;
 import ph.roadtrip.roadtrip.classes.MySingleton;
@@ -205,6 +206,9 @@ public class PayPalActivity extends BaseActivity implements View.OnClickListener
                         amount = response.getString(KEY_AMOUNT);
                         totalAmount = response.getString(KEY_TOTAL_AMOUNT);
 
+
+                        DecimalFormat df = new DecimalFormat("#,###.00");
+                        Double amt = Double.parseDouble(amount);
                         tvBrand.setText(brandName);
                         tvModel.setText(modelName);
                         tvColor.setText(color);
@@ -213,7 +217,7 @@ public class PayPalActivity extends BaseActivity implements View.OnClickListener
                         tvOwner.setText(firstName + " " + lastName);
                         tvStartDate.setText(startDate);
                         tvEndDate.setText(endDate);
-                        tvAmount.setText(amount);
+                        tvAmount.setText(String.valueOf("₱" + df.format(amt)));
                         tvTotalAmount.setText(totalAmount);
 
                         Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();

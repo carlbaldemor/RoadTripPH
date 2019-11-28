@@ -40,6 +40,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -274,7 +275,7 @@ public class ViewRecordFragment extends android.support.v4.app.Fragment {
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
-
+                                DecimalFormat df = new DecimalFormat("#,###.00");
                                 tvBrand.setText(brandName);
                                 tvModel.setText(modelName);
                                 tvColor.setText(color);
@@ -283,7 +284,7 @@ public class ViewRecordFragment extends android.support.v4.app.Fragment {
                                 tvServiceType.setText(serviceType);
                                 tvPickup.setText(pickupAddress);
                                 tvReturn.setText(returnAddress);
-                                tvAmount.setText("₱" + String.valueOf(amount));
+                                tvAmount.setText(String.valueOf("₱" + df.format(amount)));
 
                             } else{
                                 Toast.makeText(getActivity(),

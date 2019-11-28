@@ -214,7 +214,7 @@ public class RegisterActivity extends AppCompatActivity implements TextWatcher {
                     Toast.makeText(getApplicationContext(), "Error: on size boolean", Toast.LENGTH_SHORT).show();
                 }
 
-                if (validateInputs() == false) {
+                if (!validateInputs()) {
                     //Stay at sign up page.
                 }else {
                         validateCaptcha();
@@ -431,6 +431,31 @@ public class RegisterActivity extends AppCompatActivity implements TextWatcher {
      * @return
      */
     private boolean validateInputs() {
+
+        //Validate White Space
+        if(etFirstName.getText().toString().trim().length() == 0) {
+            etFirstName.setError("First Name cannot be empty");
+            etFirstName.requestFocus();
+            return false;
+        }
+
+        if(etLastName.getText().toString().trim().length() == 0){
+            etLastName.setError("Last Name cannot be empty");
+            etLastName.requestFocus();
+            return false;
+        }
+
+        if(etUsername.getText().toString().trim().length() == 0){
+            etUsername.setError("Username cannot be empty");
+            etUsername.requestFocus();
+            return false;
+        }
+
+        if(etPassword.getText().toString().trim().length() == 0){
+            etPassword.setError("Password cannot be empty");
+            etPassword.requestFocus();
+            return false;
+        }
 
         if (KEY_EMPTY.equals(firstName)) {
             etFirstName.setError("First Name cannot be empty");

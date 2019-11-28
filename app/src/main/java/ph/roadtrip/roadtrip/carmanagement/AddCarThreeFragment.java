@@ -225,53 +225,66 @@ public class AddCarThreeFragment extends Fragment {
         view.findViewById(R.id.btnNext).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                serviceType = serviceSpinner.getSelectedItem().toString();
-                amount = etAmount.getText().toString();
-                
-                //Put the value
-                AddCarFourFragment ldf = new AddCarFourFragment ();
-                Bundle args = new Bundle();
-                args.putString("color", color);
-                args.putString("year", year);
-                args.putInt("modelID", modelID);
-                args.putString("plateNumber", plateNumber);
-                args.putString("chassisNumber", chassisNumber);
-                args.putString("latIssue", latIssue);
-                args.putString("longIssue", longIssue);
-                args.putString("latReturn", latReturn);
-                args.putString("longReturn", longReturn);
-                args.putString("serviceType", serviceType);
-                args.putString("amount", amount);
-                if (img1 != null){
-                    session.setCarPic1(BitMapToString(img1));
-                }
-                if (img2 != null) {
-                    session.setCarPic2(BitMapToString(img2));
-                }
-                if (img3 != null) {
-                    session.setCarPic3(BitMapToString(img3));
-                }
-                if (img4 != null) {
-                    session.setCarPic4(BitMapToString(img4));
-                }
-                if (img5 != null) {
-                    session.setCarPic5(BitMapToString(img5));
-                }
-                if (img6 != null){
-                    session.setCarPic6(BitMapToString(img6));
-                }
-                ldf.setArguments(args);
 
-                //Inflate the fragment
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, ldf);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                if(validateInputs()) {
+                    serviceType = serviceSpinner.getSelectedItem().toString();
+                    amount = etAmount.getText().toString();
+
+                    //Put the value
+                    AddCarFourFragment ldf = new AddCarFourFragment();
+                    Bundle args = new Bundle();
+                    args.putString("color", color);
+                    args.putString("year", year);
+                    args.putInt("modelID", modelID);
+                    args.putString("plateNumber", plateNumber);
+                    args.putString("chassisNumber", chassisNumber);
+                    args.putString("latIssue", latIssue);
+                    args.putString("longIssue", longIssue);
+                    args.putString("latReturn", latReturn);
+                    args.putString("longReturn", longReturn);
+                    args.putString("serviceType", serviceType);
+                    args.putString("amount", amount);
+                    if (img1 != null) {
+                        session.setCarPic1(BitMapToString(img1));
+                    }
+                    if (img2 != null) {
+                        session.setCarPic2(BitMapToString(img2));
+                    }
+                    if (img3 != null) {
+                        session.setCarPic3(BitMapToString(img3));
+                    }
+                    if (img4 != null) {
+                        session.setCarPic4(BitMapToString(img4));
+                    }
+                    if (img5 != null) {
+                        session.setCarPic5(BitMapToString(img5));
+                    }
+                    if (img6 != null) {
+                        session.setCarPic6(BitMapToString(img6));
+                    }
+                    ldf.setArguments(args);
+
+                    //Inflate the fragment
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_container, ldf);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+
+                }
             }
         });
 
         return view;
+    }
+
+    private boolean validateInputs(){
+        if(etAmount.getText().toString().trim().length() == 0){
+            etAmount.setError("Amount cannot be empty");
+            etAmount.requestFocus();
+            return false;
+        }
+        return true;
     }
 
     public String BitMapToString(Bitmap bitmap){

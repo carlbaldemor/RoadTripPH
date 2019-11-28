@@ -38,6 +38,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -220,6 +221,8 @@ public class AddCarFiveFragment extends Fragment {
             e.printStackTrace();
         }
 
+        DecimalFormat df = new DecimalFormat("#,###.00");
+        Double amt = Double.parseDouble(amount);
         tvColor.setText(color);
         tvYear.setText(year);
         tvPlateNumber.setText(plateNumber);
@@ -227,7 +230,7 @@ public class AddCarFiveFragment extends Fragment {
         tvReturn.setText(returnAdd);
         tvPickup.setText(pickupAdd);
         tvServiceType.setText(serviceType);
-        tvPrice.setText(amount);
+        tvPrice.setText(String.valueOf("₱" + df.format(amt)));
         hidePDialog();
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override

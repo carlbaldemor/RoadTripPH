@@ -358,13 +358,15 @@ public class CurrentBookingFragment extends Fragment {
                         }
 
                         setView();
-
+                        DecimalFormat df = new DecimalFormat("#,###.00");
+                        Double amt = Double.parseDouble(amount);
+                        Double totals = Double.parseDouble(totalAmount);
                         tvBrand.setText(brandName + " " + modelName + " " + modelYear + " " + color);
                         tvName.setText(firstName + " " + lastName);
                         tvPickup.setText(address);
                         tvReturn.setText(address2);
-                        tvAmount.setText("₱" + amount);
-                        tvTotalAmount.setText("₱" + totalAmount);
+                        tvAmount.setText(String.valueOf("₱" + df.format(amt)));
+                        tvTotalAmount.setText(String.valueOf("₱" + df.format(totals)));
                         tvCarType.setText(carType);
                         tvStartDate.setText(startDate);
                         tvEndDate.setText(endDate);
