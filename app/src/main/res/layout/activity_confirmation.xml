@@ -39,13 +39,25 @@
                     android:textColor="@color/endblue"
                     android:textSize="16sp"
                     android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/paymentAmount"
-                    android:layout_width="100dp"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/paymentAmount"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="VAT Inclusive"
+                        android:textStyle="italic"
+                        android:textSize="9sp"/>
+                </LinearLayout>
             </TableRow>
 
             <TableRow>
