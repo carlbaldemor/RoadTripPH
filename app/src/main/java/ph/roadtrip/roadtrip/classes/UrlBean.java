@@ -258,6 +258,9 @@ public class UrlBean {
     //check current booking renter
     private String checkcurrentbooking = ROOT_IP + "checkcurrentbooking.php";
 
+    //check payment startdate and payment ID
+    private String checkpayment = ROOT_IP + "checkpayment.php";
+
 
 
 
@@ -266,6 +269,14 @@ public class UrlBean {
      *
      * GETTERS AND SETTERS
      */
+
+    public String getCheckpayment() {
+        return checkpayment;
+    }
+
+    public void setCheckpayment(String checkpayment) {
+        this.checkpayment = checkpayment;
+    }
 
     public String getViewcarpictures() {
         return viewcarpictures;
