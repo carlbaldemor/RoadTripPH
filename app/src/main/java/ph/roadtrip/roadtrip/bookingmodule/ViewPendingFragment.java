@@ -18,20 +18,17 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.bumptech.glide.Glide;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 
 import ph.roadtrip.roadtrip.R;
 import ph.roadtrip.roadtrip.classes.MySingleton;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
 import ph.roadtrip.roadtrip.classes.UrlBean;
 import ph.roadtrip.roadtrip.classes.User;
-import ph.roadtrip.roadtrip.profile.ListReviewProfileFragment;
 
 public class ViewPendingFragment extends Fragment {
 
@@ -97,8 +94,8 @@ public class ViewPendingFragment extends Fragment {
         fetch_booking_data = urlBean.getView_booking_request();
         onBackground();
 
-        tvStartDate = view.findViewById(R.id.tvStartDate);
-        tvEndDate = view.findViewById(R.id.tvEndDate);
+        tvStartDate = view.findViewById(R.id.tvHoursLate);
+        tvEndDate = view.findViewById(R.id.tvRate);
         tvBrandName = view.findViewById(R.id.tvBrandName);
         tvModelName = view.findViewById(R.id.tvModel);
         tvFullname = view.findViewById(R.id.tvName);

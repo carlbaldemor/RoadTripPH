@@ -136,7 +136,7 @@
             android:paddingLeft="15dp"/>
 
         <TextView
-            android:id="@+id/tvStartDate"
+            android:id="@+id/tvHoursLate"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvBookingDetails"
@@ -151,12 +151,12 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/tvEndDate"
+            android:id="@+id/tvRate"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvStartDate"
-            android:layout_alignStart="@+id/tvStartDate"
-            android:layout_alignLeft="@+id/tvStartDate"
+            android:layout_below="@+id/tvHoursLate"
+            android:layout_alignStart="@+id/tvHoursLate"
+            android:layout_alignLeft="@+id/tvHoursLate"
             android:layout_marginStart="0dp"
             android:layout_marginLeft="0dp"
             android:paddingTop="10dp"
@@ -169,9 +169,9 @@
             android:id="@+id/tvAmount"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvEndDate"
-            android:layout_alignStart="@+id/tvEndDate"
-            android:layout_alignLeft="@+id/tvEndDate"
+            android:layout_below="@+id/tvRate"
+            android:layout_alignStart="@+id/tvRate"
+            android:layout_alignLeft="@+id/tvRate"
             android:layout_marginStart="0dp"
             android:layout_marginLeft="0dp"
             android:text="Price Per Day: "
@@ -206,6 +206,22 @@
             android:textStyle="italic"
             android:layout_gravity="right"
             android:text="Vat Inclusive"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Note:  "/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You can only refund your payment 48 hours before your scheduled trip."/>
+        </LinearLayout>
 
         <Button
             android:id="@+id/buttonPay"

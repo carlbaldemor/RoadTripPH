@@ -26,17 +26,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 
-import io.grpc.netty.shaded.io.netty.handler.codec.spdy.SpdyHttpResponseStreamIdHandler;
 import ph.roadtrip.roadtrip.classes.MySingleton;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
 import ph.roadtrip.roadtrip.classes.UrlBean;
 import ph.roadtrip.roadtrip.R;
 import ph.roadtrip.roadtrip.classes.User;
 import ph.roadtrip.roadtrip.classes.updateData;
-
-import static com.google.android.gms.internal.zzbgp.NULL;
 
 public class ViewAcceptedBooking extends Fragment {
 
@@ -120,8 +116,8 @@ public class ViewAcceptedBooking extends Fragment {
         scanReturn = urlBean.getDecline_booking();
         onBackground();
 
-        tvStartDate = view.findViewById(R.id.tvStartDate);
-        tvEndDate = view.findViewById(R.id.tvEndDate);
+        tvStartDate = view.findViewById(R.id.tvHoursLate);
+        tvEndDate = view.findViewById(R.id.tvRate);
         tvBrandName = view.findViewById(R.id.tvBrandName);
         tvModelName = view.findViewById(R.id.tvModel);
         tvFullname = view.findViewById(R.id.tvName);

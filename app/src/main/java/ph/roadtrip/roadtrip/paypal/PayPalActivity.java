@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -94,8 +93,8 @@ public class PayPalActivity extends BaseActivity implements View.OnClickListener
         tvYear = findViewById(R.id.tvYear);
         tvServiceType = findViewById(R.id.tvServiceType);
         tvOwner = findViewById(R.id.tvOwner);
-        tvStartDate = findViewById(R.id.tvStartDate);
-        tvEndDate = findViewById(R.id.tvEndDate);
+        tvStartDate = findViewById(R.id.tvHoursLate);
+        tvEndDate = findViewById(R.id.tvRate);
         tvAmount = findViewById(R.id.tvAmount);
         tvTotalAmount = findViewById(R.id.tvTotalAmount);
 

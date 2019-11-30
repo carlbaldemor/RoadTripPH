@@ -17,15 +17,17 @@ public class MyBookingsFragmentAdapter extends android.support.v4.app.FragmentPa
     public Fragment getItem(int position) {
         if (position == 0) {
             return new CurrentBookingFragment();
-        } else {
+        } else if (position == 1){
             return new PendingBookingFragment();
+        }else {
+            return new PenaltyBookingFragment();
         }
     }
 
     // This determines the number of tabs
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 
     // This determines the title for each tab
@@ -37,6 +39,8 @@ public class MyBookingsFragmentAdapter extends android.support.v4.app.FragmentPa
                 return "Current";
             case 1:
                 return "Pending";
+            case 2:
+                return "Penalties";
             default:
                 return null;
         }

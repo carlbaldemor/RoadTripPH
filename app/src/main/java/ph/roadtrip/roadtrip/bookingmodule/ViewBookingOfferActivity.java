@@ -27,7 +27,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.bumptech.glide.Glide;
-import com.google.android.gms.maps.model.LatLng;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import org.json.JSONException;
@@ -35,7 +34,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -51,9 +49,7 @@ import ph.roadtrip.roadtrip.classes.MySingleton;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
 import ph.roadtrip.roadtrip.classes.UrlBean;
 import ph.roadtrip.roadtrip.classes.User;
-import ph.roadtrip.roadtrip.DashboardActivity;
 import ph.roadtrip.roadtrip.R;
-import ph.roadtrip.roadtrip.transactionhistory.Booking;
 
 import static android.view.View.GONE;
 
@@ -169,8 +165,8 @@ public class ViewBookingOfferActivity extends BaseActivity {
 
         //Initialize Text Views
         tvBrand = findViewById(R.id.tvBrand);
-        tvStartDate = findViewById(R.id.tvStartDate);
-        tvEndDate = findViewById(R.id.tvEndDate);
+        tvStartDate = findViewById(R.id.tvHoursLate);
+        tvEndDate = findViewById(R.id.tvRate);
         tvPickup = findViewById(R.id.tvPickup);
         tvName = findViewById(R.id.tvName);
         profilePicture = findViewById(R.id.profilePicture);

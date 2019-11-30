@@ -24,6 +24,12 @@
             android:name=".classes.SliderBookServiceActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".bookingmodule.PenaltyPayPalActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".bookingmodule.PenaltyConfirmationActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".classes.SliderCarManActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".BaseOwnerActivity"

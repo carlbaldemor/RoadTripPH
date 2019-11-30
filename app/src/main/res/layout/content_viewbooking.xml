@@ -172,7 +172,7 @@
                                         android:layout_height="wrap_content"
                                         android:text="date"
                                         android:textSize="15sp"
-                                        android:id="@+id/tvStartDate"/>
+                                        android:id="@+id/tvHoursLate"/>
                                     />
                                 </LinearLayout>
                             </LinearLayout>
@@ -196,7 +196,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="End Date: "
                                     android:textSize="15sp"
-                                    android:id="@+id/tvEndDate"
+                                    android:id="@+id/tvRate"
                                     />
                             </LinearLayout>
                             <LinearLayout

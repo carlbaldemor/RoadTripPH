@@ -186,7 +186,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="start keme"
                                     android:textSize="15sp"
-                                    android:id="@+id/tvStartDate"
+                                    android:id="@+id/tvHoursLate"
                                     />
 
                             </LinearLayout>
@@ -210,7 +210,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="end keme"
                                     android:textSize="15sp"
-                                    android:id="@+id/tvEndDate"
+                                    android:id="@+id/tvRate"
                                     />
 
                             </LinearLayout>

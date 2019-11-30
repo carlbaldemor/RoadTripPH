@@ -30,7 +30,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
@@ -41,7 +40,6 @@ import ph.roadtrip.roadtrip.classes.User;
 import ph.roadtrip.roadtrip.MainActivity;
 import ph.roadtrip.roadtrip.paypal.PayPalActivity;
 import ph.roadtrip.roadtrip.R;
-import ph.roadtrip.roadtrip.transactionhistory.Booking;
 
 public class CurrentBookingFragment extends Fragment {
 
@@ -145,8 +143,8 @@ public class CurrentBookingFragment extends Fragment {
         tvTotalAmount = view.findViewById(R.id.tvTotalAmount);
         tvCarType = view.findViewById(R.id.tvCarType);
         proppic = view.findViewById(R.id.profilePicture);
-        tvStartDate = view.findViewById(R.id.tvStartDate);
-        tvEndDate = view.findViewById(R.id.tvEndDate);
+        tvStartDate = view.findViewById(R.id.tvHoursLate);
+        tvEndDate = view.findViewById(R.id.tvRate);
         tvRating = view.findViewById(R.id.tvRating);
         tvSpecialNote = view.findViewById(R.id.tvSpecialNote);
         call = view.findViewById(R.id.call);

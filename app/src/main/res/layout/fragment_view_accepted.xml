@@ -138,7 +138,7 @@
                             android:textColor="@color/endblue"/>
 
                         <TextView
-                            android:id="@+id/tvStartDate"
+                            android:id="@+id/tvHoursLate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="18sp"
@@ -168,7 +168,7 @@
                             android:textColor="@color/endblue"/>
 
                         <TextView
-                            android:id="@+id/tvEndDate"
+                            android:id="@+id/tvRate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="18sp"

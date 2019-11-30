@@ -1,9 +1,7 @@
 package ph.roadtrip.roadtrip.bookingmodule;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -28,15 +26,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 
 import ph.roadtrip.roadtrip.classes.MySingleton;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
 import ph.roadtrip.roadtrip.classes.UrlBean;
 import ph.roadtrip.roadtrip.R;
 import ph.roadtrip.roadtrip.classes.User;
-
-import static com.google.android.gms.internal.zzbgp.NULL;
 
 public class ViewRequestFragment extends Fragment {
 
@@ -112,8 +107,8 @@ public class ViewRequestFragment extends Fragment {
         decline_booking = urlBean.getDecline_booking();
         onBackground();
 
-        tvStartDate = view.findViewById(R.id.tvStartDate);
-        tvEndDate = view.findViewById(R.id.tvEndDate);
+        tvStartDate = view.findViewById(R.id.tvHoursLate);
+        tvEndDate = view.findViewById(R.id.tvRate);
         tvBrandName = view.findViewById(R.id.tvBrandName);
         tvModelName = view.findViewById(R.id.tvModel);
         tvFullname = view.findViewById(R.id.tvName);

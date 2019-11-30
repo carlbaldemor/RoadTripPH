@@ -261,6 +261,24 @@ public class UrlBean {
     //check payment startdate and payment ID
     private String checkpayment = ROOT_IP + "checkpayment.php";
 
+    //Insert paypal refund
+    private String insertpaypalrefund = ROOT_IP + "insertpaypalrefund.php";
+
+    //Get end date
+    private String getenddate = ROOT_IP + "getenddate.php";
+
+    //Insert Penalty
+    private String insertpenaltyURL = ROOT_IP + "insertpenalty.php";
+
+    //List Penalty
+    private String penaltyList = ROOT_IP + "listpenalty.php?userID=";
+
+    //List Penalty
+    private String viewpenalty = ROOT_IP + "viewpenalty.php";
+
+    //List Penalty
+    private String insertpaypalpenalty = ROOT_IP + "insertpaypalpenalty.php";
+
 
 
 
@@ -269,6 +287,54 @@ public class UrlBean {
      *
      * GETTERS AND SETTERS
      */
+
+    public String getInsertpaypalpenalty() {
+        return insertpaypalpenalty;
+    }
+
+    public void setInsertpaypalpenalty(String insertpaypalpenalty) {
+        this.insertpaypalpenalty = insertpaypalpenalty;
+    }
+
+    public String getViewpenalty() {
+        return viewpenalty;
+    }
+
+    public void setViewpenalty(String viewpenalty) {
+        this.viewpenalty = viewpenalty;
+    }
+
+    public String getPenaltyList() {
+        return penaltyList;
+    }
+
+    public void setPenaltyList(String penaltyList) {
+        this.penaltyList = penaltyList;
+    }
+
+    public String getInsertpenaltyURL() {
+        return insertpenaltyURL;
+    }
+
+    public void setInsertpenaltyURL(String insertpenaltyURL) {
+        this.insertpenaltyURL = insertpenaltyURL;
+    }
+
+    public String getGetenddate() {
+        return getenddate;
+    }
+
+    public void setGetenddate(String getenddate) {
+        this.getenddate = getenddate;
+    }
+
+    public String getInsertpaypalrefund() {
+        return insertpaypalrefund;
+    }
+
+    public void setInsertpaypalrefund(String insertpaypalrefund) {
+        this.insertpaypalrefund = insertpaypalrefund;
+    }
 
     public String getCheckpayment() {
         return checkpayment;

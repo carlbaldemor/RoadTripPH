@@ -28,7 +28,6 @@ import ph.roadtrip.roadtrip.classes.MySingleton;
 import ph.roadtrip.roadtrip.classes.SessionHandler;
 import ph.roadtrip.roadtrip.classes.UrlBean;
 import ph.roadtrip.roadtrip.R;
-import ph.roadtrip.roadtrip.classes.User;
 
 public class ViewHistoryRecord extends Fragment {
 
@@ -95,8 +94,8 @@ public class ViewHistoryRecord extends Fragment {
         scanReturn = urlBean.getDecline_booking();
         onBackground();
 
-        tvStartDate = view.findViewById(R.id.tvStartDate);
-        tvEndDate = view.findViewById(R.id.tvEndDate);
+        tvStartDate = view.findViewById(R.id.tvHoursLate);
+        tvEndDate = view.findViewById(R.id.tvRate);
         tvBrandName = view.findViewById(R.id.tvBrandName);
         tvModelName = view.findViewById(R.id.tvModel);
         tvFullname = view.findViewById(R.id.tvName);
